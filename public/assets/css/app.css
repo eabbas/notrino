@@ -1,0 +1,214 @@
+@font-face {
+  font-family: yekanBakhThin;
+  src: url('../font/YekanBakhFaNum-Thin.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: yekanBakhLight;
+  src: url('../font/YekanBakhFaNum-Light.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: yekanBakhRegular;
+  src: url('../font/YekanBakhFaNum-Regular.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: yekanBakhSemiBold;
+  src: url('../font/YekanBakhFaNum-SemiBold.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: yekanBakhBold;
+  src: url('../font/YekanBakhFaNum-Bold.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: yekanBakhExtraBold;
+  src: url('../font/YekanBakhFaNum-ExtraBold.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: yekanBakhBlack;
+  src: url('../font/YekanBakhFaNum-Black.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: yekanBakhExtraBlack;
+  src: url('../font/YekanBakhFaNum-ExtraBlack.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+*::selection{
+  background-color: var(--color-primary-500);
+  color: #fff;
+}
+body {
+  font-family: yekanBakhSemiBold;
+  font-family: sans-serif;
+  /* font-style: italic; */
+  box-sizing: border-box;
+}
+:root {
+  --color-red-100: oklch(93.6% 0.032 17.717);
+  --color-red-200: oklch(88.5% 0.062 18.334);
+  --color-red-400: oklch(70.4% 0.191 22.216);
+  --color-red-500: oklch(63.7% 0.237 25.331);
+  --color-red-600: oklch(57.7% 0.245 27.325);
+  --color-red-700: oklch(50.5% 0.213 27.518);
+  --color-yellow-500: oklch(79.5% 0.184 86.047);
+  --color-yellow-600: oklch(68.1% 0.162 75.834);
+  --color-yellow-700: oklch(55.4% 0.135 66.442);
+  --color-green-300: oklch(87.1% 0.15 154.449);
+  --color-green-400: oklch(79.2% 0.209 151.711);
+  --color-green-500: oklch(72.3% 0.219 149.579);
+  --color-green-600: oklch(62.7% 0.194 149.214);
+  --color-green-700: oklch(52.7% 0.154 150.069);
+  --color-green-800: oklch(44.8% 0.119 151.328);
+  --color-sky-500: oklch(68.5% 0.169 237.323);
+  --color-sky-600: oklch(58.8% 0.158 241.966);
+  --color-blue-400: oklch(70.7% 0.165 254.624);
+  --color-blue-500: oklch(62.3% 0.214 259.815);
+  --color-blue-600: oklch(54.6% 0.245 262.881);
+  --color-blue-700: oklch(48.8% 0.243 264.376);
+  --color-pink-300: oklch(82.3% 0.12 346.018);
+  --color-pink-500: oklch(65.6% 0.241 354.308);
+  --color-gray-100: oklch(96.7% 0.003 264.542);
+  --color-gray-200: oklch(92.8% 0.006 264.531);
+  --color-gray-300: oklch(87.2% 0.01 258.338);
+  --color-gray-400: oklch(70.7% 0.022 261.325);
+  --color-gray-500: oklch(55.1% 0.027 264.364);
+  --color-gray-600: oklch(44.6% 0.03 256.802);
+  --color-gray-700: oklch(37.3% 0.034 259.733);
+  --color-gray-800: oklch(27.8% 0.033 256.848);
+  --color-gray-900: oklch(21% 0.034 264.665);
+  --color-zinc-50: oklch(98.5% 0 0);
+  --color-zinc-100: oklch(96.7% 0.001 286.375);
+  --color-zinc-200: oklch(92% 0.004 286.32);
+  --color-zinc-300: oklch(87.1% 0.006 286.286);
+  --color-zinc-400: oklch(70.5% 0.015 286.067);
+  --color-zinc-500: oklch(55.2% 0.016 285.938);
+  --color-zinc-600: oklch(44.2% 0.017 285.786);
+  --color-zinc-700: oklch(37% 0.013 285.805);
+  --color-zinc-800: oklch(27.4% 0.006 286.033);
+  --color-primary-300: #f7b518;
+  --color-primary-400: #f39e1d;
+  --color-primary-500: #f28822;
+  --color-primary-600: #ed7224;
+  --color-primary-700: #ea5d25;
+  --color-primary-800: #e64624;
+}
+.slider {
+    position: relative;
+    /* max-width: 800px; */
+    border-radius: 35px;
+    object-fit: cover;
+    /* width: 100%; */
+    /* height: ; */
+    /* rounded-3xl object-cover w-full h-35 mx-auto md:h-[320px] */
+    margin: auto;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    /* height: 400px; */
+    background-size: cover;
+    background-position: center;
+}
+
+.prev, .next {
+    position: absolute;
+    z-index: 25;
+    top: 50%;
+    transform: translateY(-50%);
+    /* background: rgba(0,0,0,0.5); */
+    color: rgb(6, 6, 6);
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* تغییر موقعیت دکمه‌ها برای RTL */
+.prev { right: 10px; } /* قبلاً left بود */
+.next { left: 10px; } /* قبلاً right بود */
+
+/* اگر می‌خواهید فلش‌ها هم معکوس شوند */
+.prev::after { content: '❮'; }
+.next::after { content: '❯'; }
+
+
+
+
+
+
+.labal_1 {
+  transition: all 300ms;
+  /* transition:all 800ms; */
+}
+.labal_1:hover .labal_1-1{
+  visibility: visible;
+}
+.labal_2 {
+  transition: all 300ms;
+  /* transition: all 2s; */
+}
+.labal_2:hover .labal_2-2 {
+  visibility: visible;
+}
+.labal_3 {
+  transition: all 300ms;
+  /* transition: all 5s; */
+}
+.labal_3:hover .labal_3-3 {
+  visibility: visible;
+}
+.mmde:hover svg path {
+  fill: var(--color-primary-500);
+}
+.labal_4 {
+  transition: all 300ms;
+  /* transition: all 300ms; */
+}
+.labal_4:hover .labal_4-4 {
+  visibility: visible;
+}
+
+.svg:hover svg:last-child {
+  fill: var(--color-primary-500);
+  transition: all 300ms;
+  /* transition: all 300ms; */
+  transform: rotate(180deg);
+}
+.category:hover div:first-child{
+  box-shadow: 0 0 15px 1px var(--color-primary-500);
+  border-color: var(--color-primary-500);
+}
+.menu-mobile-slid{
+   /* transform: translateX(525px); */
+    transition: all 500ms ease-out;
+}
+/* #hambeger:checked + .menu-mobile-slid{
+  transform: translateX(-300px);
+} */

@@ -133,9 +133,7 @@ class UserController extends Controller
 
     public function delete(user $user)
     {
-        foreach ($user->careers as $career) {
-            $career->delete();
-        }
+        
         $user->delete();
         return to_route('user.list');
     }

@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class setting extends Model
+{
+    protected $fillable=
+    [
+        'meta_key',
+        'meta_value' ,
+        'slug'
+    ];
+}

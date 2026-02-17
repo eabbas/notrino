@@ -23,8 +23,8 @@
                         <path fill="white"
                             d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
                     </svg>
-                    <a href="{{ route('user.profile', [Auth::id()]) }}" class="block w-full text-white py-1">
-                        داشبورد
+                    <a href="{{ route('home') }}" class="block w-full text-white py-1">
+                        بازدید از سایت
                     </a>
                 </div>
                 @if (Auth::user()->role[0]->title == 'admin')
@@ -61,8 +61,91 @@
                     </ul>
                 </div>
                 @endif
-            
+                @if (Auth::user()->role[0]->title == 'admin')
                 <div class="dashboard">
+                    <div class="flex flex-row-reverse justify-between">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                            class="size-6 fill-white w-[15px]">
+                            <path fill-rule="evenodd"
+                                d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <div class="flex flex-row-reverse items-center gap-2">
+                            <span class=" text-[white] flex justify-end font-bold"> فوتر</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"
+                            class="size-6 fill-white w-[15px]">
+                                <path d="M448 64c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <ul class="mt-2.5 mb-2.5 pr-3 transition-all duration-500 overflow-hidden">
+                        <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                            <span class="size-1 bg-white rounded-sm"></span>
+                            <a href="{{ route('footer.footerCreate') }}" class="text-white py-1">
+                               ایجاد ستون های فوتر
+                            </a>
+                        </li>
+                        <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                            <span class="size-1 bg-white rounded-sm"></span>
+                            <a href="{{ route('express.expressCreate') }}" class="text-white py-1">
+                                ایجاد بنر های فوتر 
+                            </a>
+                        </li>
+                         <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                            <span class="size-1 bg-white rounded-sm"></span>
+                            <a href="{{ route('setting.createDescription') }}" class="text-white py-1">
+                                توضیحات فوتر     
+                            </a>
+                        </li>
+                        <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                            <span class="size-1 bg-white rounded-sm"></span>
+                            <a href="{{ route('setting.createLogo') }}" class="text-white py-1">
+                                لوگوی فوتر     
+                            </a>
+                        </li>
+                       
+
+                    </ul>
+                </div>
+                @endif
+                @if (Auth::user()->role[0]->title == 'admin')
+                <div class="dashboard">
+                    <div class="flex flex-row-reverse justify-between">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                            class="size-6 fill-white w-[15px]">
+                            <path fill-rule="evenodd"
+                                d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <div class="flex flex-row-reverse items-center gap-2">
+                            <span class=" text-[white] flex justify-end font-bold">محصولات</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"
+                            class="size-6 fill-white w-[15px]">
+                                <path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64zm0 112c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112zm0 128c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V240zM80 352h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V368c0-8.8 7.2-16 16-16zm112 32c0-8.8 7.2-16 16-16H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H208c-8.8 0-16-7.2-16-16zm16-272H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H208c-8.8 0-16-7.2-16-16s7.2-16 16-16zM192 256c0-8.8 7.2-16 16-16H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H208c-8.8 0-16-7.2-16-16z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <ul class="mt-2.5 mb-2.5 pr-3 transition-all duration-500 overflow-hidden">
+                        <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                            <span class="size-1 bg-white rounded-sm"></span>
+                            <a href="{{ route('product.create') }}" class="text-white py-1">
+                               ایجاد محصولات  
+                            </a>
+                        </li>
+                        <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                            <span class="size-1 bg-white rounded-sm"></span>
+                            <a href="{{ route('product.list') }}" class="text-white py-1">
+                                 لیست محصولات   
+                            </a>
+                        </li>
+                         
+                        
+
+                    </ul>
+                </div>
+                @endif
+            
+                {{-- <div class="dashboard">
                     <div class="flex flex-row-reverse justify-between">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="size-6 fill-white w-[15px]">
@@ -79,7 +162,7 @@
                         </div>
                     </div>
                   
-                </div>
+                </div> --}}
                 {{-- @endif --}}
             </div>
         </div>
