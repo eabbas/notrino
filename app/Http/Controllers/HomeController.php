@@ -64,21 +64,20 @@ class HomeController extends Controller
          $footer['column_six'] = footer::where('column_id' , '6')->get();
          $footer['column_six_title'] = footer::select('column_title')->where('column_id' , '6')->first();
       }
-   //   dd($footerInfo);
       return view("home" , 
       [
-         'brands'=>$brands , 
-         'footer_expresses'=> $footer_expresses ,
-         'footer'=> $footer ,
-         'sliders'=> $sliders ,
-         'footerLogo'=> $footerLogo ,
-         'footerDescription'=> $footerDescription ,
-         'HeroBannerRight'=> $HeroBannerRight ,
-         'HeroBannerLeft'=> $HeroBannerLeft ,
-         'categories'=>$categories,
-         'products'=>$products,
-         'attributes'=>$attributes,
-         'medias'=>$medias
+         'brands'=>isset($brands) ? $brands : null , 
+         'footer_expresses'=> isset($footer_expresses) ? $footer_expresses : null ,
+         'footer'=> isset($footer) ? $footer : null ,
+         'sliders'=> isset($sliders) ? $sliders : null ,
+         'footerLogo'=> isset($footerLogo) ? $footerLogo : null ,
+         'footerDescription'=> isset($footerDescription) ?  $footerDescription : null,
+         'HeroBannerRight'=> isset($HeroBannerRight) ?  $HeroBannerRight : null,
+         'HeroBannerLeft'=> isset($HeroBannerLeft) ? $HeroBannerLeft : null,
+         'categories'=>isset($categories) ? $categories : null,
+         'products'=>isset($products) ? $products : null,
+         'attributes'=>isset($attributes) ? $attributes : null,
+         'medias'=>isset($medias) ? $medias : null
       ]);
    }
 }

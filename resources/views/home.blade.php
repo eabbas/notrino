@@ -354,11 +354,13 @@
                 </svg>
               </li>
               <div class="labal_3-3 absolute w-50 px-3 py-1 rounded-xl shadow-xl bg-white invisible">
+                @if($categories)
                 @foreach ($categories as $category)
                   @if($category->parent_id == 0)
                     <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="{{ route('category.proList', [$category]) }}" class="">{{ $category->title }}</a></li>
                   @endif
                 @endforeach
+                @endif
               
               </div>
             </div>
@@ -440,11 +442,13 @@
             </defs>
           </svg>
           <a href="سیلام" class="slides">
+            @if($slider)
             @foreach ($sliders as $slider)
               <div class="slide object-cover w-full h-35 mx-auto md:h-[320px]">
                 <img src="{{ asset('storage/'.$slider->slider_img) }}" class="w-full h-full" alt="">
               </div>
             @endforeach
+            @endif
           </a>
           <button class="prev"></button>
           <button class="next"></button>
@@ -452,6 +456,7 @@
       </section>
       <!-- category -->
       <section class="w-[93%] md:w-[95%] grid grid-cols-3 md:flex flex-wrap justify-center mx-auto gap-4 md:gap-8 mt-20">
+        @if($categories)
         @foreach ($categories as $category)
           
         @if(isset($category->image))
@@ -464,6 +469,7 @@
         @endif
         
         @endforeach
+        @endif
       </section>
 <!-- filter products -->
 <section class="w-full mt-12 md:mt-20">
@@ -474,11 +480,13 @@
       <h2 class="">دسته بندی ها</h2>
       <ul class="space-y-2 text-sm md:flex gap-x-2">
         <li><button class="text-right w-full px-4 py-2 rounded-lg text-(--color-primary-500) bg-zinc-100 hover:bg-zinc-200 cursor-pointer text-sm" id="all-categories-btn" data-cat-id="all">همه</button></li>
+        @if($categories)
         @foreach ($categories as $category)
           @if($category->parent_id == 0)
             <li><button class="text-right w-full px-4 py-2 rounded-lg hover:bg-zinc-100 hover:text-(--color-primary-500) cursor-pointer text-sm cats" data-cat-id="{{ $category->id }}">{{ $category->title }}</button></li>
           @endif
         @endforeach
+        @endif
         <li>
           <button class="text-right w-full px-4 py-2 rounded-lg cursor-pointer text-sm hover:text-(--color-primary-700) text-(--color-primary-500) flex items-center gap-x-1 group" data-category="beauty">
             همه محصولات
@@ -496,12 +504,15 @@
           [&::-webkit-scrollbar-thumb]:bg-(--color-primary-500)
           [&::-webkit-scrollbar-thumb]:rounded-full">
       <div class="flex flex-row gap-3">
+        @if($products)
         @foreach ($products as $product)
           @if($product->show_home == 1)
             <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
+              @if($medias)
               @php
                 $productMedia = $medias->where('product_id', $product->id)->first();
               @endphp
+              @endif
               @if($productMedia)
                 <a href="" class="flex items-center justify-center">
                   <img src="{{ asset('storage/'.$productMedia->path) }}" alt="{{ $product->title }}" class="rounded-xl mb-3 w-[130px] md:w-[220px]">
@@ -511,11 +522,13 @@
               <p class="text-[10px] md:text-xs text-(--color-zinc-500) mb-3">{{ $product->summary }}</p>
               <span class="flex flex-row justify-between items-center mb-3">
                 <span class="flex gap-1 mt-4">
+                  @if($attributes)
                   @foreach ($attributes as $attribute)
                     @if($attribute->product_id == $product->id)
                       <div class="w-3 md:w-4 h-3 md:h-4 rounded-full" style="background-color: {{ $attribute->value }};"></div>
                     @endif
                   @endforeach
+                  @endif
                 </span>
                 <span class="flex items-center gap-0.5">
                   <span class="text-[9px] text-(--color-zinc-500)">(78)</span>
@@ -536,10 +549,12 @@
             </div>
           @endif
         @endforeach
+        @endif
       </div>
     </div>
     
     <!-- محصولات دسته‌بندی‌ها -->
+    @if($categories)
     @foreach ($categories as $category)
     <div class="overflow-x-auto w-full h-[350px] md:h-[460px] flex flex-row border border-(--color-zinc-100) rounded-xl bg-white mx-auto px-[16px] py-[32px] category-section
           [&::-webkit-scrollbar]:w-0
@@ -549,9 +564,11 @@
         @foreach ($category->products as $product)
           @if($product->show_home == 1)
             <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
+              @if($medias)
               @php
                 $productMedia = $medias->where('product_id', $product->id)->first();
               @endphp
+              @endif
               @if($productMedia)
                 <a href="" class="flex items-center justify-center">
                   <img src="{{ asset('storage/'.$productMedia->path) }}" alt="{{ $product->title }}" class="rounded-xl mb-3 w-[130px] md:w-[220px]">
@@ -561,11 +578,13 @@
               <p class="text-[10px] md:text-xs text-(--color-zinc-500) mb-3">{{ $product->summary }}</p>
               <span class="flex flex-row justify-between items-center mb-3">
                 <span class="flex gap-1 mt-4">
+                  @if($attributes)
                   @foreach ($attributes as $attribute)
                     @if($attribute->product_id == $product->id)
                       <div class="w-3 md:w-4 h-3 md:h-4 rounded-full" style="background-color: {{ $attribute->value }};"></div>
                     @endif
                   @endforeach
+                  @endif
                 </span>
                 <span class="flex items-center gap-0.5">
                   <span class="text-[9px] text-(--color-zinc-500)">(78)</span>
@@ -589,6 +608,7 @@
       </div>
     </div>
     @endforeach
+    @endif
   </div>
 </section>
      <!-- product slider 1 -->
@@ -610,12 +630,15 @@
                 [&::-webkit-scrollbar-thumb]:bg-(--color-primary-500)
                 [&::-webkit-scrollbar-thumb]:rounded-full">
           <div class="flex flex-row gap-3">
+            @if($products)
             @foreach ($products as $product)
               @if($product->show_home == 1)
                 <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
+                  @if($medias)
                   @php
                     $productMedia = $medias->where('product_id', $product->id)->first();
                   @endphp
+                  @endif
                   @if($productMedia)
                     <a href="" class="flex items-center justify-center">
                       <img src="{{ asset('storage/'.$productMedia->path) }}" alt="{{ $product->title }}" class="rounded-xl mb-3 w-[130px] md:w-[220px]">
@@ -625,11 +648,13 @@
                   <p class="text-[10px] md:text-xs text-(--color-zinc-500) mb-3">{{ $product->summary }}</p>
                   <span class="flex flex-row justify-between items-center mb-3">
                     <span class="flex gap-1 mt-4">
+                      @if($attributes)
                       @foreach ($attributes as $attribute)
                         @if($attribute->product_id == $product->id)
                           <div class="w-3 md:w-4 h-3 md:h-4 rounded-full" style="background-color: {{ $attribute->value }};"></div>
                         @endif
                       @endforeach
+                      @endif
                     </span>
                     <span class="flex items-center gap-0.5">
                       <span class="text-[9px] text-(--color-zinc-500)">(78)</span>
@@ -651,24 +676,26 @@
                 </div>
               @endif
             @endforeach
+            @endif
           </div>
         </div>
       </section>
       <!-- 2 banner -->
       {{-- @dd($setting) --}}
       <section class="w-[93%] md:w-[95%] mx-auto flex flex-col md:flex-row gap-5 mt-20 p-5">
-    
+        @if($HeroBannerRight)
         @foreach ($HeroBannerRight as $rightBanner)
         <a href="" class="rounded-xl w-full md:w-1/2">
           <img src="{{ asset('storage/'.$rightBanner->meta_value) }}" class="rounded-2xl" alt="">
         </a>
         @endforeach
+        @endif@if($HeroBannerLeft)
         @foreach ($HeroBannerLeft as $leftBanner)
         <a href="" class="rounded-xl w-full md:w-1/2">
           <img src="{{ asset('storage/'.$leftBanner->meta_value) }}" class="rounded-2xl" alt="">
         </a>
         @endforeach
-    
+        @endif
       </section>
       <!-- product slider 2 -->
         <section class="mt-20">
@@ -689,12 +716,15 @@
                   [&::-webkit-scrollbar-thumb]:bg-(--color-primary-500)
                   [&::-webkit-scrollbar-thumb]:rounded-full">
             <div class="flex flex-row gap-3">
+              @if($products)
               @foreach ($products as $product)
                 @if($product->show_home == 1)
                   <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
+                    @if($medias)
                     @php
                       $productMedia = $medias->where('product_id', $product->id)->first();
                     @endphp
+                    @endif
                     @if($productMedia)
                       <a href="" class="flex items-center justify-center">
                         <img src="{{ asset('storage/'.$productMedia->path) }}" alt="{{ $product->title }}" class="rounded-xl mb-3 w-[130px] md:w-[220px]">
@@ -704,11 +734,13 @@
                     <p class="text-[10px] md:text-xs text-(--color-zinc-500) mb-3">{{ $product->summary }}</p>
                     <span class="flex flex-row justify-between items-center mb-3">
                       <span class="flex gap-1 mt-4">
+                        @if($attributes)
                         @foreach ($attributes as $attribute)
                           @if($attribute->product_id == $product->id)
                             <div class="w-3 md:w-4 h-3 md:h-4 rounded-full" style="background-color: {{ $attribute->value }};"></div>
                           @endif
                         @endforeach
+                        @endif
                       </span>
                       <span class="flex items-center gap-0.5">
                         <span class="text-[9px] text-(--color-zinc-500)">(78)</span>
@@ -730,6 +762,7 @@
                   </div>
                 @endif
               @endforeach
+              @endif
             </div>
           </div>
         </section>
@@ -754,6 +787,7 @@
           [&::-webkit-scrollbar]:w-thin
           [&::-webkit-scrollbar-thumb]:bg-(--color-primary-500)
           [&::-webkit-scrollbar-thumb]:rounded-full">
+          @if($brands)
           @foreach ($brands as $brand)
             <div class="flex flex-row gap-3">
               <a class="flex flex-col justify-between items-center gap-3 w-full h-36 md:h-48 md:px-4 border border-zinc-100 rounded-2xl hover:shadow-lg transition">
@@ -763,6 +797,7 @@
                   <p class="">{{ $brand->title }}</p>
               </a>
             @endforeach
+            @endif
             </div>
           </div>
         </div>
@@ -942,13 +977,17 @@
         <!-- <section class="w-[99%] mt-5 md:w-[90%] mx-auto flex flex-col md:flex-row justify-between items-center"> -->
         <div class="w-4/12 md:w-1/12 order-1 md:order-none">
             <a href="">
+              @if($footerLogo)
               <!-- <h1 class="font-bold text-base">NOTRINO<span class="text-(--color-primary-500)">SHAP</span></h1>
               <span class="text-[13px]">فروشگاه اینترنتی <span class="text-(--color-primary-500)">نوترینو</span></span> -->
               <img src="{{ asset('storage/'.$footerLogo['meta_value']) }}" alt="logo" class="w-full">
+              @endif
             </a>
         </div>
         <div class="md:w-8/12 text-xs text-zinc-400 leading-7 order-3 md:order-none text-justify flex items-center justify-center">
+          @if($footerDescription)
           {{ $footerDescription['meta_value'] }}
+          @endif
         </div>
         <div class="md:w-1/12 order-2 md:order-none">
           <button onclick="scrollToTop()" class="flex items-center justify-center cursor-pointer w-28 gap-x-2 p-3 text-(--color-zinc-400) text-xs md:text-sm border border-zinc-200 rounded-lg" id="btn-back-to-top" style="display: flex;">
@@ -969,6 +1008,7 @@
       <!-- 5 good box -->
       
       <section class="w-[99%] mt-5 md:w-[90%] mx-auto my-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+        @if($footer_expresses)
         @foreach ($footer_expresses as $express)
         <div class="flex justify-center items-center gap-2 bg-white border border-zinc-200 rounded-xl p-5">
           <div class="w-[40px] h-[40px]">
@@ -985,11 +1025,13 @@
         </div>
      
         @endforeach
+        @endif
       </section>
       <!-- links -->
       <section class="relative w-[99%] mt-5 md:w-[90%] mx-auto flex flex-col md:flex-row gap-y-8">
         <div class="md:w-5/12 grid grid-cols-2 md:grid-cols-3">
           <div class="">
+            @if($footer['column_one'])
             @foreach($footer['column_one'] as $columnOne)
               {{-- @dd($columnOne); --}}
               @if($columnOne->key == null)
@@ -1001,9 +1043,11 @@
                 </li>
               </ul>
               @endforeach
+              @endif
             </div>
             
           <div class="">
+            @if($footer['column_two'])
             @foreach ($footer['column_two'] as $columnTwo)
               @if($columnTwo->key == null)
                 <div class="text-zinc-500 mb-4 text-sm">{{ $columnTwo->column_title }}</div>
@@ -1014,8 +1058,10 @@
                 </li>
               </ul>
               @endforeach
+              @endif
           </div>
           <div class="">
+            @if($footer['column_three'])
             @foreach ($footer['column_three'] as $columnThree)
               @if($columnThree->key == null)
                 <div class="text-zinc-500 mb-4 text-sm">{{ $columnThree->column_title }}</div>
@@ -1028,26 +1074,34 @@
               </li>
             </ul>
             @endforeach
+            @endif
           </div>
         </div>
         
         <div class="md:w-4/12 flex justify-center gap-10">
+          @if($footer['column_four'])
           @foreach ($footer['column_four'] as $columnFour)
             <div class="w-[100px] md:w-[30%]">
               <img src="{{ asset('storage/'.$columnFour->value) }}" alt="">
             </div>
           @endforeach
+          @endif
+          @if($footer['column_five'])
           @foreach ($footer['column_five'] as $columnFive)
             <div class="w-[100px] md:w-[30%]">
               <img src="{{ asset('storage/'.$columnFive->value) }}" alt="">
             </div>
           @endforeach
+          @endif
         </div>
         <div class="md:w-4/12">
           <p class="text-xs text-zinc-400 pt-6 pb-3 pr-2">
+            @if($footer['column_six_title'])
             {{ $footer['column_six_title']['column_title'] }}
+            @endif
           </p>
             <div class="grid grid-cols-6">
+              @if($footer['column_six'])
               @foreach ($footer['column_six'] as $columnSix)
                   @if($columnSix->key == "Eitaa")
                   <a href="{{ $columnSix->value }}">
@@ -1162,6 +1216,7 @@
                   </a>
                   @endif
                 @endforeach
+                @endif
               </div>
         </div>
         </section>
