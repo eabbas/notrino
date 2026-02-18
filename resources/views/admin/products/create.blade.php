@@ -81,7 +81,7 @@
                         <div class="md:col-span-2">
                             <label for="description" class="block text-gray-700 font-medium mb-2">توضیحات محصول</label>
                             <div class="relative">
-                                <textarea id="description" name="description" required rows="4"
+                                <textarea id="description" name="description" rows="4"
                                        class="w-full px-4 py-3 pr-12 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200 bg-gray-50"></textarea>
                                 <i class="fas fa-align-left absolute right-4 top-4 text-gray-400"></i>
                             </div>
@@ -89,7 +89,7 @@
                         <div class="md:col-span-2">
                             <label for="summary" class="block text-gray-700 font-medium mb-2">توضیح خلاصه محصول</label>
                             <div class="relative">
-                                <textarea id="description" name="summary" required rows="2"
+                                <textarea id="description" name="summary" rows="2"
                                        class="w-full px-4 py-3 pr-12 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200 bg-gray-50"></textarea>
                                 <i class="fas fa-align-left absolute right-4 top-4 text-gray-400"></i>
                             </div>
