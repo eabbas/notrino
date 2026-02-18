@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('summary')->nullable();
             $table->tinyInteger('show_home');
             $table->tinyInteger('price');
-            $table->tinyInteger('discount');
+            $table->tinyInteger('discount')->default(0);
             $table->timestamps();
         });
     }
