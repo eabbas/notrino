@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+    @extends('admin.app.panel')
+    @section('title', 'ایجاد برندها')
+    @section('content')
+
+
     <form action="{{ route('brand.store') }}" method="post" enctype='multipart/form-data'>
         @csrf
         <label for="title">اسم برند:</label>
@@ -17,5 +13,4 @@
 </br></br>
         <button>ثبت</button>
     </form>
-</body>
-</html>
+    @endsection

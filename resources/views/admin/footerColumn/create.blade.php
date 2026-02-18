@@ -1,37 +1,6 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="{{ asset('assets/js/tailwind.js') }}"></script>
-    <title>Footer Configuration</title>
-     
-    <style>
-        .column-card {
-            transition: all 0.3s ease;
-        }
-        .column-card:hover {
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
-        }
-        .section-title {
-            position: relative;
-            padding-bottom: 10px;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            border-radius: 2px;
-        }
-    </style>
-</head>
-<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen p-4 md:p-6">
+    @extends('admin.app.panel')
+    @section('title', 'ایجاد ستون های فوتر')
+    @section('content')
     <div class="max-w-7xl mx-auto">
         <!-- هدر فرم -->
         <div class="mb-10 text-center">
@@ -559,5 +528,4 @@ document.getElementById('addSocialLink').addEventListener('click', function() {
 
     </script>
     
-</body>
-</html>
+    @endsection
