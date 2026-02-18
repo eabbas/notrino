@@ -1,3 +1,8 @@
+    @extends('admin.app.panel')
+    @section('title', 'لیست برند ها')
+    @section('content')
+  
+
 
           @foreach ($brands as $brand)
    
@@ -13,4 +18,4 @@
         
           </div>
           @endforeach
-   
+       @endsection

@@ -138,7 +138,7 @@ class ProductController extends Controller
             $footer['column_six_title'] = footer::select('column_title')->where('column_id', '6')->first();
         }
 
-        return view('admin.products.show', [
+        return view('client.products.show', [
             'product'=>$product,
             'medias'=>$medias,
             'attributes'=>$attributes,

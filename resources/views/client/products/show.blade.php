@@ -41,16 +41,19 @@
             </div>
           <div class="flex flex-col items-center">
             <div class="">
-              <img src="{{ asset('storage/'.$mainImage->path) }}" alt="" class="w-full max-w-96 object-cover rounded-lg">
+            @if(isset($mainImage))
+                <img src="{{ asset('storage/'.$mainImage->path) }}" alt="" class="w-full max-w-96 object-cover rounded-lg">
+            @endif
             </div>
             <div class="flex justify-start gap-x-2 mt-4 pb-4 overflow-x-auto
               [&::-webkit-scrollbar]:w-[2px]
               [&::-webkit-scrollbar-thumb]:bg-(--color-primary-500)
               [&::-webkit-scrollbar-thumb]:rounded-full">
+              @if(isset($gallery))
               @foreach ($gallery as $img)
                 <img src={{ asset('storage/'.$img->path) }} class="w-20 h-20 border-2 border-(--color-zinc-200) rounded-md opacity-70 hover:opacity-100 hover:border-(--color-zinc-300)" alt="img product">
-                  
               @endforeach
+              @endif
              
             </div>
           </div>

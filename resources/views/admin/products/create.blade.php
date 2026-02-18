@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <title>ایجاد محصول جدید</title>
-</head>
-<body class="bg-gradient-to-br from-purple-50 to-pink-50 min-h-screen py-8 px-4">
+
+    @extends('admin.app.panel')
+    @section('title', 'ایجاد محصول')
+    @section('content')
+
+
     <div class="max-w-6xl mx-auto">
         <!-- هدر -->
         <div class="text-center mb-12">
@@ -339,8 +335,7 @@
             });
         });
     </script>
-</body>
-</html>
+@endsection
 
 
 

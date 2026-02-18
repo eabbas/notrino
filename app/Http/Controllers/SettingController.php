@@ -19,10 +19,10 @@ class SettingController extends Controller
     }
  
     public function createHeroBannerRight(){
-        return view('admin.settings.footerHeroBannerRightCreate');
+        return view('admin.settings.HeroBannerRightCreate');
     }
     public function createHeroBannerLeft(){
-        return view('admin.settings.footerHeroBannerLeftCreate');
+        return view('admin.settings.HeroBannerLeftCreate');
     }
     public function upsertLogo(Request $request)
     {

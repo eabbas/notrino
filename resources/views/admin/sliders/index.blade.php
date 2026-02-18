@@ -1,4 +1,6 @@
-
+    @extends('admin.app.panel')
+    @section('title', 'لیست اسلایدر')
+    @section('content')
         <table border=1>
         <thead>
                <tr>
@@ -25,5 +27,4 @@
             @endforeach 
         </tbody>
     </table>
-</body>
-</html>
+    @endsection
