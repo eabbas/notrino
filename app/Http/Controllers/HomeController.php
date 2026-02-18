@@ -67,9 +67,9 @@ class HomeController extends Controller
       return view("home" , 
       [
          'brands'=>isset($brands) ? $brands : null , 
+         'sliders'=> isset($sliders) ? $sliders : null ,
          'footer_expresses'=> isset($footer_expresses) ? $footer_expresses : null ,
          'footer'=> isset($footer) ? $footer : null ,
-         'sliders'=> isset($sliders) ? $sliders : null ,
          'footerLogo'=> isset($footerLogo) ? $footerLogo : null ,
          'footerDescription'=> isset($footerDescription) ?  $footerDescription : null,
          'HeroBannerRight'=> isset($HeroBannerRight) ?  $HeroBannerRight : null,
