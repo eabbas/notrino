@@ -17,7 +17,7 @@
         </div>
         <div>
             <label for="description">Description:</label>
-            <input type="text" id="description" name="description"  value="{{$category->description}}" required>
+            <input type="text" id="description" name="description"  value="{{$category->description}}">
         </div>
         <select name="parent_id">
             

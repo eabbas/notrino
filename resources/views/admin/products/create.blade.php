@@ -54,7 +54,7 @@
                         <div>
                             <label for="discount" class="block text-gray-700 font-medium mb-2"> تخفیف محصول</label>
                             <div class="relative">
-                                <input type="text" id="discount" name="discount" required 
+                                <input type="text" id="discount" name="discount" 
                                        class="w-full px-4 py-3 pr-12 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200 bg-gray-50">
                                 <i class="fas fa-heading absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                             </div>
