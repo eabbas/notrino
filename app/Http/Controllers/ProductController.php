@@ -8,6 +8,9 @@ use App\Models\product;
 use Illuminate\Support\Str;
 use App\Models\media;
 use App\Models\attribute;
+use App\Models\footer;
+use App\Models\footer_express;
+use App\Models\setting;
 use App\Models\product_category;
 use Illuminate\Support\Facades\Storage;
 
@@ -80,7 +83,7 @@ class ProductController extends Controller
 
     public function show(product $product)
     {
-       
+    //    dd($product);
         if (!$product) {
             return redirect()->route('product.list')->with('error', 'محصول مورد نظر یافت نشد');
         }
@@ -89,18 +92,51 @@ class ProductController extends Controller
         $attributes = attribute::where('product_id', $product->id)->get();
         $productCategories = product_category::where('product_id', $product->id)->get();
 
-
+        
         $categoryIds = $productCategories->pluck('category_id')->toArray();
         $categories = category::whereIn('id', $categoryIds)->get();
 
+        $relatedProducts = [];
+
+        if (!empty($categoryIds)) {
+            $relatedProducts = product::whereHas('categories', function ($query) use ($categoryIds) {
+                $query->whereIn('category_id', $categoryIds);
+            })
+                ->where('id', '!=', $product->id)
+                ->with('medias')
+                ->get();
+        }
 
         $finalPrice = $product->price - ($product->price * $product->discount / 100);
 
    
         $mainImage = $medias->where('is_main', 1)->first();
 
-       
         $gallery = $medias->where('is_main', 0);
+        $footers = footer::all();
+        $settings = setting::all();
+        $footer_expresses = footer_express::all();
+        $categories = Category::with(['products' => function ($query) {
+            $query->with(['medias', 'attributes']);
+        }])->get();
+        foreach ($settings as $setting) {
+            // dd($setting);
+            $footerLogo = $setting->where('meta_key', 'footerLogo')->first();
+            $footerDescription = $setting->where('meta_key', 'footerDescription')->first();
+            // $HeroBannerRight = $setting->where('meta_key', 'mainPageRightHeroBanner')->get();
+            // $HeroBannerLeft = $setting->where('meta_key', 'mainPageLeftHeroBanner')->get();
+        }
+        // dd($footerLogo);
+        foreach ($footers as $value) {
+            $footer['column_one'] = footer::where('column_id', '1')->get();
+            $footer['column_two'] = footer::where('column_id', '2')->get();
+            $footer['column_three'] = footer::where('column_id', '3')->get();
+            $footer['column_four'] = footer::where('column_id', '4')->get();
+            $footer['column_five'] = footer::where('column_id', '5')->get();
+            $footer['column_six'] = footer::where('column_id', '6')->get();
+            $footer['column_six'] = footer::where('column_id', '6')->get();
+            $footer['column_six_title'] = footer::select('column_title')->where('column_id', '6')->first();
+        }
 
         return view('admin.products.show', [
             'product'=>$product,
@@ -109,7 +145,13 @@ class ProductController extends Controller
             'categories'=>$categories,
             'finalPrice'=>$finalPrice,
             'mainImage'=>$mainImage,
-            'gallery'=>$gallery
+            'gallery'=>$gallery,
+            'footer_expresses' => isset($footer_expresses) ? $footer_expresses : null,
+            'footer' => isset($footer) ? $footer : null,
+            'footerLogo' => isset($footerLogo) ? $footerLogo : null,
+            'footerDescription' => isset($footerDescription) ?  $footerDescription : null,
+            'categories' => isset($categories) ? $categories : null,
+            'relatedProducts' => isset($relatedProducts) ? $relatedProducts : null,
         ]);
     }
 
