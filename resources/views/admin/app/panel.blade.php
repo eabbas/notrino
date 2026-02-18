@@ -142,6 +142,23 @@
                         
 
                     </ul>
+                    <ul class="mt-2.5 mb-2.5 pr-3 transition-all duration-500 overflow-hidden">
+                        <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                            <span class="size-1 bg-white rounded-sm"></span>
+                            <a href="{{ route('category.create') }}" class="text-white py-1">
+                               ایجاد دسته بندی  
+                            </a>
+                        </li>
+                        <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                            <span class="size-1 bg-white rounded-sm"></span>
+                            <a href="{{ route('category.list') }}" class="text-white py-1">
+                                 لیست دسته بندی   
+                            </a>
+                        </li>
+                         
+                        
+
+                    </ul>
                 </div>
                 @endif
             
