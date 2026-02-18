@@ -10,6 +10,7 @@
   <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
   <link rel="shortcut icon" href="{{ asset('storage/img/icons8-mobile-phone-48.png') }}" type="image/png">
   <title>فروشگاه نوترینو</title>
+  
 </head>
 
 <body class="overflow-y-auto
@@ -507,7 +508,7 @@
         @if($products)
         @foreach ($products as $product)
           @if($product->show_home == 1)
-            <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
+            <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border-1 border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
               @if($medias)
               @php
                 $productMedia = $medias->where('product_id', $product->id)->first();
@@ -563,7 +564,7 @@
       <div class="flex flex-row gap-3">
         @foreach ($category->products as $product)
           @if($product->show_home == 1)
-            <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
+            <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border-1 border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
               @if($medias)
               @php
                 $productMedia = $medias->where('product_id', $product->id)->first();
@@ -633,7 +634,7 @@
             @if($products)
             @foreach ($products as $product)
               @if($product->show_home == 1)
-                <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
+                <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border-1 border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
                   @if($medias)
                   @php
                     $productMedia = $medias->where('product_id', $product->id)->first();
@@ -720,7 +721,7 @@
               @if($products)
               @foreach ($products as $product)
                 @if($product->show_home == 1)
-                  <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
+                  <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border-1 border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
                     @if($medias)
                     @php
                       $productMedia = $medias->where('product_id', $product->id)->first();
@@ -785,8 +786,8 @@
         <!-- main slider -->
         <div class="w-[93%] md:w-[95%] flex items-center mx-auto">
           <div class="overflow-x-auto flex flex-row rounded-xl bg-white mx-auto px-[16px] py-[32px]
-          [&::-webkit-scrollbar]:w-thin
-          [&::-webkit-scrollbar-thumb]:bg-(--color-primary-500)
+          [&::-webkit-scrollbar]:w-0.5
+          [&::-webkit-scrollbar-thumb]:bg-[var(--color-primary-500)]
           [&::-webkit-scrollbar-thumb]:rounded-full">
           @if($brands)
           @foreach ($brands as $brand)
