@@ -508,7 +508,7 @@
         @if($products)
         @foreach ($products as $product)
           @if($product->show_home == 1)
-          <a href="{{ route('product.show' , [$product]) }}">
+            <a href="{{ route('product.show' , [$product]) }}">
             <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border-1 border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
               @if($medias)
               @php
@@ -516,11 +516,11 @@
               @endphp
               @endif
               @if($productMedia)
-                <a href="" class="flex items-center justify-center">
+                <div class="flex items-center justify-center">
                   <img src="{{ asset('storage/'.$productMedia->path) }}" alt="{{ $product->title }}" class="rounded-xl mb-3 w-[130px] md:w-[220px]">
-                </a>
+                </div>
               @endif
-              <a href="" class="mb-3 text-xs md:text-sm">{{ $product->title }}</a>
+              <div class="mb-3 text-xs md:text-sm">{{ $product->title }}</div>
               <p class="text-[10px] md:text-xs text-(--color-zinc-500) mb-3">{{ $product->summary }}</p>
               <span class="flex flex-row justify-between items-center mb-3">
                 <span class="flex gap-1 mt-4">
@@ -549,7 +549,7 @@
                 </span>
               </div>
             </div>
-          </a>
+            </a>
           @endif
         @endforeach
         @endif
@@ -574,11 +574,11 @@
               @endphp
               @endif
               @if($productMedia)
-                <a href="" class="flex items-center justify-center">
+                <div class="flex items-center justify-center">
                   <img src="{{ asset('storage/'.$productMedia->path) }}" alt="{{ $product->title }}" class="rounded-xl mb-3 w-[130px] md:w-[220px]">
-                </a>
+                </div>
               @endif
-              <a href="" class="mb-3 text-xs md:text-sm">{{ $product->title }}</a>
+              <div class="mb-3 text-xs md:text-sm">{{ $product->title }}</div>
               <p class="text-[10px] md:text-xs text-(--color-zinc-500) mb-3">{{ $product->summary }}</p>
               <span class="flex flex-row justify-between items-center mb-3">
                 <span class="flex gap-1 mt-4">
@@ -646,11 +646,11 @@
                   @endphp
                   @endif
                   @if($productMedia)
-                    <a href="" class="flex items-center justify-center">
+                    <div class="flex items-center justify-center">
                       <img src="{{ asset('storage/'.$productMedia->path) }}" alt="{{ $product->title }}" class="rounded-xl mb-3 w-[130px] md:w-[220px]">
-                    </a>
+                    </div>
                   @endif
-                  <a href="" class="mb-3 text-xs md:text-sm">{{ $product->title }}</a>
+                  <div class="mb-3 text-xs md:text-sm">{{ $product->title }}</div>
                   <p class="text-[10px] md:text-xs text-(--color-zinc-500) mb-3">{{ $product->summary }}</p>
                   <span class="flex flex-row justify-between items-center mb-3">
                     <span class="flex gap-1 mt-4">
@@ -735,11 +735,11 @@
                     @endphp
                     @endif
                     @if($productMedia)
-                      <a href="" class="flex items-center justify-center">
+                      <div class="flex items-center justify-center">
                         <img src="{{ asset('storage/'.$productMedia->path) }}" alt="{{ $product->title }}" class="rounded-xl mb-3 w-[130px] md:w-[220px]">
-                      </a>
+                      </div>
                     @endif
-                    <a href="" class="mb-3 text-xs md:text-sm">{{ $product->title }}</a>
+                    <div class="mb-3 text-xs md:text-sm">{{ $product->title }}</div>
                     <p class="text-[10px] md:text-xs text-(--color-zinc-500) mb-3">{{ $product->summary }}</p>
                     <span class="flex flex-row justify-between items-center mb-3">
                       <span class="flex gap-1 mt-4">
