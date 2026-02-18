@@ -28,7 +28,7 @@ class ProductController extends Controller
             'description'=>$request->description ,
             'summary'=>$request->summary,
             'price'=>$request->price,
-            'discount'=>$request->discount,
+            'discount'=>isset($request->discount) ? $request->discount : 0,
             'show_home' => isset($request->show_home) ? $request->show_home : 0,
         ]);
         if(isset($request->mainImage)){

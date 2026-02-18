@@ -67,10 +67,8 @@
                             <tbody>
                                 @forelse($products as $index => $product)
                                 @php
-                                    // پیدا کردن تصویر اصلی محصول
                                     $mainImage = $medias->where('product_id', $product->id)->where('is_main', 1)->first();
                                     
-                                    // پیدا کردن دسته‌بندی‌های محصول
                                     $productCategories = $proCats->where('product_id', $product->id);
                                     $categoriesNames = [];
                                     foreach($productCategories as $proCat) {
@@ -79,9 +77,9 @@
                                             $categoriesNames[] = $category->title;
                                         }
                                     }
-                                    
-                                    // محاسبه قیمت نهایی با تخفیف
-                                    $finalPrice = $product->price - ($product->price * $product->discount / 100);
+                                    $price = $product->price;
+                                    $discount = $product->discount;
+                                    $finalPrice = (int)$price - ((int)$price * (int)$discount / 100);
                                 @endphp
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
