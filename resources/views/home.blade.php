@@ -442,7 +442,7 @@
             </defs>
           </svg>
           <a href="سیلام" class="slides">
-            @if($slider)
+            @if($sliders)
             @foreach ($sliders as $slider)
               <div class="slide object-cover w-full h-35 mx-auto md:h-[320px]">
                 <img src="{{ asset('storage/'.$slider->slider_img) }}" class="w-full h-full" alt="">
@@ -689,7 +689,8 @@
           <img src="{{ asset('storage/'.$rightBanner->meta_value) }}" class="rounded-2xl" alt="">
         </a>
         @endforeach
-        @endif@if($HeroBannerLeft)
+        @endif
+        @if($HeroBannerLeft)
         @foreach ($HeroBannerLeft as $leftBanner)
         <a href="" class="rounded-xl w-full md:w-1/2">
           <img src="{{ asset('storage/'.$leftBanner->meta_value) }}" class="rounded-2xl" alt="">
