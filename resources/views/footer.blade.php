@@ -253,7 +253,7 @@
         <a href="" class="">
           طراحی و توسعه توسط <span class="text-(--color-primary-500)">فائوس</span>
         </a>
-        <a href="tell:09147794595">09147794595</a>
+        <a href="tell:09147794595"><strong>09147794595</strong></a>
       </div>
     </footer>
   </div>

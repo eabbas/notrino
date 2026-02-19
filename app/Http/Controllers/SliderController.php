@@ -51,8 +51,8 @@ class SliderController extends Controller
                 $sliderPath = $slider->storeAs('images', $fullNameSlider, 'public');
                 $products[] = ['title' => $request->title, 'slider_img' => $sliderPath];
             }
+            slider::insert($products);
         }
-        slider::insert($products);
         return to_route('slider.list');
     }
     public function delete(slider $slider)
