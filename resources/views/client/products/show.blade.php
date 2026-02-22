@@ -481,7 +481,8 @@
                 <div class="border-dashed border-t-1 border-(--color-zinc-200) flex justify-end items-center h-12">
                     <span class="flex items-center text-base md:text-base gap-2">
                         @php
-                            $finalPrice = $item->price - ($item->price * ($item->discount ?? 0) / 100);
+                            // $finalPrice = $item->price - ($item->price * ($item->discount ?? 0) / 100);
+                            $finalPrice = (int)$item->price - ((int)$item->price * (int)$item->discount / 100);
                         @endphp
                         {{ number_format($finalPrice) }}
                         <span>تومان</span>

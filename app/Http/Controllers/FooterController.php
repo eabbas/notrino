@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Footer;
+use App\Models\footer;
 
 class FooterController extends Controller
 {
     public function create()
     {
-        $allFooters = Footer::all();
+        $allFooters = footer::all();
         return view('admin.footerColumn.create', ['allFooters' => $allFooters]);
     }
 
