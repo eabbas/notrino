@@ -1,7 +1,7 @@
 <div class="flex flex-row gap-3">
     @if(count($category->products))
         @foreach ($category->products as $product)
-            @if($product->show_home == 1)
+            @if($product->not_show_home == 0)
                 <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
                     
                     @php

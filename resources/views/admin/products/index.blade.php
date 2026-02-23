@@ -117,15 +117,16 @@
                             </td>
                             
                             <td class="text-center py-3">
-                                @if($product->show_home == 1)
+                                @if($product->not_show_home == 1)
                                     <span class="badge rounded-pill px-3 py-2" style="background-color: #dcfce7; color: #166534;">
-                                        <i class="fa fa-check-circle ms-1" style="font-size: 11px;"></i>
-                                        فعال
+                                        <i class="fa fa-times-circle ms-1" style="font-size: 11px;"></i>
+                                       
+                                          غیرفعال
                                     </span>
                                 @else
                                     <span class="badge rounded-pill px-3 py-2" style="background-color: #f1f5f9; color: #64748b;">
-                                        <i class="fa fa-times-circle ms-1" style="font-size: 11px;"></i>
-                                        غیرفعال
+                                         <i class="fa fa-check-circle ms-1" style="font-size: 11px;"></i>
+                                        فعال
                                     </span>
                                 @endif
                             </td>

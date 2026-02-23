@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('summary')->nullable();
-            $table->tinyInteger('show_home');
+            $table->tinyInteger('not_show_home');
             $table->tinyInteger('price');
             $table->tinyInteger('discount')->default(0);
             $table->timestamps();

@@ -89,7 +89,7 @@
           </div>
         </div>
         <!-- logo -->
-        <a href="#" class="relative">
+        <a href="{{ route('home') }}" class="relative">
           {{-- <img src="img/logo/Screenshot 2025-12-16 063243.png" alt="logo" class="w-35 md:w-50">  --}}
           <img src="{{ asset('storage/img/logo/Screenshot 2025-12-16 063243.png') }}" alt="logo" class="w-35 md:w-50">
           <!-- icon -->
@@ -346,7 +346,7 @@
         <!-- right -->
         <div class="">
           <ul class="flex gap-10">
-            <li class="hover:text-(--color-primary-500)">صفحه اصلی</li>
+            <li><a href="{{ route('home') }}" class="hover:text-(--color-primary-500)">صفحه اصلی</a></li>
             <div class="labal_3 relative transition-all duration-300">
               <li class="svg flex items-center justify-center text-center transition-all duration-300 hover:text-(--color-primary-500)">
                 دسته بندی ها
@@ -367,7 +367,7 @@
             </div>
             <li class="hover:text-(--color-primary-500)">درباره ما</li>
             <a href="{{ route('contactUs.userIndex') }}" class="hover:text-(--color-primary-500)">ارتباط با ما</a>
-            <li class="hover:text-(--color-primary-500)">بلاگ</li>
+            {{-- <li class="hover:text-(--color-primary-500)">بلاگ</li> --}}
             {{-- <div class="labal_4 relative">
               <li class="svg flex items-center justify-center text-center transition-all duration-300 hover:text-(--color-primary-500)">
                 صفحات پروژه
