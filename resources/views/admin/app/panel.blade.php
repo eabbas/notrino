@@ -27,7 +27,7 @@
                         بازدید از سایت
                     </a>
                 </div>
-                @if (Auth::user()->role[0]->title == 'admin')
+                @if (Auth::user()->role[0]->title == 'ادمین')
                 <div class="dashboard">
                     <div class="flex flex-row-reverse justify-between">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -61,7 +61,7 @@
                     </ul>
                 </div>
                 @endif
-                @if (Auth::user()->role[0]->title == 'admin')
+                @if (Auth::user()->role[0]->title == 'ادمین')
                 <div class="dashboard">
                     <div class="flex flex-row-reverse justify-between">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -108,7 +108,7 @@
                     </ul>
                 </div>
                 @endif
-                @if (Auth::user()->role[0]->title == 'admin')
+                @if (Auth::user()->role[0]->title == 'ادمین')
                 <div class="dashboard">
                     <div class="flex flex-row-reverse justify-between">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -145,7 +145,7 @@
                     
                 </div>
                 @endif
-                @if (Auth::user()->role[0]->title == 'admin')
+                @if (Auth::user()->role[0]->title == 'ادمین')
                 <div class="dashboard">
                     <div class="flex flex-row-reverse justify-between">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -186,7 +186,7 @@
                         
                 </div>
                 @endif
-                @if (Auth::user()->role[0]->title == 'admin')
+                @if (Auth::user()->role[0]->title == 'ادمین')
                 <div class="dashboard">
                     <div class="flex flex-row-reverse justify-between">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -404,7 +404,7 @@
 
                          
                             
-                            @if (Auth::user()->role[0]->title == 'admin')
+                            @if (Auth::user()->role[0]->title == 'ادمین')
                                 <div class="pt-3">
                                     <h3 class="text-md font-semibold text-gray-800 mb-1.5">کاربران</h3>
                                     <ul class="pr-3.5">

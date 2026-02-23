@@ -52,11 +52,11 @@
                         <div class="w-full">
                             <label class="block text-gray-700 font-medium mb-2 opacity-0">_</label>
                             <div class="flex items-center p-4 outline-none border-1 border-gray-200 rounded-xl bg-gray-50 hover:bg-gray-100 transition duration-200 h-[58px]">
-                                <input type="checkbox" id="show_in_home" name="show_home" value="1"
+                                <input type="checkbox" id="show_in_home" name="not_show_home" value="1"
                                        class="h-5 w-5 rounded border-gray-300 text-orange-600 focus:ring-orange-500">
                                 <label for="show_in_home" class="mr-3 text-gray-700 font-medium flex items-center cursor-pointer">
                                     <i class="fas fa-eye ml-2 text-orange-500"></i>
-                                    نمایش در صفحه اول
+                                    عدم نمایش در صفحه اول
                                 </label>
                             </div>
                         </div>

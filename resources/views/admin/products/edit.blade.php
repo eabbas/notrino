@@ -37,8 +37,8 @@
                                 
                                 <div class="col-md-6 mb-3">
                                     <div class="form-check mt-4">
-                                        <input type="checkbox" name="show_home" id="show_home" class="form-check-input" value="1" {{ $product->show_home ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="show_home">نمایش در صفحه اصلی</label>
+                                        <input type="checkbox" name="not_show_home" id="not_show_home" class="form-check-input" value="1" {{ $product->not_show_home ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="not_show_home">عدم نمایش در صفحه اصلی</label>
                                     </div>
                                 </div>
                                 

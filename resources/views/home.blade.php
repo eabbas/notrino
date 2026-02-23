@@ -105,7 +105,7 @@
         <div class="flex flex-row gap-3">
           @if($products)
           @foreach ($products as $product)
-            @if($product->show_home == 1)
+            @if($product->not_show_home == 0)
               <a href="{{ route('product.show' , [$product]) }}">
               <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border-1 border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
                 @if($medias)
@@ -163,7 +163,7 @@
             [&::-webkit-scrollbar-thumb]:rounded-full" data-category-id="{{ $category->id }}" style="display: none;">
         <div class="flex flex-row gap-3">
           @foreach ($category->products as $product)
-            @if($product->show_home == 1)
+            @if($product->not_show_home == 0)
             <a href="{{ route('product.show' , [$product]) }}">
               <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border-1 border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
                 @if($medias)
@@ -235,7 +235,7 @@
       <div class="flex flex-row gap-3">
         @if($products)
         @foreach ($products as $product)
-          @if($product->show_home == 1)
+          @if($product->not_show_home == 0)
           <a href="{{ route('product.show' , [$product]) }}">
             <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border-1 border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
               @if($medias)
@@ -324,7 +324,7 @@
         <div class="flex flex-row gap-3">
           @if($products)
           @foreach ($products as $product)
-            @if($product->show_home == 1)
+            @if($product->not_show_home == 0)
             <a href="{{ route('product.show' , [$product]) }}">
               <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border-1 border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
                 @if($medias)

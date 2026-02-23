@@ -25,14 +25,14 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
-       
+    //    dd($request->all());
         $productId = product::insertGetId([
             'title'=>$request->title ,
             'description'=>$request->description ,
             'summary'=>$request->summary,
             'price'=>$request->price,
             'discount'=>isset($request->discount) ? $request->discount : 0,
-            'show_home' => isset($request->show_home) ? $request->show_home : 0,
+            'not_show_home' => isset($request->not_show_home) ? $request->not_show_home : 0,
         ]);
         if(isset($request->mainImage)){
             $type = $request->mainImage->getClientOriginalExtension();
@@ -185,7 +185,7 @@ class ProductController extends Controller
         $product->summary = $request->summary;
         $product->price = $request->price;
         $product->discount = $request->discount;
-        $product->show_home = isset($request->show_home) ? 1 : 0;
+        $product->not_show_home = isset($request->not_show_home) ? 1 : 0;
 
         $product->save();
 
