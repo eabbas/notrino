@@ -13,6 +13,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\sliderController;
+use App\Http\Controllers\ContactUsController;
 
 // Route::get('/', function () {
 //     return view('home');
@@ -146,4 +147,16 @@ Route::group([
     Route::get("/edit/{slider}", "edit")->name('edit');
     Route::post("/update", "update")->name('update');
     Route::get("/delete/{slider}", "delete")->name('delete');
+});
+Route::group([
+    'prefix' => 'contactUs',
+    'controller' => ContactUsController::class,
+    'as' => 'contactUs.',
+], function () {
+    Route::get("/create", "create")->name('create');
+    Route::post("/store", "store")->name('store');
+    Route::get("/index", "index")->name('list');
+    Route::get("/edit/{contact}", "edit")->name('edit');
+    Route::post("/update", "update")->name('update');
+    Route::get("/delete/{contact}", "delete")->name('delete');
 });
