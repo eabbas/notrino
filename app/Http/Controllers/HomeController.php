@@ -25,26 +25,10 @@ class HomeController extends Controller
       $medias = media::all();
       $sliders = slider::all();
 
-      // dd($settings);
       $categories = Category::with(['products' => function ($query) {
          $query->with(['medias', 'attributes']);
       }])->get();
 
-
-      // // dd($categories);
-      // foreach($categories as $category){
-      //    foreach($category->products as $product){
-      //       dd($product);
-      //    }
-      // }
-
-      // foreach($products as $key=>$product){
-      //    foreach($product->categories as $category){
-      //       $product['catIds'][]=$category->id;
-      //    }
-      // }
-      // dd($x);
-    
       $attributes = attribute::all();
       foreach($settings as $setting){
          // dd($setting);

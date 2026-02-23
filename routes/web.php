@@ -14,6 +14,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\sliderController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\ContactUsCommentsController;
 
 // Route::get('/', function () {
 //     return view('home');
@@ -159,4 +160,13 @@ Route::group([
     Route::get("/edit/{contact}", "edit")->name('edit');
     Route::post("/update", "update")->name('update');
     Route::get("/delete/{contact}", "delete")->name('delete');
+    Route::get('/userIndex' , 'userIndex')->name('userIndex');
+});
+Route::group([
+    'prefix' => 'contactUsComments',
+    'controller' => ContactUsCommentsController::class,
+    'as' => 'comment.',
+], function () {
+    Route::post("/store", "store")->name('store');
+
 });

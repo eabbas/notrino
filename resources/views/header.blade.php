@@ -366,7 +366,7 @@
               </div>
             </div>
             <li class="hover:text-(--color-primary-500)">درباره ما</li>
-            <li class="hover:text-(--color-primary-500)">تماس با ما</li>
+            <a href="{{ route('contactUs.userIndex') }}" class="hover:text-(--color-primary-500)">ارتباط با ما</a>
             <li class="hover:text-(--color-primary-500)">بلاگ</li>
             {{-- <div class="labal_4 relative">
               <li class="svg flex items-center justify-center text-center transition-all duration-300 hover:text-(--color-primary-500)">
