@@ -143,13 +143,10 @@
                 <div class="mb-3">
                     <label class="block text-gray-700 font-medium mb-2">عکس اصلی</label>
                     <div class="relative">
-                        <input type="file" name="mainImage" class="w-full px-4 py-3 pr-12 outline-none border-1 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200 bg-gray-50 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100">
+                        <input type="file" name="mainImage" class="w-full px-4 py-3 pr-12 outline-none border-1 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200 bg-gray-50 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100" required>
                         <i class="fas fa-camera absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                     </div>
-                    <!-- پیش‌نمایش عکس‌ها -->
-                    <div i3d="imagePreview" class="mt-4 grid grid-cols-3 gap-2 hidden">
-                        <!-- پیش‌نمایش عکس‌ها اینجا نمایش داده می‌شود -->
-                    </div>
+                   
                 </div>
                 
                 <!-- gallery -->
