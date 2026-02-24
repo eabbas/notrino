@@ -188,6 +188,7 @@ class ProductController extends Controller
         $product->not_show_home = isset($request->not_show_home) ? 1 : 0;
 
         $product->save();
+        
 
         if (isset($request->remove_main_image)) {
             $mainImage = media::where('product_id', $product->id)->where('is_main', 1)->first();
