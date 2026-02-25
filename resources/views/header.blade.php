@@ -44,44 +44,26 @@
               <li class="hover:text-(--color-primary-500)">صفحه اصلی</li>
               <div class="labal_3 relative">
                 <li class="svg flex items-center text-center hover:text-(--color-primary-500)">
-                  محصولات
+                 دسته بندی ها
                   <svg class="transition-all duration-300 fill-zinc-600 hover:fill-(--color-primary-500)" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#000000" viewBox="0 0 256 256">
                     <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
                   </svg>
                 </li>
                 <div class="labal_3-3 absolute z-10 w-50 px-3 py-1 rounded-xl shadow-xl bg-white invisible">
-                  <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="" class="">موبایل</a></li>
-                  <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="" class="">کاور</a></li>
-                  <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="" class="">پاوربانک</a></li>
-                  <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="" class="">ایپاد</a></li>
-                  <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="" class="">هدفون</a></li>
-                  <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="" class="">شارژر</a></li>
-                  <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="" class="">LCD</a></li>
-                  <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="" class="">لوازم جانبی موبایل</a></li>
+                  @if($categories)
+                @foreach ($categories as $category)
+                    @if($category->parent_id == 0)
+                    <li><button class="text-right px-4 py-2 rounded-lg hover:bg-zinc-100 hover:text-(--color-primary-500) cursor-pointer text-sm cats" data-cat-id="{{ $category->id }}">{{ $category->title }}</button></li>
+                    @endif
+                @endforeach
+                @endif
+                
                 </div>
               </div>
-              <li class="hover:text-(--color-primary-500)">درباره ما</li>
-              <li class="hover:text-(--color-primary-500)">تماس با ما</li>
-              <li class="hover:text-(--color-primary-500)">بلاگ</li>
-              <div class="labal_4 relative">
-                <li class="svg flex items-center text-center hover:text-(--color-primary-500)">
-                  صفحات پروژه
-                  <svg class="transition-all duration-300 fill-zinc-600 hover:fill-(--color-primary-500)" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#000000" viewBox="0 0 256 256">
-                    <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
-                  </svg>
-                </li>
-                <div class="labal_4-4 absolute bg-white px-3 py-1 w-50 rounded-xl shadow-xl invisible">
-                  <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="">صفحه اصلی</a></li>
-                  <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="">درباره ما</a></li>
-                  <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="">وبلاگ</a></li>
-                  <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="./cart/cart.html">سبد خرید</a></li>
-                  <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="./checkout/checkout.html">پرداخت</a></li>
-                  <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="">ارتباط با ما</a></li>
-                  <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="">داشبورد کاربر</a></li>
-                  <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="./serch/serch.html">جستجوی محصول</a></li>
-                  <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="./singel/singel.html">جزئیات محصول</a></li>
-                </div>
-              </div>
+              {{-- <li class="hover:text-(--color-primary-500)">درباره ما</li> --}}
+              <li class="hover:text-(--color-primary-500)"><a href="{{ route('contactUs.userIndex') }}"></a>تماس با ما</li>
+              {{-- <li class="hover:text-(--color-primary-500)">بلاگ</li> --}}
+             
             </ul>
           </div>
 
