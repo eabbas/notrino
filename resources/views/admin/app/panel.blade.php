@@ -427,10 +427,8 @@
                         </a>
                     </div>
 
-                    <!-- جداکننده -->
                     <div class="w-full h-px bg-gray-700 my-3"></div>
 
-                    <!-- منوهای ادمین با ساختار مشابه دسکتاپ -->
                     @if (Auth::user()->role[0]->title == 'ادمین')
                         <!-- کاربران -->
                         <div class="mobile-menu-item mb-2">
@@ -613,7 +611,7 @@
     <script src="{{ asset('assets/js/userPanel.js') }}"></script>
 
     <script>
-        // تابع باز و بسته کردن منوی همبرگری
+   
         function hamburgerMenu(action, element) {
             const menu = document.getElementById('mobileMenu');
             if (action === 'open') {
@@ -627,7 +625,7 @@
             }
         }
 
-        // تابع باز و بسته کردن زیرمنوها در موبایل
+
         function toggleMobileSubmenu(headerElement) {
             const submenu = headerElement.nextElementSibling;
             const arrowIcon = headerElement.querySelector('svg:first-child');
@@ -636,7 +634,7 @@
             arrowIcon.classList.toggle('rotate');
         }
 
-        // بستن منو با کلیک روی لینک‌ها (اختیاری)
+
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuLinks = document.querySelectorAll('#mobileMenu a');
             mobileMenuLinks.forEach(link => {
