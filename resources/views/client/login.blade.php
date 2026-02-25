@@ -82,9 +82,9 @@
 </head>
 
 <body class="bg-gradient-to-br from-orange-50 to-white">
-    <div class="w-full h-dvh flex flex-col justify-start items-center md:flex-row-reverse">
+    <div class="w-full flex flex-col justify-start items-center md:flex-row-reverse">
         <!-- بخش راست با تم نارنجی -->
-        <div class="flex justify-center max-sm:h-30 max-md:h-35 md:h-dvh bg-orange-gradient relative overflow-hidden w-full">
+        <div class="flex justify-center max-sm:h-30 max-md:h-35 md:h-dvh bg-orange-gradient relative overflow-hidden w-full lg:w-1/2">
             <!-- المان‌های تزئینی -->
             <div class="absolute inset-0 opacity-10">
                 <div class="absolute top-10 left-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
@@ -103,7 +103,7 @@
             </div>
         </div>
         <!-- بخش فرم ورود -->
-        <div class="w-10/12 md:w-8/12 bg-white h-full flex flex-col max-md:justify-start justify-center mt-5 items-center px-4">
+        <div class="w-full md:w-8/12 bg-white h-full flex flex-col max-md:justify-start justify-center mt-5 items-center px-4 lg:w-1/2">
             <div class="w-full flex flex-col items-center justify-center md:justify-center lg:w-115 md:w-10/12 px-4 animate-fadeIn">
                 <!-- آیکون قفل -->
                 <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-orange-200">
