@@ -127,7 +127,7 @@
                 </div>
                 <div class="w-full h-10  flex justify-end pl-6 gap-2">
                     <button class="px-4 py-2 bg-[#F1F1F4] rounded-[7px] cursor-pointer" type="reset">لغو</button>
-                    <button class="px-4 py-2 bg-[#1B84FF] rounded-[7px] text-white cursor-pointer" type="submit">ذخیره
+                    <button class="px-4 py-2 bg-orange-500 rounded-[7px] text-white cursor-pointer" type="submit">ذخیره
                         تغییرات</button>
                 </div>
             </form>
