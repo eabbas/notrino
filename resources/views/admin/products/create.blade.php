@@ -103,9 +103,9 @@
                             </div>
                         
                             
-                            <!-- واحد اندازه‌گیری -->
+                          
                             <div>
-                                <label class="block text-gray-700 font-medium mb-2">واحد اندازه‌گیری</label>
+                                <label class="block text-gray-700 font-medium mb-2">مقدار</label>
                                 <input type="text" name="attribute_units[]" 
                                        class="w-full px-4 py-3 outline-none border-1 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200 bg-white"
                                        placeholder="مثلا: سانتی‌متر، کیلوگرم">
@@ -233,7 +233,7 @@
                 </div>
                 
                 <div>
-                    <label class="block text-gray-700 font-medium mb-2">واحد اندازه‌گیری</label>
+                    <label class="block text-gray-700 font-medium mb-2">مقدار</label>
                     <input type="text" name="attribute_units[]" 
                            class="w-full px-4 py-3 outline-none border-1 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200 bg-white"
                            placeholder="مثلا: سانتی‌متر، کیلوگرم">
