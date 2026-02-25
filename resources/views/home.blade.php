@@ -57,7 +57,7 @@
   <section class="w-[93%] md:w-[95%] grid grid-cols-3 md:flex flex-wrap justify-center mx-auto gap-4 md:gap-8 mt-20">
     @if($categories)
     @foreach ($categories as $category)
-      
+    @if($category->parent_id == 0)
     @if(isset($category->image))
     <a href="" class="category flex flex-col flex justify-center items-center">
       <div class="category_it border-2 border-(--color-zinc-300) rounded-xl hover:border-(--color-primary-500) flex justify-center items-center h-[90px] md:h-[128px] w-[90px] md:w-[128px]">
@@ -66,7 +66,7 @@
       <span class="md:p-2 text-xs md:text-base">{{ $category->title }}</span>
     </a>
     @endif
-    
+    @endif
     @endforeach
     @endif
   </section>
@@ -77,7 +77,7 @@
       <div class="bg-white px-15 pt-4 w-fit md:w-full hidden md:flex flex-col">
         <!-- filter btn -->
         <h2 class="">دسته بندی ها</h2>
-        <ul class="space-y-2 text-sm md:flex gap-x-2">
+        <ul class="space-y-2 text-sm md:flex gap-x-2 overflow-x-scroll">
           <li><button class="text-right w-full px-4 py-2 rounded-lg text-(--color-primary-500) bg-zinc-100 hover:bg-zinc-200 cursor-pointer text-sm" id="all-categories-btn" data-cat-id="all">همه</button></li>
           @if($categories)
           @foreach ($categories as $category)
@@ -119,7 +119,7 @@
                     <img src="{{ asset('storage/'.$productMedia->path) }}" alt="{{ $product->title }}" class="rounded-xl max-h-full max-w-full object-contain">
                   </div>
                 @endif
-                <div class="mb-2 text-xs md:text-sm line-clamp-2 mt-2">{{ $product->title }}</div>
+                <div class="mb-2 text-xs md:text-sm line-clamp-2 mt-10">{{ $product->title }}</div>
                 <p class="text-[10px] md:text-xs text-(--color-zinc-500) line-clamp-2 mb-2">{{ $product->summary }}</p>
                 <div class="flex flex-row justify-between items-center mt-auto">
                   <div class="flex gap-1">
@@ -178,7 +178,7 @@
                     <img src="{{ asset('storage/'.$productMedia->path) }}" alt="{{ $product->title }}" class="rounded-xl max-h-full max-w-full object-contain">
                   </div>
                 @endif
-                <div class="mb-2 text-xs md:text-sm line-clamp-2 mt-2">{{ $product->title }}</div>
+                <div class="mb-2 text-xs md:text-sm line-clamp-2 mt-10">{{ $product->title }}</div>
                 <p class="text-[10px] md:text-xs text-(--color-zinc-500) line-clamp-2 mb-2">{{ $product->summary }}</p>
                 <div class="flex flex-row justify-between items-center mt-auto">
                   <div class="flex gap-1">
@@ -251,7 +251,7 @@
                   <img src="{{ asset('storage/'.$productMedia->path) }}" alt="{{ $product->title }}" class="rounded-xl max-h-full max-w-full object-contain">
                 </div>
               @endif
-              <div class="mb-2 text-xs md:text-sm line-clamp-2 mt-2">{{ $product->title }}</div>
+              <div class="mb-2 text-xs md:text-sm line-clamp-2 mt-10">{{ $product->title }}</div>
               <p class="text-[10px] md:text-xs text-(--color-zinc-500) line-clamp-2 mb-2">{{ $product->summary }}</p>
               <div class="flex flex-row justify-between items-center mt-auto">
                 <div class="flex gap-1">
@@ -340,7 +340,7 @@
                     <img src="{{ asset('storage/'.$productMedia->path) }}" alt="{{ $product->title }}" class="rounded-xl max-h-full max-w-full object-contain">
                   </div>
                 @endif
-                <div class="mb-2 text-xs md:text-sm line-clamp-2 mt-2">{{ $product->title }}</div>
+                <div class="mb-2 text-xs md:text-sm line-clamp-2 mt-10">{{ $product->title }}</div>
                 <p class="text-[10px] md:text-xs text-(--color-zinc-500) line-clamp-2 mb-2">{{ $product->summary }}</p>
                 <div class="flex flex-row justify-between items-center mt-auto">
                   <div class="flex gap-1">
