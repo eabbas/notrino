@@ -72,7 +72,7 @@ class ProductController extends Controller
 
     public function index()
     {
-       $products = product::all();
+       $products = product::paginate(5);
        $attributes = attribute::all();
        $proCats = product_category::all();
        $medias = media::all();

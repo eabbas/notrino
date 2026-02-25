@@ -72,30 +72,40 @@
   </section>
   <!-- filter products -->
   <section class="w-full mt-12 md:mt-20">
-    <div class="w-[93%] md:w-[95%] mx-auto flex flex-col gap-4">
-      <!-- filter btn -->
+        <div class="w-[93%] md:w-[95%] mx-auto flex flex-col gap-4">
+          <!-- filter btn -->
       <div class="bg-white px-15 pt-4 w-fit md:w-full hidden md:flex flex-col">
         <!-- filter btn -->
         <h2 class="">دسته بندی ها</h2>
-        <ul class="space-y-2 text-sm md:flex gap-x-2 overflow-x-scroll">
-          <li><button class="text-right w-full px-4 py-2 rounded-lg text-(--color-primary-500) bg-zinc-100 hover:bg-zinc-200 cursor-pointer text-sm" id="all-categories-btn" data-cat-id="all">همه</button></li>
-          @if($categories)
-          @foreach ($categories as $category)
-            @if($category->parent_id == 0)
-              <li><button class="text-right w-full px-4 py-2 rounded-lg hover:bg-zinc-100 hover:text-(--color-primary-500) cursor-pointer text-sm cats" data-cat-id="{{ $category->id }}">{{ $category->title }}</button></li>
-            @endif
-          @endforeach
-          @endif
-          <li>
-            <button class="text-right w-full px-4 py-2 rounded-lg cursor-pointer text-sm hover:text-(--color-primary-700) text-(--color-primary-500) flex items-center gap-x-1 group" data-category="beauty">
-              همه محصولات
-              <svg class="fill-(--color-primary-500) hover:fill-(--color-primary-700) group-hover:-translate-x-1 transition group-hover:fill-primary-500 size-2.5 md:size-3" xmlns="http://www.w3.org/2000/svg" width="" height="" fill="" viewBox="0 0 256 256">
-                <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
-              </svg>
-            </button>
-          </li>
-        </ul>
-      </div>
+        
+        <!-- اسکرول اصلاح شده شبیه به بخش محصولات -->
+        <div class="overflow-x-auto w-full
+                    [&::-webkit-scrollbar]:h-1.5
+                    [&::-webkit-scrollbar-track]:bg-zinc-100
+                    [&::-webkit-scrollbar-thumb]:bg-(--color-primary-500)
+                    [&::-webkit-scrollbar-thumb]:rounded-full">
+            <ul class="flex gap-x-2 whitespace-nowrap pb-2">
+                <li><button class="text-right px-4 py-2 rounded-lg text-(--color-primary-500) bg-zinc-100 hover:bg-zinc-200 cursor-pointer text-sm" id="all-categories-btn" data-cat-id="all">همه</button></li>
+                
+                @if($categories)
+                @foreach ($categories as $category)
+                    @if($category->parent_id == 0)
+                    <li><button class="text-right px-4 py-2 rounded-lg hover:bg-zinc-100 hover:text-(--color-primary-500) cursor-pointer text-sm cats" data-cat-id="{{ $category->id }}">{{ $category->title }}</button></li>
+                    @endif
+                @endforeach
+                @endif
+                
+                <li>
+                    <button class="text-right px-4 py-2 rounded-lg cursor-pointer text-sm hover:text-(--color-primary-700) text-(--color-primary-500) flex items-center gap-x-1 group">
+                        همه محصولات
+                        <svg class="fill-(--color-primary-500) hover:fill-(--color-primary-700) group-hover:-translate-x-1 transition group-hover:fill-primary-500 size-2.5 md:size-3" xmlns="http://www.w3.org/2000/svg" width="" height="" fill="" viewBox="0 0 256 256">
+                            <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
       
       <!-- بخش همه محصولات -->
       <div class="overflow-x-auto w-full h-[350px] md:h-[460px] flex flex-row border border-(--color-zinc-100) rounded-xl bg-white mx-auto px-[16px] py-[32px] all-products-section
