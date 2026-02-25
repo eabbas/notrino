@@ -84,25 +84,24 @@
 <body class="bg-gradient-to-br from-orange-50 to-white">
     <div class="w-full h-dvh flex flex-col justify-start items-center md:flex-row-reverse">
         <!-- بخش راست با تم نارنجی -->
-        <div class="flex justify-center max-sm:h-30 max-md:h-35 md:h-dvh md:w-4/12 lg:w-5/12 xl:w-6/12 bg-orange-gradient relative overflow-hidden">
+        <div class="flex justify-center max-sm:h-30 max-md:h-35 md:h-dvh bg-orange-gradient relative overflow-hidden w-full">
             <!-- المان‌های تزئینی -->
             <div class="absolute inset-0 opacity-10">
                 <div class="absolute top-10 left-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
                 <div class="absolute bottom-10 right-10 w-60 h-60 bg-orange-300 rounded-full blur-3xl"></div>
             </div>
             
-            <div class="flex flex-col my-12 items-center justify-center relative z-10">
+            <div class="flex flex-col my-12 items-center justify-center relative z-10 w-full">
                 <div class="w-full flex flex-row justify-center items-center animate-fadeIn">
                     {{-- <img class="max-md:w-4/12 w-8/12" src="{{ asset('assets/img/e125edbd-f303-47f3-9dbc-af414f99ccb2.webp') }}" alt=""> --}}
                     <div class="text-center">
                         <h2 class="text-center font-bold text-white text-5xl mb-2 drop-shadow-lg">notrino</h2>
                         <div class="w-20 h-1 bg-white mx-auto rounded-full"></div>
-                        <p class="text-white/80 text-sm mt-4">فروشگاه آنلاین</p>
+                        <p class="text-white/80 text-sm">فروشگاه آنلاین</p>
                     </div>
                 </div>
             </div>
         </div>
-
         <!-- بخش فرم ورود -->
         <div class="w-10/12 md:w-8/12 bg-white h-full flex flex-col max-md:justify-start justify-center mt-5 items-center px-4">
             <div class="w-full flex flex-col items-center justify-center md:justify-center lg:w-115 md:w-10/12 px-4 animate-fadeIn">
@@ -185,8 +184,8 @@
     <footer class="md:hidden">
         <div class="footer-orange w-full h-18 absolute bottom-0 flex flex-col justify-center items-center text-white shadow-lg">
             <div class="flex items-center gap-2">
-                <span class="text-sm">اکادمی</span>
-                <b class="text-xl">Faos</b>
+                <span class="text-sm">آکادمی فائوس</span>
+              
             </div>
             <a href="tel:09147794595" class="text-sm hover:underline flex items-center gap-1">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
