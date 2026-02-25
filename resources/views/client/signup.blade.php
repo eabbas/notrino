@@ -89,7 +89,7 @@
 <body class="bg-gradient-to-br from-orange-50 to-white">
     <div class="w-full h-dvh flex flex-col justify-start items-center md:flex-row-reverse">
         <!-- بخش راست با تم نارنجی -->
-                <div class="flex justify-center max-sm:h-30 max-md:h-35 md:h-dvh bg-orange-gradient relative overflow-hidden w-full">
+                <div class="flex justify-center max-sm:h-30 max-md:h-35 md:h-dvh bg-orange-gradient relative overflow-hidden w-full lg:w-1/2">
             <!-- المان‌های تزئینی -->
             <div class="absolute inset-0 opacity-10">
                 <div class="absolute top-10 left-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
@@ -109,7 +109,7 @@
         </div>
 
         <!-- بخش فرم ثبت نام -->
-        <div class="w-full md:w-8/12 bg-white flex justify-center md:px-5 mt-5">
+        <div class="w-full bg-white flex justify-center md:px-5 mt-5 lg:w-1/2">
             <div class="flex flex-col items-center justify-center w-full animate-fadeIn">
                 <!-- آیکون ثبت نام -->
                 <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mb-4 shadow-lg shadow-orange-200">

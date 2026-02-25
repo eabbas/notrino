@@ -375,7 +375,7 @@
                 @endif
             </div>
             <!-- hamburger menu - بازطراحی شده شبیه دسکتاپ -->
-            <div id="mobileMenu" class="w-full h-dvh fixed top-0 -right-full bg-black/50 flex flex-row-reverse z-50 transition-all duration-500 backdrop-blur-sm">
+            <div id="mobileMenu" class="w-full h-dvh fixed top-0 -right-full bg-black/50 flex flex-row z-50 transition-all duration-500 backdrop-blur-sm">
                 <div class="w-2/3 bg-[#0D0E12] h-full p-4 flex flex-col overflow-y-auto mobile-menu-scroll" style="scrollbar-width: none;">
                     <!-- پروفایل در منوی موبایل -->
                     <div class="flex flex-col items-center gap-3 pb-4 border-b border-gray-700 mb-4">
