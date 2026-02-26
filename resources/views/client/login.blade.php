@@ -97,7 +97,7 @@
                     <div class="text-center">
                         <h2 class="text-center font-bold text-white text-5xl mb-2 drop-shadow-lg">notrino</h2>
                         <div class="w-20 h-1 bg-white mx-auto rounded-full"></div>
-                        <p class="text-white/80 text-sm">فروشگاه آنلاین</p>
+                        <p class="text-white/80 text-sm mt-2">فروشگاه آنلاین</p>
                     </div>
                 </div>
             </div>
@@ -105,13 +105,6 @@
         <!-- بخش فرم ورود -->
         <div class="w-full md:w-8/12 bg-white h-full flex flex-col max-md:justify-start justify-center mt-5 items-center px-4 lg:w-1/2">
             <div class="w-full flex flex-col items-center justify-center md:justify-center lg:w-115 md:w-10/12 px-4 animate-fadeIn">
-                <!-- آیکون قفل -->
-                <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-orange-200">
-                    <svg class="w-10 h-10 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                    </svg>
-                </div>
-                
                 <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">ورود به حساب کاربری</h1>
                 <p class="text-gray-500 text-sm mb-8">برای ورود اطلاعات خود را وارد کنید</p>
                 

@@ -12,7 +12,53 @@
   <title>@yield('title')</title>
   
 </head>
+<style>
+  /* استایل برای منوی دسته‌بندی */
+.labal_3-3 {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    top: 100%;
+    right: 0;
+    min-width: 200px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    z-index: 100;
+}
 
+.labal_3-3.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.labal_3-3.invisible {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.labal_3 .svg {
+    cursor: pointer;
+    user-select: none;
+}
+
+.labal_3 .svg svg {
+    transition: transform 0.3s ease;
+}
+
+.labal_3-3 button {
+    width: 100%;
+    text-align: right;
+    padding: 8px 16px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.labal_3-3 button:hover {
+    background-color: #f4f4f5;
+    color: var(--color-primary-500);
+}
+</style>
 <body class="overflow-y-auto
               [&::-webkit-scrollbar]:w-1.5
               [&::-webkit-scrollbar-thumb]:bg-(--color-primary-500)
@@ -41,7 +87,7 @@
               </button>
             </div>
             <ul class="flex flex-col justify-start gap-10 px-8">
-              <li class="hover:text-(--color-primary-500)">صفحه اصلی</li>
+              <li><a href="{{ route('home') }}" class="hover:text-(--color-primary-500)">صفحه اصلی</a></li>
               <div class="labal_3 relative">
                 <li class="svg flex items-center text-center hover:text-(--color-primary-500)">
                  دسته بندی ها
@@ -61,7 +107,7 @@
                 </div>
               </div>
               {{-- <li class="hover:text-(--color-primary-500)">درباره ما</li> --}}
-              <li class="hover:text-(--color-primary-500)"><a href="{{ route('contactUs.userIndex') }}"></a>تماس با ما</li>
+              <li><a href="{{ route('contactUs.userIndex') }}" class="hover:text-(--color-primary-500)">تماس با ما</a></li>
               {{-- <li class="hover:text-(--color-primary-500)">بلاگ</li> --}}
              
             </ul>
