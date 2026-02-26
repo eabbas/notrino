@@ -102,7 +102,7 @@
                     <div class="text-center">
                         <h2 class="text-center font-bold text-white text-5xl mb-2 drop-shadow-lg">notrino</h2>
                         <div class="w-20 h-1 bg-white mx-auto rounded-full"></div>
-                        <p class="text-white/80 text-sm">فروشگاه آنلاین</p>
+                        <p class="text-white/80 text-sm mt-2">فروشگاه آنلاین</p>
                     </div>
                 </div>
             </div>
@@ -112,11 +112,7 @@
         <div class="w-full bg-white flex justify-center md:px-5 mt-5 lg:w-1/2">
             <div class="flex flex-col items-center justify-center w-full animate-fadeIn">
                 <!-- آیکون ثبت نام -->
-                <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mb-4 shadow-lg shadow-orange-200">
-                    <svg class="w-10 h-10 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
-                    </svg>
-                </div>
+                
                 
                 <h1 class="md:text-2xl font-bold text-gray-800 text-base">ثبت نام در فروشگاه</h1>
                 <p class="text-gray-500 text-sm mb-4">برای ایجاد حساب اطلاعات زیر را وارد کنید</p>

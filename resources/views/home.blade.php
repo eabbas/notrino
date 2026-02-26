@@ -426,7 +426,7 @@
   <!-- blog (کامنت شده) -->
   
 </div>
-
+  <script src="{{ asset('assets/js/hamberger.js') }}"></script>
 <!-- اسکریپت برای فیلتر دسته‌بندی‌ها -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {

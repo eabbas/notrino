@@ -176,23 +176,23 @@
                         <div class="outline-none border-1 border-gray-200 rounded-lg p-4 bg-orange-50">
                             <label class="flex items-center space-x-2 space-x-reverse cursor-pointer">
                                 <input type="checkbox" name="categories[]" value="{{$category->id}}" 
-                                       class="h-5 w-5 rounded border-gray-300 text-orange-600 focus:ring-orange-500">
+                                    class="h-5 w-5 rounded border-gray-300 text-orange-600 focus:ring-orange-500">
                                 <span class="font-medium text-gray-800">{{$category->title}}</span>
                             </label>
                             <div class="mt-3 pr-6 space-y-3">
                                 @foreach($category->grandchild as $child)
                                 <div class="outline-none border-1 border-gray-200 rounded-lg p-3 bg-white">
                                     <label class="flex items-center space-x-2 space-x-reverse cursor-pointer">
-                                        <input type="checkbox" name="cat_id" value="{{$child->id}}" 
-                                               class="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500">
+                                        <input type="checkbox" name="categories[]" value="{{$child->id}}" 
+                                            class="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500">
                                         <span class="text-gray-700">{{$child->title}}</span>
                                     </label>
                                     <div class="mt-2 pr-6 space-y-2">
                                         @foreach($child->grandchild as $grand)
                                         <div class="outline-none border-1 border-gray-200 rounded p-2 bg-orange-50">
                                             <label class="flex items-center space-x-2 space-x-reverse cursor-pointer">
-                                                <input type="checkbox" name="cat_id" value="{{$grand->id}}" 
-                                                class="h-3 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500">
+                                                <input type="checkbox" name="categories[]" value="{{$grand->id}}" 
+                                                    class="h-3 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500">
                                                 <span class="text-gray-700 text-sm">{{$grand->title}}</span>
                                             </label>
                                         </div>
