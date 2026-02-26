@@ -83,6 +83,35 @@
         .closeButtonXmark:hover svg path {
             fill: #f97316 !important;
         }
+       /* اسکرول بار نارنجی و باریک */
+        html, body {
+            overflow-y: auto !important;
+            height: 100%;
+        }
+
+        /* عرض اسکرول بار */
+        ::-webkit-scrollbar {
+            width: 6px !important;
+        }
+
+        /* پس زمینه اسکرول بار */
+        ::-webkit-scrollbar-track {
+            background: #fff7ed !important;
+            border-radius: 10px !important;
+        }
+
+        /* خود اسکرول بار (thumb) */
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #fb923c, #f97316) !important;
+            border-radius: 10px !important;
+            border: 1px solid #fed7aa !important;
+        }
+
+        /* افکت هاور روی اسکرول بار */
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #f97316, #ea580c) !important;
+        }
+        
     </style>
 </head>
 
@@ -156,6 +185,7 @@
                             <input type="password"
                                 class="w-full pr-10 pl-4 py-3 rounded-xl border-2 border-gray-200 focus:border-orange-500 focus:ring-0 focus:outline-none transition-all duration-300 hover:border-orange-200 bg-gray-50/50"
                                 name="phoneNumber" 
+                                id="phoneNumber"
                                 placeholder="شماره تلفن">
                         </div>
                         <!-- فیلد کلمه عبور -->
