@@ -179,7 +179,6 @@ body {
 }
 .labal_3 {
   transition: all 300ms;
-  /* transition: all 5s; */
 }
 .labal_3:hover .labal_3-3 {
   visibility: visible;
@@ -198,7 +197,6 @@ body {
 .svg:hover svg:last-child {
   fill: var(--color-primary-500);
   transition: all 300ms;
-  /* transition: all 300ms; */
   transform: rotate(180deg);
 }
 .category:hover div:first-child{

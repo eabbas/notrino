@@ -47,6 +47,10 @@
     <div class="w-full flex flex-row">
         <div class="hidden lg:block lg:w-[265px] bg-[#0D0E12] fixed z-50 right-0 top-0 h-dvh px-5 text-sm">
             <div class="w-full">
+                <a href="{{ route('home') }}"
+                    class="block w-full py-3 text-center font-bold text-3xl text-white border-b border-[darkslategray]">
+                        notrino.com
+                </a>
             </div>
             <div class="py-5 h-[90%] overflow-y-auto flex flex-col gap-5" style="scrollbar-width: none;">
                
@@ -55,18 +59,27 @@
                         <path fill="white"
                             d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
                     </svg>
-                    <a href="{{ route('home') }}" class="block w-full text-white py-1">
+                    <a href="{{ route('home') }}" class="block w-full text-white py-1" target="_blank">
                         بازدید از سایت
                     </a>
                 </div>
-                @if (Auth::user()->role[0]->title == 'ادمین')
-                <div class="dashboard">
-                    <div class="flex flex-row-reverse justify-between">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="size-6 fill-white w-[15px]">
-                            <path fill-rule="evenodd"
-                                d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
-                                clip-rule="evenodd" />
+                
+
+
+
+
+
+                    @if (Auth::user()->role[0]->title == 'ادمین') 
+                    <div class="dashboard">
+                    <div
+                        class="flex justify-between flex-row-reverse cursor-pointer px-2 rounded-sm py-1.5 @if (Route::is('user.list') ||
+                                Route::is('user.create_user')) bg-gray-700 @endif">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="size-4 transition-all duration-200 @if (Route::is('user.list') ||
+                                    Route::is('user.create_user')) rotate-180 @endif"
+                            viewBox="0 0 448 512">
+                            <path fill="white"
+                                d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z" />
                         </svg>
                         <div class="flex flex-row-reverse items-center gap-2">
                             <span class=" text-[white] flex justify-end font-bold">کاربران</span>
@@ -76,203 +89,260 @@
                             </svg>
                         </div>
                     </div>
-                    <ul class="mt-2.5 mb-2.5 pr-3 transition-all duration-500 overflow-hidden">
-                        <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                    <ul
+                        class="my-1 pr-3 transition-all duration-500 overflow-hidden @if (Route::is('user.list') ||
+                                Route::is('user.create_user')) max-h-[500px] @else max-h-0 @endif">
+                        <li
+                            class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 pr-5 rounded-sm @if (Route::is('user.list')) bg-gray-700 @endif">
                             <span class="size-1 bg-white rounded-sm"></span>
-                            <a href="{{ route('user.list') }}" class="text-white py-1">
+                            <a href="{{ route('user.list') }}" class="text-white py-1 block">
                                 مشاهده همه کاربران
                             </a>
                         </li>
-                        <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                        <li
+                            class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 pr-5 rounded-sm @if (Route::is('user.create_user')) bg-gray-700 @endif">
                             <span class="size-1 bg-white rounded-sm"></span>
-                            <a href="{{ route('user.create_user') }}" class="text-white py-1">
+                            <a href="{{ route('user.create_user') }}" class="text-white py-1 block">
                                 ایجاد کاربر جدید
                             </a>
                         </li>
-
                     </ul>
                 </div>
                 @endif
-                @if (Auth::user()->role[0]->title == 'ادمین')
-                <div class="dashboard">
-                    <div class="flex flex-row-reverse justify-between">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="size-6 fill-white w-[15px]">
-                            <path fill-rule="evenodd"
-                                d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
-                                clip-rule="evenodd" />
+
+
+
+
+                    @if (Auth::user()->role[0]->title == 'ادمین') 
+                    <div class="dashboard">
+                    <div
+                        class="flex justify-between flex-row-reverse cursor-pointer px-2 rounded-sm py-1.5 @if (Route::is('footer.footerCreate') ||
+                                Route::is('express.expressCreate') || 
+                                Route::is('setting.createDescription') ||
+                                Route::is('setting.createLogo')) bg-gray-700 @endif">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="size-4 transition-all duration-200 @if (Route::is('footer.footerCreate') ||
+                                    Route::is('express.expressCreate') || 
+                                    Route::is('setting.createDescription')||
+                                    Route::is('setting.createLogo')) rotate-180 @endif"
+                            viewBox="0 0 448 512">
+                            <path fill="white"
+                                d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z" />
                         </svg>
                         <div class="flex flex-row-reverse items-center gap-2">
-                            <span class=" text-[white] flex justify-end font-bold"> فوتر</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"
-                            class="size-6 fill-white w-[15px]">
-                                <path d="M448 64c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+                            <span class=" text-[white] flex justify-end font-bold">فوتر</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 448 512">
+                                <path fill="white"
+                                    d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
                             </svg>
                         </div>
                     </div>
-                    <ul class="mt-2.5 mb-2.5 pr-3 transition-all duration-500 overflow-hidden">
-                        <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                    <ul
+                        class="my-1 pr-3 transition-all duration-500 overflow-hidden @if (Route::is('footer.footerCreate') ||
+                                 Route::is('express.expressCreate') || 
+                                Route::is('setting.createDescription') ||
+                                Route::is('setting.createLogo')) max-h-[500px] @else max-h-0 @endif">
+                        <li
+                            class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 pr-5 rounded-sm @if (Route::is('footer.footerCreate')) bg-gray-700 @endif">
                             <span class="size-1 bg-white rounded-sm"></span>
-                            <a href="{{ route('footer.footerCreate') }}" class="text-white py-1">
-                               ایجاد ستون های فوتر
+                            <a href="{{ route('footer.footerCreate') }}" class="text-white py-1 block">
+                                ایجاد ستون های فوتر
                             </a>
                         </li>
-                        <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                        <li
+                            class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 pr-5 rounded-sm @if (Route::is('express.expressCreate')) bg-gray-700 @endif">
                             <span class="size-1 bg-white rounded-sm"></span>
-                            <a href="{{ route('express.expressCreate') }}" class="text-white py-1">
+                            <a href="{{ route('express.expressCreate') }}" class="text-white py-1 block">
                                 ایجاد بنر های فوتر 
                             </a>
                         </li>
-                         <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                        <li
+                            class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 pr-5 rounded-sm @if (Route::is('setting.createDescription')) bg-gray-700 @endif">
                             <span class="size-1 bg-white rounded-sm"></span>
-                            <a href="{{ route('setting.createDescription') }}" class="text-white py-1">
-                                توضیحات فوتر     
+                            <a href="{{ route('setting.createDescription') }}" class="text-white py-1 block">
+                                توضیحات فوتر  
                             </a>
                         </li>
-                        <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                        <li
+                            class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 pr-5 rounded-sm @if (Route::is('setting.createLogo')) bg-gray-700 @endif">
                             <span class="size-1 bg-white rounded-sm"></span>
-                            <a href="{{ route('setting.createLogo') }}" class="text-white py-1">
-                                لوگوی فوتر     
+                            <a href="{{ route('setting.createLogo') }}" class="text-white py-1 block">
+                                توضیحات فوتر  
                             </a>
                         </li>
                        
-
                     </ul>
                 </div>
                 @endif
-                @if (Auth::user()->role[0]->title == 'ادمین')
-                <div class="dashboard">
-                    <div class="flex flex-row-reverse justify-between">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="size-6 fill-white w-[15px]">
-                            <path fill-rule="evenodd"
-                                d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <div class="flex flex-row-reverse items-center gap-2">
-                            <span class=" text-[white] flex justify-end font-bold">محصولات</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"
-                            class="size-6 fill-white w-[15px]">
-                                <path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64zm0 112c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112zm0 128c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V240zM80 352h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V368c0-8.8 7.2-16 16-16zm112 32c0-8.8 7.2-16 16-16H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H208c-8.8 0-16-7.2-16-16zm16-272H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H208c-8.8 0-16-7.2-16-16s7.2-16 16-16zM192 256c0-8.8 7.2-16 16-16H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H208c-8.8 0-16-7.2-16-16z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <ul class="mt-2.5 mb-2.5 pr-3 transition-all duration-500 overflow-hidden">
-                        <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
-                            <span class="size-1 bg-white rounded-sm"></span>
-                            <a href="{{ route('product.create') }}" class="text-white py-1">
-                               ایجاد محصولات  
-                            </a>
-                        </li>
-                        <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
-                            <span class="size-1 bg-white rounded-sm"></span>
-                            <a href="{{ route('product.list') }}" class="text-white py-1">
-                                 لیست محصولات   
-                            </a>
-                        </li>
-                         
-                        
 
-                    </ul>
-                    
-                </div>
-                @endif
-                @if (Auth::user()->role[0]->title == 'ادمین')
+                
+                @if (Auth::user()->role[0]->title == 'ادمین') 
                 <div class="dashboard">
-                    <div class="flex flex-row-reverse justify-between">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="size-6 fill-white w-[15px]">
-                            <path fill-rule="evenodd"
-                                d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
-                                clip-rule="evenodd" />
+                <div
+                    class="flex justify-between flex-row-reverse cursor-pointer px-2 rounded-sm py-1.5 @if (Route::is('product.create') ||
+                            Route::is('product.list')) bg-gray-700 @endif">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="size-4 transition-all duration-200 @if (Route::is('product.create') ||
+                                Route::is('product.list')) rotate-180 @endif"
+                        viewBox="0 0 448 512">
+                        <path fill="white"
+                            d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z" />
+                    </svg>
+                    <div class="flex flex-row-reverse items-center gap-2">
+                        <span class=" text-[white] flex justify-end font-bold">محصولات</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 448 512">
+                            <path fill="white"
+                                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
                         </svg>
-                        <div class="flex flex-row-reverse items-center gap-2">
-                            <span class=" text-[white] flex justify-end font-bold">دسته ها</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"
-                            class="size-6 fill-white w-[15px]">
-                                <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
-                            </svg>
-                        </div>
                     </div>
-                    <ul class="mt-2.5 mb-2.5 pr-3 transition-all duration-500 overflow-hidden">
-                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
-                                <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('category.create') }}" class="text-white py-1">
-                                ایجاد دسته بندی  
-                                </a>
-                            </li>
-                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
-                                <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('category.list') }}" class="text-white py-1">
-                                    لیست دسته ها   
-                                </a>
-                            </li>
-                            
-                            
+                </div>
+                <ul
+                    class="my-1 pr-3 transition-all duration-500 overflow-hidden @if (Route::is('product.create') ||
+                            Route::is('product.list')) max-h-[500px] @else max-h-0 @endif">
+                    <li
+                        class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 pr-5 rounded-sm @if (Route::is('product.create')) bg-gray-700 @endif">
+                        <span class="size-1 bg-white rounded-sm"></span>
+                        <a href="{{ route('product.create') }}" class="text-white py-1 block">
+                            ایجاد محصولات 
+                        </a>
+                    </li>
+                    <li
+                        class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 pr-5 rounded-sm @if (Route::is('product.list')) bg-gray-700 @endif">
+                        <span class="size-1 bg-white rounded-sm"></span>
+                        <a href="{{ route('product.list') }}" class="text-white py-1 block">
+                             لیست محصولات   
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            @endif
 
-                        </ul>
-                        
-                </div>
-                @endif
-                @if (Auth::user()->role[0]->title == 'ادمین')
+
+
+                @if (Auth::user()->role[0]->title == 'ادمین') 
                 <div class="dashboard">
-                    <div class="flex flex-row-reverse justify-between">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="size-6 fill-white w-[15px]">
-                            <path fill-rule="evenodd"
-                                d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
-                                clip-rule="evenodd" />
+                <div
+                    class="flex justify-between flex-row-reverse cursor-pointer px-2 rounded-sm py-1.5 @if (Route::is('category.create') ||
+                            Route::is('category.list')) bg-gray-700 @endif">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="size-4 transition-all duration-200 @if (Route::is('category.create') ||
+                                Route::is('category.list')) rotate-180 @endif"
+                        viewBox="0 0 448 512">
+                        <path fill="white"
+                            d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z" />
+                    </svg>
+                    <div class="flex flex-row-reverse items-center gap-2">
+                        <span class=" text-[white] flex justify-end font-bold">دسته ها</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 448 512">
+                            <path fill="white"
+                                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
                         </svg>
-                        <div class="flex flex-row-reverse items-center gap-2">
-                            <span class=" text-[white] flex justify-end font-bold">تنظیمات سایت</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor"
-                            class="size-6 fill-white w-[15px]">
-                                <path d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/>
-                            </svg>
-                        </div>
                     </div>
-                    <ul class="mt-2.5 mb-2.5 pr-3 transition-all duration-500 overflow-hidden">
-                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
-                                <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('slider.sliderCreate') }}" class="text-white py-1">
-                                ایجاد اسلایدر  
-                                </a>
-                            </li>
-                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
-                                <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('slider.list') }}" class="text-white py-1">
-                                 لیست اسلایدر
-                                </a>
-                            </li>
-                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
-                                <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('setting.createHeroBannerRight') }}" class="text-white py-1">
-                                    ایجاد بنر سمت راست
-                                </a>
-                            </li>
-                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
-                                <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('setting.createHeroBannerLeft') }}" class="text-white py-1">
-                                    ایجاد بنر سمت چپ
-                                </a>
-                            </li>
-                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
-                                <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('brand.brandCreate') }}" class="text-white py-1">
-                                    ایجاد برند  
-                                </a>
-                            </li>
-                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
-                                <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('brand.list') }}" class="text-white py-1">
-                                    لیست برند  
-                                </a>
-                            </li>
-                            
-                        </ul>
-                        
                 </div>
-                @endif
+                <ul
+                    class="my-1 pr-3 transition-all duration-500 overflow-hidden @if (Route::is('category.create') ||
+                            Route::is('category.list')) max-h-[500px] @else max-h-0 @endif">
+                    <li
+                        class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 pr-5 rounded-sm @if (Route::is('category.create')) bg-gray-700 @endif">
+                        <span class="size-1 bg-white rounded-sm"></span>
+                        <a href="{{ route('category.create') }}" class="text-white py-1 block">
+                            ایجاد دسته بندی 
+                        </a>
+                    </li>
+                    <li
+                        class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 pr-5 rounded-sm @if (Route::is('category.list')) bg-gray-700 @endif">
+                        <span class="size-1 bg-white rounded-sm"></span>
+                        <a href="{{ route('category.list') }}" class="text-white py-1 block">
+                             لیست دسته ها   
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            @endif
+
+                @if (Auth::user()->role[0]->title == 'ادمین') 
+                <div class="dashboard">
+                <div
+                    class="flex justify-between flex-row-reverse cursor-pointer px-2 rounded-sm py-1.5 @if (Route::is('slider.sliderCreate') ||
+                            Route::is('slider.list')||
+                            Route::is('setting.createHeroBannerRight')||
+                            Route::is('setting.createHeroBannerLeft')||
+                            Route::is('brand.brandCreate')||
+                            Route::is('brand.list')) bg-gray-700 @endif">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="size-4 transition-all duration-200 @if (Route::is('slider.sliderCreate') ||
+                            Route::is('slider.list')||
+                            Route::is('setting.createHeroBannerRight')||
+                            Route::is('setting.createHeroBannerLeft')||
+                            Route::is('brand.brandCreate')||
+                            Route::is('brand.list')) rotate-180 @endif"
+                        viewBox="0 0 448 512">
+                        <path fill="white"
+                            d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z" />
+                    </svg>
+                    <div class="flex flex-row-reverse items-center gap-2">
+                        <span class=" text-[white] flex justify-end font-bold">تنظیمات سایت</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 448 512">
+                            <path fill="white"
+                                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                        </svg>
+                    </div>
+                </div>
+                <ul
+                    class="my-1 pr-3 transition-all duration-500 overflow-hidden @if (Route::is('slider.sliderCreate') ||
+                            Route::is('slider.list')||
+                            Route::is('setting.createHeroBannerRight')||
+                            Route::is('setting.createHeroBannerLeft')||
+                            Route::is('brand.brandCreate')||
+                            Route::is('brand.list')) max-h-[500px] @else max-h-0 @endif">
+                    <li
+                        class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 pr-5 rounded-sm @if (Route::is('slider.sliderCreate')) bg-gray-700 @endif">
+                        <span class="size-1 bg-white rounded-sm"></span>
+                        <a href="{{ route('slider.sliderCreate') }}" class="text-white py-1 block">
+                            ایجاد اسلایدر  
+                        </a>
+                    </li>
+                    <li
+                        class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 pr-5 rounded-sm @if (Route::is('slider.list')) bg-gray-700 @endif">
+                        <span class="size-1 bg-white rounded-sm"></span>
+                        <a href="{{ route('slider.list') }}" class="text-white py-1 block">
+                             لیست اسلایدر  
+                        </a>
+                    </li>
+                    <li
+                        class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 pr-5 rounded-sm @if (Route::is('setting.createHeroBannerRight')) bg-gray-700 @endif">
+                        <span class="size-1 bg-white rounded-sm"></span>
+                        <a href="{{ route('setting.createHeroBannerRight') }}" class="text-white py-1 block">
+                              ایجاد بنر سمت راست
+                        </a>
+                    </li>
+                    <li
+                        class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 pr-5 rounded-sm @if (Route::is('setting.createHeroBannerLeft')) bg-gray-700 @endif">
+                        <span class="size-1 bg-white rounded-sm"></span>
+                        <a href="{{ route('setting.createHeroBannerLeft') }}" class="text-white py-1 block">
+                              ایجاد بنر سمت چپ
+                        </a>
+                    </li>
+                    <li
+                        class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 pr-5 rounded-sm @if (Route::is('brand.brandCreate')) bg-gray-700 @endif">
+                        <span class="size-1 bg-white rounded-sm"></span>
+                        <a href="{{ route('brand.brandCreate') }}" class="text-white py-1 block">
+                              ایجاد برند
+                        </a>
+                    </li>
+                    <li
+                        class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 pr-5 rounded-sm @if (Route::is('brand.list')) bg-gray-700 @endif">
+                        <span class="size-1 bg-white rounded-sm"></span>
+                        <a href="{{ route('brand.list') }}" class="text-white py-1 block">
+                              لیست برند
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            @endif
+
+
+
             
                 {{-- <div class="dashboard">
                     <div class="flex flex-row-reverse justify-between">
@@ -608,7 +678,7 @@
         </div>
     </div>
 
-    <script src="{{ asset('assets/js/userPanel.js') }}"></script>
+      <script src="{{ asset('assets/js/userPanel.js') }}"></script>
 
     <script>
    

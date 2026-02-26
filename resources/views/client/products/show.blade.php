@@ -422,74 +422,95 @@
       <!-- sldier products -->
       
 @if(isset($relatedProducts) && count($relatedProducts) > 0)
-<section class="">
-    <div class="w-[93%] md:w-full flex justify-between items-center mx-auto">
-        <span class="w-48 min-w-fit text-xs md:text-sm md:font-yekanBakhBold text-(--color-zinc-600)">محصولات مرتبط</span>
-        <span class="h-[1px] w-full bg-gradient-to-r from-white via-(--color-zinc-500) to-white "></span>
-        <div class="w-32 min-w-fit text-left">
-            <a href="" class="text-sm hover:text-(--color-primary-500) text-(--color-zinc-600) flex fle items-center gap-x-1 group">
-                مشاهده همه
-                <svg class="fill-(--color-zinc-600) hover:fill-(--color-primary-500) group-hover:-translate-x-1 transition group-hover:fill-(--color-primary-500) size-2.5 md:size-3" xmlns="http://www.w3.org/2000/svg" width="" height="" fill="" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path></svg>        
-            </a>
-        </div>
+<section class="mt-16 mb-8">
+    <!-- هدر بخش محصولات مرتبط -->
+    <div class="w-full flex justify-between items-center mb-6 px-2">
+        <span class="text-sm md:text-base font-yekanBakhBold text-(--color-zinc-700)">محصولات مرتبط</span>
+        <div class="flex-grow h-[1px] bg-gradient-to-r from-transparent via-(--color-zinc-300) to-transparent mx-4"></div>
+        <a href="" class="text-sm text-(--color-zinc-600) hover:text-(--color-primary-500) flex items-center gap-x-1 transition-all duration-300 group whitespace-nowrap">
+            مشاهده همه
+            <svg class="fill-current group-hover:fill-(--color-primary-500) group-hover:-translate-x-1 transition-all duration-300 size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
+            </svg>        
+        </a>
     </div>
     
-    <div class="overflow-x-auto w-[93%] md:w-full h-[350px] md:h-[460px] flex flex-row rounded-xl bg-white mx-auto px-[16px] py-[32px]
-        [&::-webkit-scrollbar]:w-0.5
-        [&::-webkit-scrollbar-thumb]:bg-(--color-primary-500)
-        [&::-webkit-scrollbar-thumb]:rounded-full">
-        <div class="flex flex-row gap-3">
-            @foreach($relatedProducts as $item)
-            <div class="w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border-1 border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
-                <a href="{{ route('product.show', $item->id) }}" class="flex items-center justify-center">
-                    @php
-                        $itemMainImage = $item->medias->where('is_main', 1)->first();
-                    @endphp
-                    
-                    @if($itemMainImage)
-                        <img src="{{ asset('storage/'.$itemMainImage->path) }}" alt="{{ $item->title }}" class="rounded-xl mb-3 w-[130px] md:w-[220px] h-[130px] md:h-[220px] object-cover">
-                    @else
-                        <img src="{{ asset('img/products/default.jpg') }}" alt="{{ $item->title }}" class="rounded-xl mb-3 w-[130px] md:w-[220px] h-[130px] md:h-[220px] object-cover">
-                    @endif
-                </a>
-                
-                
-                <a href="{{ route('product.show', $item->id) }}" class="mb-3 text-xs md:text-sm line-clamp-2">
-                    {{ $item->title }}
-                </a>
-                
-                <span class="flex flex-row justify-between items-center mb-3">
-                    <span class="flex gap-1 mt-4">
+    <!-- اسلایدر محصولات -->
+    <div class="relative">
+        <!-- کانتینر اسکرول محصولات -->
+        <div id="relatedProductsContainer" class="overflow-x-auto scroll-smooth pb-2 [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:bg-(--color-primary-500) [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-(--color-zinc-100)">
+            <div class="flex flex-row gap-4 px-2">
+                @foreach($relatedProducts as $item)
+                <div class="flex-none w-[160px] md:w-[220px] bg-white border-2 border-(--color-zinc-200) rounded-2xl p-3 transition-all duration-300 hover:border-(--color-primary-500) hover:shadow-lg hover:shadow-primary-500/20 group/product">
+                    <a href="{{ route('product.show', $item->id) }}" class="block">
                         @php
-                            $colors = $item->attributes->where('key', 'رنگ');
+                            $itemMainImage = $item->medias->where('is_main', 1)->first();
                         @endphp
                         
-                        @foreach($colors as $color)
-                            <div class="w-3 md:w-4 h-3 md:h-4 rounded-full" style="background-color: {{ $color->value }}"></div>
-                        @endforeach
-                    </span>
-                    
-                    <span class="flex items-center gap-0.5">
-                        <span class="text-[9px] text-(--color-zinc-500)">({{ $item->comments_count ?? 0 }})</span>
-                        <span class="text-xs text-(--color-zinc-500)">{{ $item->rating ?? '4.4' }}</span>
-                        <span class="">
-                            <svg class="fill-primary-500" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#f9bc00" viewBox="0 0 256 256"><path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path></svg>
-                        </span>
-                    </span>
-                </span>
-                
-                <div class="border-dashed border-t-1 border-(--color-zinc-200) flex justify-end items-center h-12">
-                    <span class="flex items-center text-base md:text-base gap-2">
-                        @php
-                            // $finalPrice = $item->price - ($item->price * ($item->discount ?? 0) / 100);
-                            $finalPrice = (int)$item->price - ((int)$item->price * (int)$item->discount / 100);
-                        @endphp
-                        {{ number_format($finalPrice) }}
-                        <span>تومان</span>
-                    </span>
+                        <div class="flex justify-center mb-3 overflow-hidden rounded-xl">
+                            @if($itemMainImage)
+                                <img src="{{ asset('storage/'.$itemMainImage->path) }}" alt="{{ $item->title }}" class="rounded-xl w-[130px] h-[130px] md:w-[180px] md:h-[180px] object-cover transition-all duration-500 group-hover/product:scale-110 group-hover/product:rotate-1">
+                            @else
+                                <img src="{{ asset('img/products/default.jpg') }}" alt="{{ $item->title }}" class="rounded-xl w-[130px] h-[130px] md:w-[180px] md:h-[180px] object-cover transition-all duration-500 group-hover/product:scale-110">
+                            @endif
+                        </div>
+                        
+                        <h3 class="mb-2 text-xs md:text-sm line-clamp-2 h-10 md:h-12 text-(--color-zinc-700) group-hover/product:text-(--color-primary-600) transition-colors duration-300 font-yekanBakhRegular">
+                            {{ $item->title }}
+                        </h3>
+                        
+                        <div class="flex flex-row justify-between items-center mb-3">
+                            <!-- رنگ‌ها -->
+                            <div class="flex gap-1">
+                                @php
+                                    $colors = $item->attributes->where('key', 'رنگ');
+                                @endphp
+                                
+                                @forelse($colors as $color)
+                                    <div class="w-3 h-3 md:w-4 md:h-4 rounded-full border border-(--color-zinc-300) transition-transform duration-300 group-hover/product:scale-110 group-hover/product:border-(--color-primary-400)" style="background-color: {{ $color->value }}; {{ $color->value === '#ffffff' ? 'border: 1px solid #e5e7eb;' : '' }}" title="{{ $color->value }}"></div>
+                                @empty
+                                    <span class="text-[10px] text-(--color-zinc-400)">بدون رنگ</span>
+                                @endforelse
+                            </div>
+                            
+                            <!-- امتیاز -->
+                            <div class="flex items-center gap-0.5">
+                                <span class="text-[10px] text-(--color-zinc-500) group-hover/product:text-(--color-primary-500) transition-colors duration-300">({{ $item->comments_count ?? 0 }})</span>
+                                <span class="text-[10px] md:text-xs text-(--color-zinc-600) group-hover/product:text-(--color-primary-600) transition-colors duration-300">{{ number_format($item->rating ?? 4.4, 1) }}</span>
+                                <svg class="fill-amber-400 size-3 md:size-3.5 group-hover/product:fill-(--color-primary-500) transition-colors duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                                    <path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <!-- قیمت -->
+                        <div class="border-t border-dashed border-(--color-zinc-200) pt-2 flex justify-end items-center group-hover/product:border-(--color-primary-200) transition-colors duration-300">
+                            @php
+                                $finalPrice = (int)$item->price;
+                                if(isset($item->discount) && $item->discount > 0) {
+                                    $finalPrice = $item->price - ($item->price * $item->discount / 100);
+                                }
+                            @endphp
+                            
+                            @if(isset($item->discount) && $item->discount > 0)
+                                <div class="flex flex-col items-end">
+                                    <span class="text-[10px] line-through text-(--color-zinc-400) group-hover/product:text-(--color-zinc-500) transition-colors duration-300">{{ number_format($item->price) }}</span>
+                                    <span class="flex items-center gap-1 text-sm md:text-base font-yekanBakhBold text-(--color-green-600) group-hover/product:text-(--color-primary-600) transition-colors duration-300">
+                                        {{ number_format($finalPrice) }}
+                                        <span class="text-[8px] md:text-[10px] font-yekanBakhRegular text-(--color-zinc-500) group-hover/product:text-(--color-primary-500) transition-colors duration-300">تومان</span>
+                                    </span>
+                                </div>
+                            @else
+                                <span class="flex items-center gap-1 text-sm md:text-base font-yekanBakhBold text-(--color-zinc-700) group-hover/product:text-(--color-primary-600) transition-colors duration-300">
+                                    {{ number_format($finalPrice) }}
+                                    <span class="text-[8px] md:text-[10px] font-yekanBakhRegular text-(--color-zinc-500) group-hover/product:text-(--color-primary-500) transition-colors duration-300">تومان</span>
+                                </span>
+                            @endif
+                        </div>
+                    </a>
                 </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
     </div>
 </section>
