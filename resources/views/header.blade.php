@@ -21,7 +21,7 @@
       <!-- top -->
       <section class="relative z-50 max-w-[1700px] h-20 bg-white flex justify-between items-center px-1 md:px-20 shadow-xl">
         <!-- menu-mobile -->
-        <div id="hambeger" class="sticy md:absolute pr-3">
+        <div id="hambeger" class="sticy md:absolute pr-4">
           <div class="menu-mobile sticy md:absolute md:hidden" onclick="Hamberger('open',this)">
             <svg class=" sticy md:absolute md:hidden fill-zinc-600" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
               <path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path>
@@ -65,7 +65,7 @@
             </ul>
           </div>
 
-          <div id="garah" onclick="Hamberger('close',this)" class="w-full h-dvh absolute bg-black/50 top-0 right-full z-30">
+          <div id="garah" onclick="Hamberger('close',this)" class="w-full h-dvh absolute bg-black/50 top-0 right-full z-30 lg:hidden">
           </div>
         </div>
         <!-- logo -->
@@ -159,12 +159,7 @@
                             </div>
                         @endif
                     </div>
-                    <div class="size-7 relative cursor-pointer">
-                        <span class="absolute text-white text-sm -left-2 -top-3" id="shoppingCartCount">0</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="size-full rotate-y-180" viewBox="0 0 576 512">
-                            <path fill="white" d="M24 0C10.7 0 0 10.7 0 24S10.7 48 24 48H69.5c3.8 0 7.1 2.7 7.9 6.5l51.6 271c6.5 34 36.2 58.5 70.7 58.5H488c13.3 0 24-10.7 24-24s-10.7-24-24-24H199.7c-11.5 0-21.4-8.2-23.6-19.5L170.7 288H459.2c32.6 0 61.1-21.8 69.5-53.3l41-152.3C576.6 57 557.4 32 531.1 32h-411C111 12.8 91.6 0 69.5 0H24zM131.1 80H520.7L482.4 222.2c-2.8 10.5-12.3 17.8-23.2 17.8H161.6L131.1 80zM176 512a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm336-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z"/>
-                        </svg>
-                    </div>
+                   
                 </div>
           <!-- cart -->
           <div class="labal_2 relative">

@@ -83,35 +83,6 @@
         .closeButtonXmark:hover svg path {
             fill: #f97316 !important;
         }
-       /* اسکرول بار نارنجی و باریک */
-        html, body {
-            overflow-y: auto !important;
-            height: 100%;
-        }
-
-        /* عرض اسکرول بار */
-        ::-webkit-scrollbar {
-            width: 6px !important;
-        }
-
-        /* پس زمینه اسکرول بار */
-        ::-webkit-scrollbar-track {
-            background: #fff7ed !important;
-            border-radius: 10px !important;
-        }
-
-        /* خود اسکرول بار (thumb) */
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #fb923c, #f97316) !important;
-            border-radius: 10px !important;
-            border: 1px solid #fed7aa !important;
-        }
-
-        /* افکت هاور روی اسکرول بار */
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #f97316, #ea580c) !important;
-        }
-        
     </style>
 </head>
 
@@ -131,7 +102,7 @@
                     <div class="text-center">
                         <h2 class="text-center font-bold text-white text-5xl mb-2 drop-shadow-lg">notrino</h2>
                         <div class="w-20 h-1 bg-white mx-auto rounded-full"></div>
-                        <p class="text-white/80 text-sm mt-2">فروشگاه آنلاین</p>
+                        <p class="text-white/80 text-sm">فروشگاه آنلاین</p>
                     </div>
                 </div>
             </div>
@@ -140,9 +111,7 @@
         <!-- بخش فرم ثبت نام -->
         <div class="w-full bg-white flex justify-center md:px-5 mt-5 lg:w-1/2">
             <div class="flex flex-col items-center justify-center w-full animate-fadeIn">
-                <!-- آیکون ثبت نام -->
-                
-                
+        
                 <h1 class="md:text-2xl font-bold text-gray-800 text-base">ثبت نام در فروشگاه</h1>
                 <p class="text-gray-500 text-sm mb-4">برای ایجاد حساب اطلاعات زیر را وارد کنید</p>
                 
