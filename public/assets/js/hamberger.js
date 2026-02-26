@@ -47,62 +47,22 @@ setInterval(() => showSlide(currentSlide - 1), 5000);
 showSlide(0);
 
 
-// اضافه کنید به کدهای جاوااسکریپت موجود در فایل
-document.addEventListener('DOMContentLoaded', function() {
-    // منوی دسته‌بندی در موبایل
-    const mobileCategoryBtn = document.querySelector('.menu-mobile-slid .labal_3 .svg');
-    const mobileCategoryMenu = document.querySelector('.menu-mobile-slid .labal_3-3');
-    
-    if (mobileCategoryBtn && mobileCategoryMenu) {
-        mobileCategoryBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // تغییر وضعیت منو
-            if (mobileCategoryMenu.classList.contains('invisible')) {
-                mobileCategoryMenu.classList.remove('invisible');
-                // چرخاندن آیکون
-                const svg = this.querySelector('svg');
-                if (svg) {
-                    svg.style.transform = 'rotate(180deg)';
-                }
-            } else {
-                mobileCategoryMenu.classList.add('invisible');
-                const svg = this.querySelector('svg');
-                if (svg) {
-                    svg.style.transform = '';
-                }
-            }
-        });
-    }
-    
-    // بستن منو با کلیک روی لینک‌های داخل آن
-    const categoryLinks = document.querySelectorAll('.menu-mobile-slid .labal_3-3 button');
-    categoryLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            const menu = this.closest('.labal_3-3');
-            if (menu) {
-                menu.classList.add('invisible');
-                const svg = document.querySelector('.menu-mobile-slid .labal_3 .svg svg');
-                if (svg) {
-                    svg.style.transform = '';
-                }
-            }
-        });
-    });
-    
-    // بستن منو با کلیک روی آیتم‌های دیگر
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.labal_3')) {
-            const menu = document.querySelector('.menu-mobile-slid .labal_3-3');
-            const svg = document.querySelector('.menu-mobile-slid .labal_3 .svg svg');
-            
-            if (menu && !menu.classList.contains('invisible')) {
-                menu.classList.add('invisible');
-                if (svg) {
-                    svg.style.transform = '';
-                }
-            }
+let dashboard = document.querySelectorAll('.dashboard')
+dashboard.forEach((item)=>{
+    item.addEventListener('click', ()=>{
+        if (item.nextElementSibling.classList.contains('max-h-0')) {
+            dashboard.forEach((element)=>{
+                element.nextElementSibling.classList.remove('max-h-[500px]')
+                element.children[0].classList.remove('rotate-180')
+                element.nextElementSibling.classList.add('max-h-0')
+            })
+            item.nextElementSibling.classList.remove('max-h-0')
+            item.nextElementSibling.classList.add('max-h-[500px]')
+            item.children[0].classList.add('rotate-180')
+        } else {
+            item.nextElementSibling.classList.remove('max-h-[500px]')
+            item.children[0].classList.remove('rotate-180')
+            item.nextElementSibling.classList.add('max-h-0')
         }
-    });
-});
+    })
+})

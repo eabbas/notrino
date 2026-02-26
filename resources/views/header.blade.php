@@ -39,27 +39,27 @@
                 </svg>
               </button>
             </div>
-            <ul class="flex flex-col justify-start gap-10 px-8">
-              <li><a href="{{ route('home') }}" class="hover:text-(--color-primary-500)">صفحه اصلی</a></li>
-              <div class="labal_3 relative">
-                <li class="svg flex items-center text-center hover:text-(--color-primary-500) cursor-pointer">
-                دسته بندی ها
-                  <svg class="transition-all duration-300 fill-zinc-600 hover:fill-(--color-primary-500)" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#000000" viewBox="0 0 256 256">
+            <ul class="flex flex-col justify-start gap-10">
+              <li class="px-5"><a href="{{ route('home') }}" class="hover:text-(--color-primary-500)">صفحه اصلی</a></li>
+              <li class="labal_3 relative">
+                <div class="svg flex items-center text-center cursor-pointer px-5 dashboard">
+                 دسته بندی ها
+                  <svg class="transition-all duration-300 fill-zinc-600" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#000000" viewBox="0 0 256 256">
                     <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
                   </svg>
-                </li>
-                <div class="labal_3-3 absolute z-10 w-50 px-3 py-1 rounded-xl shadow-xl bg-white invisible">
-                  @if($categories)
-                    @foreach ($categories as $category)
-                      @if($category->parent_id == 0)
-                        <li><button class="text-right px-4 py-2 rounded-lg hover:bg-zinc-100 hover:text-(--color-primary-500) cursor-pointer text-sm cats" data-cat-id="{{ $category->id }}">{{ $category->title }}</button></li>
-                      @endif
-                    @endforeach
-                  @endif
                 </div>
-              </div>
+                <ul class="labal_3-3 w-full px-3 py-1 bg-white mt-3 flex flex-col transition-all duration-300 max-h-0 overflow-hidden">
+                  @if($categories)
+                @foreach ($categories as $category)
+                    @if($category->parent_id == 0)
+                    <li class="border-t border-t-gray-300 py-2 my-1.5"><button class="text-right px-4 py-2 rounded-lg hover:bg-zinc-100 hover:text-(--color-primary-500) cursor-pointer text-sm cats" data-cat-id="{{ $category->id }}">{{ $category->title }}</button></li>
+                    @endif
+                @endforeach
+                @endif
+                </ul>
+              </li>
               {{-- <li class="hover:text-(--color-primary-500)">درباره ما</li> --}}
-              <li><a href="{{ route('contactUs.userIndex') }}" class="hover:text-(--color-primary-500)">تماس با ما</a></li>
+              <li class="px-5"><a href="{{ route('contactUs.userIndex') }}" class="hover:text-(--color-primary-500)">تماس با ما</a></li>
               {{-- <li class="hover:text-(--color-primary-500)">بلاگ</li> --}}
              
             </ul>
@@ -327,24 +327,27 @@
         <div class="">
           <ul class="flex gap-10">
             <li><a href="{{ route('home') }}" class="hover:text-(--color-primary-500)">صفحه اصلی</a></li>
-            <div class="labal_3 relative transition-all duration-300">
-              <li class="svg flex items-center justify-center text-center transition-all duration-300 hover:text-(--color-primary-500)">
+            <li class="labal_3 relative transition-all duration-300">
+              <div class="svg flex items-center justify-center text-center transition-all duration-300 hover:text-(--color-primary-500)">
                 دسته بندی ها
                 <svg class="transition-all duration-300 fill-zinc-600 hover:fill-(--color-primary-500)" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#000000" viewBox="0 0 256 256">
                   <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
                 </svg>
-              </li>
-              <div class="labal_3-3 absolute w-50 px-3 py-1 rounded-xl shadow-xl bg-white invisible">
+              </div>
+              <ul class="labal_3-3 absolute w-50 px-3 py-1 rounded-xl shadow-xl bg-white invisible">
                 @if($categories)
                 @foreach ($categories as $category)
                   @if($category->parent_id == 0)
-                    <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)"><a href="{{ route('category.proList', [$category]) }}" class="">{{ $category->title }}</a></li>
+                    <li class="p-3 bg-gradient-to-l hover:from-zinc-100 rounded-lg hover:text-(--color-primary-500)">
+                      <a href="{{ route('category.proList', [$category]) }}" class="">{{ $category->title }}</a>
+                    </li>
                   @endif
                 @endforeach
                 @endif
+
               
-              </div>
-            </div>
+              </ul>
+            </li>
             <li class="hover:text-(--color-primary-500)">درباره ما</li>
             <a href="{{ route('contactUs.userIndex') }}" class="hover:text-(--color-primary-500)">ارتباط با ما</a>
             {{-- <li class="hover:text-(--color-primary-500)">بلاگ</li> --}}
