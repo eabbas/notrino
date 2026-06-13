@@ -14,12 +14,16 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\sliderController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\productCommentsController;
 use App\Http\Controllers\ContactUsCommentsController;
 
 // Route::get('/', function () {
 //     return view('home');
 // });
 Route::get("/" , [HomeController::class , "index"])->name('home');
+Route::any('search', [HomeController::class, 'search'])->name('search');
+Route::any('filter', [HomeController::class, 'filter'])->name('filter');
+Route::any('filterBrand', [HomeController::class, 'filterBrand'])->name('filterBrand');
 // Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware([LoginMiddleware::class]);
 Route::get('/signup', [UserController::class, "create"])->name('signup')->middleware([LoginMiddleware::class]);
@@ -159,6 +163,8 @@ Route::group([
     Route::post("/update", "update")->name('update');
     Route::get("/delete/{contact}", "delete")->name('delete');
     Route::get('/userIndex' , 'userIndex')->name('userIndex');
+    Route::get('/commentList' , 'commentList')->name('commentList');
+    Route::get('/single/{user_id}' , 'single')->name('single');
 });
 Route::group([
     'prefix' => 'contactUsComments',
@@ -166,5 +172,13 @@ Route::group([
     'as' => 'comment.',
 ], function () {
     Route::post("/store", "store")->name('store');
+
+});
+Route::group([
+    'prefix' => 'productComments',
+    'controller' => productCommentsController::class,
+    'as' => 'proComment.',
+], function () {
+    Route::post("/store/{product_id}", "store")->name('store');
 
 });

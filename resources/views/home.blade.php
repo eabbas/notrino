@@ -40,36 +40,249 @@
           </filter>
         </defs>
       </svg>
-      <a href="سیلام" class="slides">
+      <div class="slides">
         @if($sliders)
         @foreach ($sliders as $slider)
-          <div class="slide object-cover w-full h-35 mx-auto md:h-[320px]">
+          <a href="{{ route('slider.list') }}" class="slide object-cover w-full h-35 mx-auto md:h-[320px]">
             <img src="{{ asset('storage/'.$slider->slider_img) }}" class="w-full h-full object-cover" alt="">
-          </div>
+          </a>
         @endforeach
         @endif
-      </a>
+      </div>
       <button class="prev"></button>
       <button class="next"></button>
     </div>
   </section>
   <!-- category -->
-  <section class="w-[93%] md:w-[95%] grid grid-cols-3 md:flex flex-wrap justify-center mx-auto gap-4 md:gap-8 mt-20">
-    @if($categories)
-    @foreach ($categories as $category)
-    @if($category->parent_id == 0)
-    @if(isset($category->image))
-    <a href="" class="category flex flex-col flex justify-center items-center">
-      <div class="category_it border-2 border-(--color-zinc-300) rounded-xl hover:border-(--color-primary-500) flex justify-center items-center h-[90px] md:h-[128px] w-[90px] md:w-[128px]">
-        <img class="w-13 md:w-20 rounded-xl" src="{{ asset('storage/'.$category->image) }}" alt="">
+  {{-- <section class="w-[93%] md:w-[95%] grid grid-cols-3 md:flex flex-wrap justify-center mx-auto gap-4 md:gap-8 mt-20">
+      @if($categories)
+      @foreach ($categories as $category)
+      @if($category->parent_id == 0)
+      @if(isset($category->image))
+      <a href="" class="category flex flex-col flex justify-center items-center">
+        <div class="category_it border-2 border-(--color-zinc-300) rounded-xl hover:border-(--color-primary-500) flex justify-center items-center h-[90px] md:h-[128px] w-[90px] md:w-[128px]">
+          <img class="w-13 md:w-20 rounded-xl" src="{{ asset('storage/'.$category->image) }}" alt="">
+        </div>
+        <span class="md:p-2 text-xs md:text-base">{{ $category->title }}</span>
+      </a>
+      @endif
+      @endif
+      @endforeach
+      @endif
+  </section> --}}
+ @php
+    $categoryCount = ceil(count($categories) / 8);
+    $x = 1;
+    $y = 1;
+@endphp
+<section class="w-[93%] md:w-[95%] mx-auto mt-20">
+  <div class="w-[93%] md:w-[95%] flex justify-between items-center mx-auto">
+      <span class="w-48 min-w-fit text-xs md:text-sm md:font-yekanBakhBold text-(--color-zinc-600)">دسته بندی های ویژه</span>
+      <span class="h-[1px] w-full bg-gradient-to-r from-white via-(--color-zinc-500) to-white "></span>
+      <div class="w-32 min-w-fit text-left">
+        <a href="" class="text-sm hover:text-(--color-primary-500) text-(--color-zinc-600) flex fle items-center gap-x-1 group">
+          مشاهده همه
+          <svg class="fill-(--color-zinc-600) hover:fill-(--color-primary-500) group-hover:-translate-x-1 transition group-hover:fill-(--color-primary-500) size-2.5 md:size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+            <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
+          </svg>
+        </a>
       </div>
-      <span class="md:p-2 text-xs md:text-base">{{ $category->title }}</span>
-    </a>
-    @endif
-    @endif
-    @endforeach
-    @endif
-  </section>
+    </div>
+    <div class="overflow-x-auto flex flex-row items-center mx-auto px-[16px] py-[32px]
+        [&::-webkit-scrollbar]:w-0
+        [&::-webkit-scrollbar-thumb]:bg-(--color-primary-500)
+        [&::-webkit-scrollbar-thumb]:rounded-full">
+        <div class="flex flex-row items-start gap-5">
+            @for ($i = 1; $i <= $categoryCount; $i++)
+                <div class="flex flex-row items-start gap-5 {{ $i > 1 ? 'mr-5' : '' }}">
+                    @for ($j = ($i - 1) * 8; $j < $i * 8 && $j < count($categories); $j++)
+                        
+                        @if ($x == 1)
+                            <div class="w-55 h-50 bg-(--color-zinc-100) hover:bg-(--color-primary-500) transition-all rounded-3xl flex items-center justify-center">
+                                <img src="{{ asset('storage/'.$categories[$j]->image) ? asset('storage/'.$categories[$j]->image) : asset('assets/img/user.png') }}" alt="کتگوری" class="w-1/2">
+                            </div>
+                            @php $x = 2; @endphp
+                        
+                        @elseif ($x == 2)
+                            @if ($y == 1)
+                                <div class="flex flex-col gap-5">
+                                    <div class="w-55 h-23 bg-(--color-zinc-100) hover:bg-(--color-primary-500) transition-all rounded-3xl flex items-center justify-center">
+                                        <img src="{{ asset('storage/'.$categories[$j]->image) ? asset('storage/'.$categories[$j]->image) : asset('assets/img/user.png') }}" alt="کتگوری" class="h-3/4">
+                                    </div>
+                                @php $y = 2; @endphp
+                            @elseif ($y == 2)
+                                    <div class="w-55 h-23 bg-(--color-zinc-100) hover:bg-(--color-primary-500) transition-all rounded-3xl flex items-center justify-center">
+                                        <img src="{{ asset('storage/'.$categories[$j]->image) ? asset('storage/'.$categories[$j]->image) : asset('assets/img/user.png') }}" alt="کتگوری" class="h-3/4">
+                                    </div>
+                                </div>
+                                @php 
+                                    $x = 3;
+                                    $y = 1;
+                                @endphp
+                            @endif
+                        
+                        @elseif ($x == 3)
+                            <div class="w-55 h-50 bg-(--color-zinc-100) hover:bg-(--color-primary-500) transition-all rounded-3xl flex items-center justify-center">
+                                <img src="{{ asset('storage/'.$categories[$j]->image) ? asset('storage/'.$categories[$j]->image) : asset('assets/img/user.png') }}" alt="کتگوری" class="w-1/2">
+                            </div>
+                            @php $x = 4; @endphp
+                        
+                        @elseif ($x == 4)
+                            @if ($y == 1)
+                                <div class="flex flex-row gap-3">
+                                    <div class="flex flex-col gap-3">
+                                        <div class="w-25 h-23 bg-(--color-zinc-100) hover:bg-(--color-primary-500) transition-all rounded-3xl flex items-center justify-center">
+                                            <img src="{{ asset('storage/'.$categories[$j]->image) ? asset('storage/'.$categories[$j]->image) : asset('assets/img/user.png') }}" alt="کتگوری" class="w-1/2">
+                                        </div>
+                                @php $y = 2; @endphp
+                            @elseif ($y == 2)
+                                        <div class="w-25 h-23 bg-(--color-zinc-100) hover:bg-(--color-primary-500) transition-all rounded-3xl flex items-center justify-center">
+                                            <img src="{{ asset('storage/'.$categories[$j]->image) ? asset('storage/'.$categories[$j]->image) : asset('assets/img/user.png') }}" alt="کتگوری" class="w-1/2">
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-3">
+                                @php $y = 3; @endphp
+                            @elseif ($y == 3)
+                                        <div class="w-25 h-23 bg-(--color-zinc-100) hover:bg-(--color-primary-500) transition-all rounded-3xl flex items-center justify-center">
+                                            <img src="{{ asset('storage/'.$categories[$j]->image) ? asset('storage/'.$categories[$j]->image) : asset('assets/img/user.png') }}" alt="کتگوری" class="w-1/2">
+                                        </div>
+                                @php $y = 4; @endphp
+                            @elseif ($y == 4)
+                                        <div class="w-25 h-23 bg-(--color-zinc-100) hover:bg-(--color-primary-500) transition-all rounded-3xl flex items-center justify-center">
+                                            <img src="{{ asset('storage/'.$categories[$j]->image) ? asset('storage/'.$categories[$j]->image) : asset('assets/img/user.png') }}" alt="کتگوری" class="w-1/2">
+                                        </div>
+                                    </div>
+                                </div>
+                                @php 
+                                    $x = 1;
+                                    $y = 1;
+                                @endphp
+                            @endif
+                        @endif
+                        
+                    @endfor
+                </div>
+                @php
+                    $x = 1;
+                    $y = 1;
+                @endphp
+            @endfor
+        </div>
+    </div>
+</section>
+             <section class="relative w-full bg-(--color-primary-500) h-[860px] lg:h-[550px] flex justify-between items-center mx-auto mt-25">
+        <div class="absolute top-0 w-full">
+          <div class="w-full">
+            <svg class="h-12 md:h-15 sm:h-11 w-full fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+              <path class="elementor-shape-fill" d="M1000,4.3V0H0v4.3C0.9,23.1,126.7,99.2,500,100S1000,22.7,1000,4.3z"></path>
+            </svg>
+          </div>
+          <div class="absolute top-8 md:top-12 lg:top-12.5 right-auto left-auto w-full flex justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-45 md:60" width="231" height="75" viewBox="0 0 231 75" fill="none">
+              <path clip-rule="evenodd" d="M0 0C31.5006 0.949537 50.52 17.872 56.1955 26.4544L55.986 25.8011L82.4924 58.631C99.3032 79.4521 131.038 79.4521 147.849 58.6309L174.356 25.8011L174.146 26.4544C179.822 17.872 198.844 0.949537 230.349 0H0Z" fill="#FCFCFC" fill-rule="" style="fill:rgb(255, 255, 255);"></path>
+            </svg>
+            <div class="absolute top-5 w-8 md:w-10 h-8 md:h-10 border-2 md:border-3 border-(--color-zinc-400) rounded-full flex justify-center items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="w-3 fill-(--color-zinc-400)">
+                <path d="M174.6 472.6c4.5 4.7 10.8 7.4 17.4 7.4s12.8-2.7 17.4-7.4l168-176c9.2-9.6 8.8-24.8-.8-33.9s-24.8-8.8-33.9 .8L216 396.1 216 56c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 340.1L41.4 263.4c-9.2-9.6-24.3-9.9-33.9-.8s-9.9 24.3-.8 33.9l168 176z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="overflow-hidden w-[93%] md:w-[95%] flex flex-col lg:flex-row items-center justify-between mx-auto mt-20 md:px-10">
+          <div class="relative w-[90%] sm:w-full lg:w-3/12">
+            <div class="relative w-full lg:w-66 h-70 md:h-80 lg:h-94 bg-white rounded-3xl">
+              <!-- button-right -->
+              <div class="absolute top-[45%] -right-24 lg:-right-[37%] rotate-90">
+                <svg xmlns="http://www.w3.org/2000/svg" width="231" height="75" viewBox="0 0 231 75" fill="none" class="h-10">
+                  <path clip-rule="evenodd" d="M0 0C31.5006 0.949537 50.52 17.872 56.1955 26.4544L55.986 25.8011L82.4924 58.631C99.3032 79.4521 131.038 79.4521 147.849 58.6309L174.356 25.8011L174.146 26.4544C179.822 17.872 198.844 0.949537 230.349 0H0Z" fill="#FCFCFC" fill-rule="" style="fill:var(--color-primary-500);"></path>
+                </svg>
+                <button class="absolute top-1 right-[43%] w-8 h-8 flex items-center justify-center rounded-full bg-(--color-zinc-600) border-2 border-white text-white hover:opacity-85 cursor-pointer -rotate-90"><</button>
+              </div>
+              <!-- button-left -->
+              <div class="absolute top-[45%] -left-24 lg:-left-[37%] -rotate-90">
+                <svg xmlns="http://www.w3.org/2000/svg" width="231" height="75" viewBox="0 0 231 75" fill="none" class=" h-10">
+                  <path clip-rule="evenodd" d="M0 0C31.5006 0.949537 50.52 17.872 56.1955 26.4544L55.986 25.8011L82.4924 58.631C99.3032 79.4521 131.038 79.4521 147.849 58.6309L174.356 25.8011L174.146 26.4544C179.822 17.872 198.844 0.949537 230.349 0H0Z" fill="#FCFCFC" fill-rule="" style="fill:var(--color-primary-500);"></path>
+                </svg>
+                <button class="absolute top-1 right-[43%] w-8 h-8 flex items-center justify-center rounded-full bg-(--color-zinc-600) border-2 border-white text-white hover:opacity-85 cursor-pointer rotate-90">></button>
+              </div>
+
+              <div class="w-full h-[45%] flex flex-col items-center justify-center">
+                <div class="w-15 md:w-20 rounded-full bg-white flex items-center justify-center">
+                  <img src="{{ asset('storage/'.$medias[0]->path) }}" alt="logo" class="max-w-15 md:max-w-20">
+                </div>
+                <span class="text-xl md:text-2xl">لپتاپ</span>
+              </div>
+              <div class="w-full h-[10%] flex items-center justify-center text-xs md:text-sm text-(--color-zinc-600)">tap A9 9`inch</div>
+              <div class="w-full h-[45%] flex flex-col items-center justify-center gap-y-2">
+                <div class="w-20 md:w-26 h-5 md:h-7 bg-(--color-primary-500) flex items-center justify-center text-base md:text-lg text-white mx-auto rounded-full">زمان تخفیف</div>
+                <div class="flex items-center justify-center gap-3">
+                  <div class="flex flex-col items-center justify-center">
+                    <div class="w-6 md:w-10 h-6 md:h-10 text-sm bg-(--color-primary-400) rounded-lg text-white flex items-center justify-center">25</div>
+                    <span class="w-6 md:w-10 h-6 md:h-10 text-sm text-(--color-zinc-600) font-bold flex items-center justify-center">ثانیه</span>
+                  </div>
+                  <div class="flex flex-col items-center justify-center">
+                    <div class="w-6 md:w-10 h-6 md:h-10 text-sm bg-(--color-primary-400) rounded-lg text-white flex items-center justify-center">25</div>
+                    <span class="w-6 md:w-10 h-6 md:h-10 text-sm text-(--color-zinc-600) font-bold flex items-center justify-center">دقیقه</span>
+                  </div>
+                  <div class="flex flex-col items-center justify-center">
+                    <div class="w-6 md:w-10 h-6 md:h-10 text-sm bg-(--color-primary-400) rounded-lg text-white flex items-center justify-center">25</div>
+                    <span class="w-6 md:w-10 h-6 md:h-10 text-sm text-(--color-zinc-600) font-bold flex items-center justify-center">ساعت</span>
+                  </div>
+                  <div class="flex flex-col items-center justify-center">
+                    <div class="w-6 md:w-10 h-6 md:h-10 text-sm bg-(--color-primary-400) rounded-lg text-white flex items-center justify-center">25</div>
+                    <span class="w-6 md:w-10 h-6 md:h-10 text-sm text-(--color-zinc-600) font-bold flex items-center justify-center">روز</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="overflow-x-auto w-full lg:w-8/12 xl:w-9/12 flex gap-5 mt-6
+          [&::-webkit-scrollbar]:w-0
+          [&::-webkit-scrollbar-thumb]:bg-(--color-primary-500)
+          [&::-webkit-scrollbar-thumb]:rounded-full">
+          <div class="flex flex-row gap-5">
+            @if($products)
+            @foreach ($products as $product)
+              <a href="{{ route('product.show' , [$product]) }}">
+                <div class="w-60 h-90 bg-white rounded-3xl hover:rounded-4xl transition-all decoration-300 flex flex-col items-center p-10">
+                  @if($medias)
+                    @php
+                      $productMedia = $medias->where('product_id', $product->id)->first();
+                    @endphp
+                  @endif
+                  @if($productMedia)
+                  <div class="relative max-w-50">
+                    <img src="{{ asset('storage/'.$productMedia->path) }}" alt="{{ $product->title }}" class="max-w-[150px] min-w-[150px] max-h-[150px] min-h-[150px]">
+                    <div class="absolute -top-3 -left-5 flex flex-col gap-y-1">
+                      <div class="w-3 h-3 bg-black rounded-full"></div>
+                      <div class="w-3 h-3 bg-violet-800 rounded-full"></div>
+                      <div class="w-3 h-3 bg-rose-600 rounded-full"></div>
+                    </div>
+                  </div>
+                  @endif
+                  <div class="flex flex-col items-start justify-center">
+                    <div class="w-40 text-(--color-zinc-500)">{{ $product->title }}</div>
+                    <div class="flex items-center justify-between mt-10">
+                      <div class="w-30 flex flex-col">
+                        {{-- <span class="line-through text-(--color-zinc-400)"><span class="font-bold">تومان</span>450,000</span> --}}
+                        <span class=""><span>تومان</span>{{ number_format($product->price) }}</span>
+                      </div>
+                      <div class="w-13 h-7 bg-(--color-primary-500) text-white flex items-center justify-center rounded-full mr-12">96%</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              @endforeach
+              @endif
+            </div>
+          </div>
+        </div>
+        <div class="absolute bottom-0 fill-(--color-primary-500) w-full bg-white">
+          <svg class="h-10 w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+            <path class="elementor-shape-fill" d="M1000,4.3V0H0v4.3C0.9,23.1,126.7,99.2,500,100S1000,22.7,1000,4.3z"></path>
+          </svg>
+        </div>
+       </section>
   <!-- filter products -->
   <section class="w-full mt-12 md:mt-20">
         <div class="w-[93%] md:w-[95%] mx-auto flex flex-col gap-4">
@@ -78,7 +291,6 @@
         <!-- filter btn -->
         <h2 class="">دسته بندی ها</h2>
         
-        <!-- اسکرول اصلاح شده شبیه به بخش محصولات -->
         <div class="overflow-x-auto w-full
                     [&::-webkit-scrollbar]:h-1.5
                     [&::-webkit-scrollbar-track]:bg-zinc-100
@@ -98,7 +310,7 @@
                 <li>
                     <button class="text-right px-4 py-2 rounded-lg cursor-pointer text-sm hover:text-(--color-primary-700) text-(--color-primary-500) flex items-center gap-x-1 group">
                         همه محصولات
-                        <svg class="fill-(--color-primary-500) hover:fill-(--color-primary-700) group-hover:-translate-x-1 transition group-hover:fill-primary-500 size-2.5 md:size-3" xmlns="http://www.w3.org/2000/svg" width="" height="" fill="" viewBox="0 0 256 256">
+                        <svg class="fill-(--color-primary-500) hover:fill-(--color-primary-700) group-hover:-translate-x-1 transition group-hover:fill-primary-500 size-2.5 md:size-3" xmlns="http://www.w3.org/2000/svg"viewBox="0 0 256 256">
                             <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
                         </svg>
                     </button>
@@ -108,7 +320,7 @@
     </div>
       
       <!-- بخش همه محصولات -->
-      <div class="overflow-x-auto w-full h-[350px] md:h-[460px] flex flex-row border border-(--color-zinc-100) rounded-xl bg-white mx-auto px-[16px] py-[32px] all-products-section
+      <div class="overflow-x-auto w-[93%] md:w-[95%] h-[350px] md:h-[460px] flex flex-row border border-(--color-zinc-100) rounded-xl bg-white mx-auto px-[16px] py-[32px] all-products-section
             [&::-webkit-scrollbar]:h-1.5
             [&::-webkit-scrollbar-track]:bg-zinc-100
             [&::-webkit-scrollbar-thumb]:bg-(--color-primary-500)
@@ -168,11 +380,8 @@
       <!-- محصولات دسته‌بندی‌ها -->
       @if($categories)
       @foreach ($categories as $category)
-      <div class="overflow-x-auto w-full h-[350px] md:h-[460px] flex flex-row border border-(--color-zinc-100) rounded-xl bg-white mx-auto px-[16px] py-[32px] category-section
-            [&::-webkit-scrollbar]:h-1.5
-            [&::-webkit-scrollbar-track]:bg-zinc-100
-            [&::-webkit-scrollbar-thumb]:bg-(--color-primary-500)
-            [&::-webkit-scrollbar-thumb]:rounded-full" data-category-id="{{ $category->id }}" style="display: none;">
+      <div class="w-full h-[350px] md:h-[460px] flex flex-row border border-(--color-zinc-100) rounded-xl bg-white mx-auto px-[16px] py-[32px] category-section
+       " data-category-id="{{ $category->id }}" style="display: none;">
         <div class="flex flex-row gap-3">
           @foreach ($category->products as $product)
             @if($product->not_show_home == 0)
@@ -234,7 +443,7 @@
       <div class="w-32 min-w-fit text-left">
         <a href="" class="text-sm hover:text-(--color-primary-500) text-(--color-zinc-600) flex fle items-center gap-x-1 group">
           مشاهده همه
-          <svg class="fill-(--color-zinc-600) hover:fill-(--color-primary-500) group-hover:-translate-x-1 transition group-hover:fill-(--color-primary-500) size-2.5 md:size-3" xmlns="http://www.w3.org/2000/svg" width="" height="" fill="" viewBox="0 0 256 256">
+          <svg class="fill-(--color-zinc-600) hover:fill-(--color-primary-500) group-hover:-translate-x-1 transition group-hover:fill-(--color-primary-500) size-2.5 md:size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
             <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
           </svg>
         </a>
@@ -323,7 +532,7 @@
         <div class="w-32 min-w-fit text-left">
           <a href="" class="text-sm hover:text-(--color-primary-500) text-(--color-zinc-600) flex fle items-center gap-x-1 group">
             مشاهده همه
-            <svg class="fill-(--color-zinc-600) hover:fill-(--color-primary-500) group-hover:-translate-x-1 transition group-hover:fill-(--color-primary-500) size-2.5 md:size-3" xmlns="http://www.w3.org/2000/svg" width="" height="" fill="" viewBox="0 0 256 256">
+            <svg class="fill-(--color-zinc-600) hover:fill-(--color-primary-500) group-hover:-translate-x-1 transition group-hover:fill-(--color-primary-500) size-2.5 md:size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
               <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
             </svg>
           </a>
@@ -391,18 +600,18 @@
     <!-- top slider -->
     <div class="w-[93%] md:w-[95%] flex items-center mx-auto">
       <span class="w-48 min-w-fit text-zinc-700 text-xl md:text-sm md:font-yekanBakhBold"> برند ها</span>
-      <span class="h-[1px] w-full bg-gradient-to-r from-white via-(--color-zinc-500) to-white "></span>
+      <span class="h-[1px] w-full bg-gradient-to-r from-white via-(--color-zinc-500) to-white"></span>
       <div class="w-32 min-w-fit text-left">
         <a href="" class="text-sm hover:text-(--color-primary-500) text-(--color-zinc-600) flex fle items-center gap-x-1 group">
           مشاهده همه
-          <svg class="fill-(--color-zinc-600) hover:fill-(--color-primary-500) group-hover:-translate-x-1 transition group-hover:fill-(--color-primary-500) size-2.5 md:size-3" xmlns="http://www.w3.org/2000/svg" width="" height="" fill="" viewBox="0 0 256 256">
+          <svg class="fill-(--color-zinc-600) hover:fill-(--color-primary-500) group-hover:-translate-x-1 transition group-hover:fill-(--color-primary-500) size-2.5 md:size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
             <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
           </svg>
         </a>
       </div>
     </div>
     <!-- main slider -->
-    <div class="w-[93%] md:w-[95%] mx-auto mt-4">
+    <div class="w-[93%] md:w-[95%] mx-auto mb-10">
       <div class="overflow-x-auto px-4 py-6 bg-white rounded-xl border border-zinc-100
             [&::-webkit-scrollbar]:h-1.5
             [&::-webkit-scrollbar-track]:bg-zinc-100
@@ -411,7 +620,7 @@
         <div class="flex flex-row gap-6">
           @if($brands)
           @foreach ($brands as $brand)
-            <a href="" class="flex flex-col items-center gap-2 min-w-[120px] md:min-w-[150px] group">
+            <a href="{{ route('brand.list') }}" class="flex flex-col items-center gap-2 min-w-[120px] md:min-w-[150px] group">
               <div class="w-24 h-24 md:w-32 md:h-32 flex items-center justify-center p-3 border border-zinc-200 rounded-2xl group-hover:border-(--color-primary-500) group-hover:shadow-lg transition-all">
                 <img src="{{ asset('storage/'.$brand->image) }}" alt="{{ $brand->title }}" class="max-w-full max-h-full object-contain">
               </div>
@@ -426,7 +635,7 @@
   <!-- blog (کامنت شده) -->
   
 </div>
-  <script src="{{ asset('assets/js/hamberger.js') }}"></script>
+  {{-- <script src="{{ asset('assets/js/hamberger.js') }}"></script> --}}
 <!-- اسکریپت برای فیلتر دسته‌بندی‌ها -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {

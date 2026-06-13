@@ -12,4 +12,8 @@ class brands extends Model
         'image',
         'link'
     ];
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

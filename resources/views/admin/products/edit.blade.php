@@ -34,6 +34,25 @@
                                     <label for="discount" class="form-label">درصد تخفیف</label>
                                     <input type="number" name="discount" id="discount" class="form-control" value="{{ $product->discount }}" min="0" max="100">
                                 </div>
+
+                                {{-- ==================== بخش برند ==================== --}}
+                                <div class="col-md-6 mb-3">
+                                    <label for="brand_id" class="form-label">برند محصول</label>
+                                    <select name="brand_id" id="brand_id" class="form-select">
+                                        <option value="">-- انتخاب برند --</option>
+                                        @if(isset($brands) && count($brands) > 0)
+                                            @foreach($brands as $brand)
+                                                <option value="{{ $brand->id }}" {{ $product->brand_id == $brand->id ? 'selected' : '' }}>
+                                                    {{ $brand->title }}
+                                                </option>
+                                            @endforeach
+                                        @else
+                                            <option value="" disabled>هیچ برندی یافت نشد</option>
+                                        @endif
+                                    </select>
+                                    <small class="text-muted">برای افزودن برند جدید به بخش مدیریت برندها مراجعه کنید.</small>
+                                </div>
+                                {{-- ==================== پایان بخش برند ==================== --}}
                                 
                                 <div class="col-md-6 mb-3">
                                     <div class="form-check mt-4">
@@ -125,40 +144,39 @@
                             
                             <hr>
                             <h5 class="mt-4">دسته‌بندی</h5>
-                                <div class="space-y-4">
+                            <div class="space-y-4">
                                 @foreach ($categories as $category)
                                 <div class="border border-gray-200 rounded-lg p-4 bg-[#FFF0F5]">
-                                <label class="flex items-center space-x-2 space-x-reverse cursor-pointer">
-                                    <input type="checkbox" name="categories[]" value="{{$category->id}}" id="category_{{ $category->id }}" {{ in_array($category->id, $productCategories) ? 'checked' : '' }} 
-                                           class="h-5 w-5 rounded border-gray-300 text-pink-600 focus:ring-pink-500">
-                                    <span class="font-medium text-gray-800">{{$category->title}}</span>
-                                </label>
-                                <div class="mt-3 pr-6 space-y-3">
-                                    @foreach($category->grandchild as $child)
-                                    <div class="border border-gray-200 rounded-lg p-3 bg-white">
-                                        <label class="flex items-center space-x-2 space-x-reverse cursor-pointer">
-                                            <input type="checkbox" name="cat_id" value="{{$child->id}}" 
-                                                   class="h-4 w-4 rounded border-gray-300 text-pink-600 focus:ring-pink-500">
-                                            <span class="text-gray-700">{{$child->title}}</span>
-                                        </label>
-                                        <div class="mt-2 pr-6 space-y-2">
-                                            @foreach($child->grandchild as $grand)
-                                            <div class="border border-gray-200 rounded p-2 bg-[#F8F8FF]">
-                                                <label class="flex items-center space-x-2 space-x-reverse cursor-pointer">
-                                                    <input type="checkbox" name="cat_id" value="{{$grand->id}}" 
-                                                    class="h-3 w-4 rounded border-gray-300 text-pink-600 focus:ring-pink-500">
-                                                    <span class="text-gray-700 text-sm">{{$grand->title}}</span>
-                                                </label>
+                                    <label class="flex items-center space-x-2 space-x-reverse cursor-pointer">
+                                        <input type="checkbox" name="categories[]" value="{{$category->id}}" id="category_{{ $category->id }}" {{ in_array($category->id, $productCategories) ? 'checked' : '' }} 
+                                               class="h-5 w-5 rounded border-gray-300 text-pink-600 focus:ring-pink-500">
+                                        <span class="font-medium text-gray-800">{{$category->title}}</span>
+                                    </label>
+                                    <div class="mt-3 pr-6 space-y-3">
+                                        @foreach($category->grandchild as $child)
+                                        <div class="border border-gray-200 rounded-lg p-3 bg-white">
+                                            <label class="flex items-center space-x-2 space-x-reverse cursor-pointer">
+                                                <input type="checkbox" name="categories[]" value="{{$child->id}}" 
+                                                       class="h-4 w-4 rounded border-gray-300 text-pink-600 focus:ring-pink-500">
+                                                <span class="text-gray-700">{{$child->title}}</span>
+                                            </label>
+                                            <div class="mt-2 pr-6 space-y-2">
+                                                @foreach($child->grandchild as $grand)
+                                                <div class="border border-gray-200 rounded p-2 bg-[#F8F8FF]">
+                                                    <label class="flex items-center space-x-2 space-x-reverse cursor-pointer">
+                                                        <input type="checkbox" name="categories[]" value="{{$grand->id}}" 
+                                                        class="h-3 w-4 rounded border-gray-300 text-pink-600 focus:ring-pink-500">
+                                                        <span class="text-gray-700 text-sm">{{$grand->title}}</span>
+                                                    </label>
+                                                </div>
+                                                @endforeach
                                             </div>
-                                            @endforeach
                                         </div>
+                                        @endforeach
                                     </div>
-                                    @endforeach
                                 </div>
+                                @endforeach
                             </div>
-                            @endforeach
-                        </div>
-                    </div>
                             
                             <hr>
                             <div class="d-flex justify-content-between">

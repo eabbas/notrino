@@ -61,8 +61,8 @@
 body {
   font-family: yekanBakhSemiBold;
   font-family: sans-serif;
-  /* font-style: italic; */
   box-sizing: border-box;
+  /* background-color: #23c4c4; */
 }
 :root {
   --color-red-100: oklch(93.6% 0.032 17.717);
@@ -115,12 +115,8 @@ body {
 }
 .slider {
     position: relative;
-    /* max-width: 800px; */
     border-radius: 35px;
     object-fit: cover;
-    /* width: 100%; */
-    /* height: ; */
-    /* rounded-3xl object-cover w-full h-35 mx-auto md:h-[320px] */
     margin: auto;
     overflow: hidden;
 }
@@ -132,7 +128,6 @@ body {
 
 .slide {
     min-width: 100%;
-    /* height: 400px; */
     background-size: cover;
     background-position: center;
 }
@@ -142,7 +137,6 @@ body {
     z-index: 25;
     top: 50%;
     transform: translateY(-50%);
-    /* background: rgba(0,0,0,0.5); */
     color: rgb(6, 6, 6);
     border: none;
     padding: 15px;
@@ -150,45 +144,49 @@ body {
     font-size: 18px;
 }
 
-/* تغییر موقعیت دکمه‌ها برای RTL */
-.prev { right: 10px; } /* قبلاً left بود */
-.next { left: 10px; } /* قبلاً right بود */
+.prev { right: 10px; } 
+.next { left: 10px; }
 
 /* اگر می‌خواهید فلش‌ها هم معکوس شوند */
 .prev::after { content: '❮'; }
 .next::after { content: '❯'; }
 
-
-
-
-
-
-.labal_1 {
-  transition: all 300ms;
-  /* transition:all 800ms; */
-}
 .labal_1:hover .labal_1-1{
   visibility: visible;
-}
-.labal_2 {
-  transition: all 300ms;
-  /* transition: all 2s; */
+  background-color: #23c4c4;
 }
 .labal_2:hover .labal_2-2 {
   visibility: visible;
 }
-.labal_3 {
-  transition: all 300ms;
-}
 .labal_3:hover .labal_3-3 {
+  visibility: visible;
+}
+.labal_perr_mobile:hover .labal_perrr_mobile {
+  visibility: visible;
+}
+.labal_perr_kaver:hover .labal_perrr_kaver {
+  visibility: visible;
+}
+.labal_perr_paverbank:hover .labal_perrr_paverbank {
+  visibility: visible;
+}
+.labal_perr_eirpad:hover .labal_perrr_eirpad {
+  visibility: visible;
+}
+.labal_perr_hedfone:hover .labal_perrr_hedfone {
+  visibility: visible;
+}
+.labal_perr_lcd:hover .labal_perrr_lcd {
+  visibility: visible;
+}
+.labal_perr_led:hover .labal_perrr_led {
+  visibility: visible;
+}
+.labal_perr_rgb:hover .labal_perrr_rgb {
   visibility: visible;
 }
 .mmde:hover svg path {
   fill: var(--color-primary-500);
-}
-.labal_4 {
-  transition: all 300ms;
-  /* transition: all 300ms; */
 }
 .labal_4:hover .labal_4-4 {
   visibility: visible;
@@ -204,9 +202,5 @@ body {
   border-color: var(--color-primary-500);
 }
 .menu-mobile-slid{
-   /* transform: translateX(525px); */
     transition: all 500ms ease-out;
 }
-/* #hambeger:checked + .menu-mobile-slid{
-  transform: translateX(-300px);
-} */
