@@ -34,7 +34,7 @@
                         <div class="relative">
                             <input type="text" id="price" name="price" required 
                                    class="w-full px-4 py-3 pr-12 outline-none border-1 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200 bg-gray-50">
-                            <i class="fas fa-heading absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <i class="fas fa-dollar-sign absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i> {{-- آیکون بهتر برای قیمت --}}
                         </div>
                     </div>
                     
@@ -43,7 +43,7 @@
                         <div class="relative">
                             <input type="text" id="discount" name="discount" 
                                    class="w-full px-4 py-3 pr-12 outline-none border-1 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200 bg-gray-50">
-                            <i class="fas fa-heading absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <i class="fas fa-percent absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i> {{-- آیکون بهتر برای تخفیف --}}
                         </div>
                     </div>
                     
@@ -82,6 +82,41 @@
                    
                 </div>
             </div>
+
+  
+      {{-- ==================== بخش برندها (جدید) ==================== --}}
+<div class="p-8 border-b border-gray-100">
+    <h2 class="text-xl font-semibold text-gray-800 mb-6 flex items-center">
+        <i class="fas fa-trademark ml-2 text-orange-500"></i>
+        برند محصول
+    </h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+            <label for="brand_id" class="block text-gray-700 font-medium mb-2">انتخاب برند</label>
+            <div class="relative">
+                <select name="brand_id" id="brand_id" class="w-full px-4 py-3 pr-12 outline-none border-1 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200 bg-gray-50 appearance-none cursor-pointer">
+                    <option value="">-- انتخاب برند --</option>
+                    @if(isset($brands) && count($brands) > 0)
+                        @foreach($brands as $brand)
+                            <option value="{{ $brand->id }}">
+                                {{ $brand->title }}
+                            </option>
+                        @endforeach
+                    @else
+                        <option value="" disabled>هیچ برندی یافت نشد</option>
+                    @endif
+                </select>
+                <i class="fas fa-chevron-down absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+            </div>
+            @error('brand_id')
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
+            <p class="text-xs text-gray-500 mt-2">برای افزودن برند جدید به بخش مدیریت برندها مراجعه کنید.</p>
+        </div>
+    </div>
+</div>
+{{-- ==================== پایان بخش برندها ==================== --}}
 
             <!-- بخش ویژگی‌ها -->
             <div class="p-8 border-b border-gray-100">

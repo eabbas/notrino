@@ -26,25 +26,25 @@ function filterclick(name,element){
     }
 }
 
-let currentSlide = 0;
-const slides = document.querySelector('.slides');
-const totalSlides = document.querySelectorAll('.slide').length;
-function showSlide(index) {
-    if (index >= totalSlides) currentSlide = 0;
-    else if (index < 0) currentSlide = totalSlides - 1;
-    else currentSlide = index;
+// let currentSlide = 0;
+// const slides = document.querySelector('.slides');
+// const totalSlides = document.querySelectorAll('.slide').length;
+// function showSlide(index) {
+//     if (index >= totalSlides) currentSlide = 0;
+//     else if (index < 0) currentSlide = totalSlides - 1;
+//     else currentSlide = index;
     
-    // تغییر جهت حرکت به راست (مثبت) برای RTL
-    slides.style.transform = `translateX(${currentSlide * 100}%)`;
-}
-// معکوس کردن عملکرد دکمه‌ها برای RTL
-document.querySelector('.next').addEventListener('click', () => showSlide(currentSlide - 1));
-document.querySelector('.prev').addEventListener('click', () => showSlide(currentSlide + 1));
-// تغییر جهت حرکت اتوماتیک
-setInterval(() => showSlide(currentSlide - 1), 5000);
+//     // تغییر جهت حرکت به راست (مثبت) برای RTL
+//     slides.style.transform = `translateX(${currentSlide * 100}%)`;
+// }
+// // معکوس کردن عملکرد دکمه‌ها برای RTL
+// document.querySelector('.next').addEventListener('click', () => showSlide(currentSlide - 1));
+// document.querySelector('.prev').addEventListener('click', () => showSlide(currentSlide + 1));
+// // تغییر جهت حرکت اتوماتیک
+// setInterval(() => showSlide(currentSlide - 1), 5000);
 
-// مقداردهی اولیه
-showSlide(0);
+// // مقداردهی اولیه
+// showSlide(0);
 
 
 let dashboard = document.querySelectorAll('.dashboard')
@@ -66,3 +66,47 @@ dashboard.forEach((item)=>{
         }
     })
 })
+let menub = document.querySelectorAll('.menub')
+menub.forEach((item)=>{
+    console.log(item)
+    item.addEventListener('click', ()=>{
+        if (item.nextElementSibling.classList.contains('max-h-0')) {
+            menub.forEach((element)=>{
+                element.nextElementSibling.classList.remove('max-h-[500px]')
+                element.children[1].classList.remove('rotate-180')
+                element.nextElementSibling.classList.add('max-h-0')
+            })
+            item.nextElementSibling.classList.remove('max-h-0')
+            item.nextElementSibling.classList.add('max-h-[500px]')
+            item.children[1].classList.add('rotate-180')
+        } else {
+            item.nextElementSibling.classList.remove('max-h-[500px]')
+            item.children[1].classList.remove('rotate-180')
+            item.nextElementSibling.classList.add('max-h-0')
+        }
+    })
+})
+
+
+
+// const svg= document.getElementById('menubbb');
+// let menu=document.querySelectorAll('.menu')
+// menu.forEach((item)=>{
+//     item.addEventListener('click', ()=>{
+//         if (item.children[1].classList.contains('max-h-0')) {
+//             menu.forEach((element)=>{
+//                 element.children[1].classList.remove('max-h-[500px]')
+//                 element.children[1].classList.add('max-h-0')
+//                 // element.children[2].classList.add('rotate-180')
+//                 svg.classList.add('rotate-180')
+//             })
+//             item.children[1].classList.remove('max-h-0')
+//             item.children[1].classList.add('max-h-[500px]')
+//             svg.classList.add('rotate-180')
+//         } else {
+//                 svg.classList.remove('rotate-180')
+//             item.children[1].classList.remove('max-h-[500px]')
+//             item.children[1].classList.add('max-h-0')
+//         }
+//     })
+// })

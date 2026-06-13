@@ -1,4 +1,4 @@
-<footer class="relative z-1 top-23 mt-20 md:top-50 border-t-1 border-(--color-zinc-300) px-5 md:px-10 py-5">
+<footer class="relative z-1 md:top-50 border-t-1 border-(--color-zinc-300) px-5 md:px-10 py-5">
       <!-- logo, des, go to up -->
 
       <section class="flex gap-x-8 gap-y-4 items-center md:items-start flex-wrap md:flex-nowrap justify-between mb-12">
@@ -230,8 +230,8 @@
         </div>
         </section>
       <!-- copyright -->
-      <div class="relative w-[99%] mt-7 m-b10 md:w-[90%] mx-auto border-t-1 border-(--color-zinc-400) flex flex-col items-center">
-        <a href="" class="">
+      <div class="relative w-[99%] mt-7 mb-5 md:w-[90%] mx-auto border-t-1 border-(--color-zinc-400) flex flex-col items-center">
+        <a href="" class="mt-6">
           طراحی و توسعه توسط <span class="text-(--color-primary-500)">فائوس</span>
         </a>
         <a href="tell:09147794595"><strong>09147794595</strong></a>

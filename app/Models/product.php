@@ -13,7 +13,8 @@ class product extends Model
         'summary',
         'show_home',
         'price',
-        'discount'
+        'discount',
+        'brand_id'
     ];
     // public function categories()
     // {
@@ -30,5 +31,9 @@ class product extends Model
     public function attributes()
     {
         return $this->hasMany(attribute::class, 'product_id');
+    }
+    public function brand()
+    {
+        return $this->belongsTo(brands::class);
     }
 }

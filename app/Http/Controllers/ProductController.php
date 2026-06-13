@@ -11,6 +11,7 @@ use App\Models\attribute;
 use App\Models\footer;
 use App\Models\footer_express;
 use App\Models\setting;
+use App\Models\brands;
 use App\Models\product_category;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,8 +21,9 @@ class ProductController extends Controller
 {
     public function create()
     {
+        $brands = brands::all();
         $categories = category::all();
-        return view('admin.products.create' , ['categories'=>$categories]);
+        return view('admin.products.create' , ['categories'=>$categories , 'brands'=>$brands]);
     }
     public function store(Request $request)
     {
@@ -33,6 +35,7 @@ class ProductController extends Controller
             'price'=>$request->price,
             'discount'=>isset($request->discount) ? $request->discount : 0,
             'not_show_home' => isset($request->not_show_home) ? $request->not_show_home : 0,
+            'brand_id'=> isset($request->brand_id) ? $request->brand_id : null,
         ]);
         if(isset($request->mainImage)){
             $type = $request->mainImage->getClientOriginalExtension();
@@ -76,8 +79,17 @@ class ProductController extends Controller
        $attributes = attribute::all();
        $proCats = product_category::all();
        $medias = media::all();
+
+       
        $categories = category::all();
-       return view('admin.products.index' , ['products'=>$products , 'attributes'=>$attributes , 'proCats'=>$proCats , 'medias'=>$medias , 'categories'=>$categories]);
+       return view('admin.products.index' ,
+        ['products'=>$products ,
+         'attributes'=>$attributes ,
+         'proCats'=>$proCats ,
+          'medias'=>$medias ,
+         'categories'=>$categories ,
+       
+         ]);
 
     }
 
@@ -157,6 +169,7 @@ class ProductController extends Controller
 
     public function edit(product $product)
     {
+        $brands = brands::all();
         $categories = category::all();
         $medias = media::where('product_id', $product->id)->get();
         $attributes = attribute::where('product_id', $product->id)->get();
@@ -167,6 +180,7 @@ class ProductController extends Controller
 
         return view('admin.products.edit', [
             'product' => $product,
+            'brands' => $brands ,
             'categories' => $categories,
             'medias' => $medias,
             'attributes' => $attributes,
@@ -185,6 +199,7 @@ class ProductController extends Controller
         $product->summary = $request->summary;
         $product->price = $request->price;
         $product->discount = $request->discount;
+        $product->brand_id = $request->brand_id;
         $product->not_show_home = isset($request->not_show_home) ? 1 : 0;
 
         $product->save();

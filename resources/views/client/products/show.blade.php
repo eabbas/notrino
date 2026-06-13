@@ -39,6 +39,26 @@
                 </div>
               </a>
             </div> --}}
+            @if(session('error'))
+              <div class="w-full mb-4 p-3 bg-red-50 border-r-4 border-red-500 rounded-lg">
+                  <div class="flex items-center gap-2 text-red-600">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span>{{ session('error') }}</span>
+                  </div>
+              </div>
+              @endif
+            @if(session('success'))
+              <div class="w-full mb-4 p-3 bg-red-50 border-r-4 border-red-500 rounded-lg">
+                  <div class="flex items-center gap-2 text-red-600">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span>{{ session('success') }}</span>
+                  </div>
+              </div>
+              @endif
           <div class="flex flex-col items-center">
             <div class="">
             @if(isset($mainImage))
@@ -241,10 +261,18 @@
                 </div>
             </div>
         @endforeach
+     
+          <div class="flex items-center justify-start p-3 pb-6 w-full my-4">
+                <div class="text-sm md:text-basetext-(--color-zinc-700) w-3/12 font-yekanBakhRegular">برند</div>
+                <div class="md:text-lg text-(--color-zinc-600) w-9/12 font-yekanBakhExtraBold">
+                    {{ $product->brand->title  }}
+                </div>
+            </div>
+
           
         </div>
       </section>
-      {{-- <section class="p-4 scroll-mt-36" id="comments">
+      <section class="p-4 scroll-mt-36" id="comments">
         <p class="text-(--color-zinc-800) md:text-lg mb-1 mt-4">
           دیدگاه ها
         </p>
@@ -254,7 +282,7 @@
               شما هم دیدگاه خود را ثبت کنید
             </div>
             <ul class="grid my-3 gap-5 grid-cols-2">
-              <li>
+              {{-- <li>
                 <input type="radio" id="yes" name="hosting" value="yes" class="hidden peer" required="">
                 <label for="yes" class="inline-flex items-center justify-center w-full px-2 py-3 text-(--color-zinc-600) bg-white border border-(--color-zinc-200) rounded-lg cursor-pointer peer-checked:border-(--color-green-400) peer-checked:text-(--color-green-500) hover:text-(--color-zinc-600) hover:bg-(--color-zinc-100)">                           
                   <div class="flex items-center gap-x-1">
@@ -271,12 +299,16 @@
                     <div class="text-sm">پیشنهاد نمیشود</div>
                   </div>
                 </label>
-              </li>
+              </li> --}}
             </ul>
-            <textarea placeholder="متن دیدگاه" name="mailTicket" cols="30" rows="7" class="rounded-2xl rounded-tr-sm text-sm text-(--color-zinc-600) w-full bg-white border border-(--color-zinc-200) px-5 py-3.5 placeholder:text-(--color-zinc-400) placeholder:text-xs focus:outline-1 focus:outline-zinc-300"></textarea>
-            <button class="hidden lg:block mx-auto cursor-pointer w-full px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 transition text-gray-100 rounded-lg">
-              ارسال دیدگاه
-            </button>
+            <form action="{{ route('proComment.store' , [$product]) }}" method="POST">
+              @csrf
+              <textarea  placeholder="متن دیدگاه" name="comment" cols="30" rows="7" class="rounded-2xl rounded-tr-sm text-sm text-(--color-zinc-600) w-full bg-white border-1 border-(--color-zinc-200) px-5 py-3.5 placeholder:text-(--color-zinc-400) placeholder:text-xs focus:outline-1 focus:outline-zinc-300"></textarea>
+              <button  class="hidden lg:block mx-auto cursor-pointer w-full px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 transition text-gray-100 rounded-lg">
+                ارسال دیدگاه
+              </button>
+
+            </form>
           </div>
           <div class="lg:w-9/12 divide-y-2 divide-(--color-zinc-300)">
             <div class="px-2 pt-5">
@@ -294,11 +326,11 @@
                   خریدار
                 </div>
               </div>
-              <div class="flex items-center gap-x-1 pt-3">
+              {{-- <div class="flex items-center gap-x-1 pt-3">
                 <svg class="fill-(--color-green-500)" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="" viewBox="0 0 256 256"><path d="M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z"></path></svg>
                 <div class="text-sm text-(--color-green-500)">پیشنهاد میشود</div>
-              </div>
-              <div class="mt-2 text-(--color-zinc-600) text-sm">
+              </div> --}}
+              <div class="mt-4 text-(--color-zinc-600) text-sm">
                 واقعا لپ تاپ عالی از هر نظر نسبت به قیمتش
               </div>
               <div class="flex justify-end items-center gap-x-5 mt-3">
@@ -336,11 +368,11 @@
                   خریدار
                 </div>
               </div>
-              <div class="flex items-center gap-x-1 pt-3">
+              {{-- <div class="flex items-center gap-x-1 pt-3">
                 <svg class="fill-(--color-red-500)" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="" viewBox="0 0 256 256"><path d="M239.82,157l-12-96A24,24,0,0,0,204,40H32A16,16,0,0,0,16,56v88a16,16,0,0,0,16,16H75.06l37.78,75.58A8,8,0,0,0,120,240a40,40,0,0,0,40-40V184h56a24,24,0,0,0,23.82-27ZM72,144H32V56H72Zm150,21.29a7.88,7.88,0,0,1-6,2.71H152a8,8,0,0,0-8,8v24a24,24,0,0,1-19.29,23.54L88,150.11V56H204a8,8,0,0,1,7.94,7l12,96A7.87,7.87,0,0,1,222,165.29Z"></path></svg>
                 <div class="text-sm text-(--color-red-500)">پیشنهاد نمیشود</div>
-              </div>
-              <div class="mt-2 text-(--color-zinc-600) text-sm">
+              </div> --}}
+              <div class="mt-4 text-(--color-zinc-600) text-sm">
                 واقعا لپ تاپ عالی از هر نظر نسبت به قیمتش
               </div>
               <div class="flex justify-end items-center gap-x-5 mt-3">
@@ -365,7 +397,7 @@
             </div>
           </div>
         </div>
-      </section> --}}
+      </section>
       {{-- <section class="p-4 scroll-mt-36" id="comments2">
         <p class="text-(--color-zinc-800) md:text-lg mb-1 mt-4">
           پرسش و پاسخ
