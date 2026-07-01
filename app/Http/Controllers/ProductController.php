@@ -64,10 +64,17 @@ class ProductController extends Controller
                 'product_id' => $productId,
             ]);
         }
-        foreach ($request->categories as $categoryId) {
+        if(isset($request->categories)){
+            foreach ($request->categories as $categoryId) {
+                product_category::create([
+                    'product_id' => $productId,
+                    'category_id' => $categoryId
+                ]);
+            }
+        }else{
             product_category::create([
                 'product_id' => $productId,
-                'category_id' => $categoryId
+                'category_id' => 1
             ]);
         }
         return to_route('product.list');
