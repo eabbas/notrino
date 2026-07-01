@@ -59,7 +59,7 @@
       <section class="relative w-[99%] mt-5 md:w-[90%] mx-auto flex flex-col md:flex-row gap-y-8">
         <div class="md:w-5/12 grid grid-cols-2 md:grid-cols-3">
           <div class="">
-            @if($footer['column_one'])
+            @if(isset($footer['column_one']))
             @foreach($footer['column_one'] as $columnOne)
               {{-- @dd($columnOne); --}}
               @if($columnOne->key == null)
@@ -75,7 +75,7 @@
             </div>
             
           <div class="">
-            @if($footer['column_two'])
+            @if(isset($footer['column_two']))
             @foreach ($footer['column_two'] as $columnTwo)
               @if($columnTwo->key == null)
                 <div class="text-zinc-500 mb-4 text-sm">{{ $columnTwo->column_title }}</div>
@@ -89,7 +89,7 @@
               @endif
           </div>
           <div class="">
-            @if($footer['column_three'])
+            @if(isset($footer['column_three']))
             @foreach ($footer['column_three'] as $columnThree)
               @if($columnThree->key == null)
                 <div class="text-zinc-500 mb-4 text-sm">{{ $columnThree->column_title }}</div>
@@ -107,14 +107,14 @@
         </div>
         
         <div class="md:w-4/12 flex justify-center gap-10">
-          @if($footer['column_four'])
+          @if(isset($footer['column_four']))
           @foreach ($footer['column_four'] as $columnFour)
             <div class="w-[100px] md:w-[30%]">
               <img src="{{ asset('storage/'.$columnFour->value) }}" alt="">
             </div>
           @endforeach
           @endif
-          @if($footer['column_five'])
+          @if(isset($footer['column_five']))
           @foreach ($footer['column_five'] as $columnFive)
             <div class="w-[100px] md:w-[30%]">
               <img src="{{ asset('storage/'.$columnFive->value) }}" alt="">
@@ -124,12 +124,12 @@
         </div>
         <div class="md:w-4/12 flex items-center flex-col ">
           <p class="text-xs text-zinc-400 pt-6 pb-3 pr-l flex justify-center">
-            @if($footer['column_six_title'])
+            @if(isset($footer['column_six_title']))
             {{ $footer['column_six_title']['column_title'] }}
             @endif
           </p>
             <div class="grid grid-cols-4 gap-2">
-              @if($footer['column_six'])
+              @if(isset($footer['column_six']))
               @foreach ($footer['column_six'] as $columnSix)
                   @if($columnSix->key == "Eitaa")
                   <a href="{{ $columnSix->value }}">

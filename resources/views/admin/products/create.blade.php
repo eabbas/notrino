@@ -41,7 +41,7 @@
                     <div>
                         <label for="discount" class="block text-gray-700 font-medium mb-2"> تخفیف محصول</label>
                         <div class="relative">
-                            <input type="text" id="discount" name="discount" 
+                            <input type="text" id="discount" name="discount" placeholder="فقط عدد وارد کنید بدون علامت درصد "
                                    class="w-full px-4 py-3 pr-12 outline-none border-1 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-200 bg-gray-50">
                             <i class="fas fa-percent absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i> {{-- آیکون بهتر برای تخفیف --}}
                         </div>
@@ -211,7 +211,7 @@
                         <div class="outline-none border-1 border-gray-200 rounded-lg p-4 bg-orange-50">
                             <label class="flex items-center space-x-2 space-x-reverse cursor-pointer">
                                 <input type="checkbox" name="categories[]" value="{{$category->id}}" 
-                                    class="h-5 w-5 rounded border-gray-300 text-orange-600 focus:ring-orange-500">
+                                    class="h-5 w-5 rounded border-gray-300 text-orange-600 focus:ring-orange-500" @if(count($categories) == 1) checked @endif >
                                 <span class="font-medium text-gray-800">{{$category->title}}</span>
                             </label>
                             <div class="mt-3 pr-6 space-y-3">

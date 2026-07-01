@@ -12,7 +12,7 @@ use App\Http\Controllers\FooterController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\sliderController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\productCommentsController;
 use App\Http\Controllers\ContactUsCommentsController;
@@ -141,7 +141,7 @@ Route::group([
 
 Route::group([
     'prefix' => 'sliders',
-    'controller' => sliderController::class,
+    'controller' => SliderController::class,
     'as' => 'slider.',
 ], function () {
     Route::get("/create", "create")->name('sliderCreate');

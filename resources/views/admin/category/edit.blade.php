@@ -49,6 +49,7 @@
                     </div>
 
                     <!-- والد -->
+                   @if($category->id !== 1)
                     <div class="space-y-2">
                         <label for="parent_id" class="block text-gray-700 font-medium">
                             دسته‌بندی والد
@@ -81,6 +82,7 @@
                         </div>
                         <p class="text-xs text-gray-500 mt-1">در صورت اصلی بودن، گزینه "بدون والد" را انتخاب کنید</p>
                     </div>
+                    @endif
                 </div>
             </div>
 

@@ -83,8 +83,14 @@
 </style>
 </head>
 
-<body class="bg-gradient-to-br from-orange-50 to-white">
+<body>
     <div class="w-full flex flex-col justify-start items-center md:flex-row-reverse">
+         <a href="{{ route('home') }}" class="absolute top-5 right-5 flex items-center gap-2 bg-orange-100 hover:bg-orange-200 text-orange-600 hover:text-orange-700 px-4 py-2.5 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-md border border-orange-200/50 backdrop-blur-sm font-medium text-sm group">
+            <svg class="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1h-2z"/>
+            </svg>
+            <span>خانه</span>
+        </a>
         <!-- بخش راست با تم نارنجی -->
         <div class="flex justify-center max-sm:h-30 max-md:h-35 md:h-dvh bg-orange-gradient relative overflow-hidden w-full lg:w-1/2">
             <!-- المان‌های تزئینی -->
@@ -97,7 +103,7 @@
                 <div class="w-full flex flex-row justify-center items-center animate-fadeIn">
                     {{-- <img class="max-md:w-4/12 w-8/12" src="{{ asset('assets/img/e125edbd-f303-47f3-9dbc-af414f99ccb2.webp') }}" alt=""> --}}
                     <div class="text-center">
-                        <h2 class="text-center font-bold text-white text-5xl mb-2 drop-shadow-lg">notrino</h2>
+                        <a href="{{ route('home') }}" class="text-center font-bold text-white text-5xl mb-2 drop-shadow-lg">notrino</a>
                         <div class="w-20 h-1 bg-white mx-auto rounded-full"></div>
                         <p class="text-white/80 text-sm mt-2">فروشگاه آنلاین</p>
                     </div>

@@ -25,9 +25,9 @@ class HomeController extends Controller
       $medias = media::all();
       $sliders = slider::all();
 
-      $categories = Category::with(['products' => function ($query) {
-         $query->with(['medias', 'attributes']);
-      }])->get();
+    $categories = Category::with(['products' => function ($query) {
+        $query->with(['medias', 'attributes']);
+    }])->where('id', '!=', 1)->get();
      
       
       $attributes = attribute::all();
