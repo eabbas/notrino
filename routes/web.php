@@ -24,6 +24,13 @@ Route::get("/" , [HomeController::class , "index"])->name('home');
 Route::any('search', [HomeController::class, 'search'])->name('search');
 Route::any('filter', [HomeController::class, 'filter'])->name('filter');
 Route::any('filterBrand', [HomeController::class, 'filterBrand'])->name('filterBrand');
+Route::post('/send_code', [UserController::class, 'send_code'])->name('send_code');
+Route::post('/removeActivationCode', [UserController::class, 'removeActivationCode'])->name('removeActivationCode');
+Route::get('/forget_password', [UserController::class, 'forget_password'])->name('forget_password');
+Route::post('/set_password', [UserController::class, 'set_password'])->name('set_password');
+Route::get('/reset_password/{user}', [UserController::class, 'reset_password'])->name('reset_password');
+Route::post('/loginWithActivationCode', [UserController::class, 'loginWithActivationCode'])->name('loginWithActivationCode');
+
 // Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware([LoginMiddleware::class]);
 Route::get('/signup', [UserController::class, "create"])->name('signup')->middleware([LoginMiddleware::class]);
