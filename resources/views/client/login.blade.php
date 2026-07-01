@@ -84,6 +84,18 @@
 </head>
 
 <body>
+   <!-- جایگزین بخش message موجود -->
+<div class="fixed top-5 right-1/2 translate-x-1/2 w-2/3 lg:w-1/3 bg-white rounded-lg shadow-lg transition-all duration-500 z-50 opacity-0 invisible" id="message">
+    <div class="relative p-4">
+        <svg xmlns="http://www.w3.org/2000/svg"
+            class="size-4 absolute top-1/2 -translate-y-1/2 left-3 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors" 
+            onclick="showMessage('close')"
+            viewBox="0 0 384 512">
+            <path d="M345 137c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-119 119L73 103c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l119 119L39 375c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l119-119L311 409c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-119-119L345 137z"/>
+        </svg>
+        <div id="messageContent" class="pr-6"></div>
+    </div>
+</div>
     <div class="w-full flex flex-col justify-start items-center md:flex-row-reverse">
          <a href="{{ route('home') }}" class="absolute top-5 right-5 flex items-center gap-2 bg-orange-100 hover:bg-orange-200 text-orange-600 hover:text-orange-700 px-4 py-2.5 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-md border border-orange-200/50 backdrop-blur-sm font-medium text-sm group">
             <svg class="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -133,11 +145,7 @@
                         
                         <!-- فیلد شماره تلفن -->
                         {{-- <div class="relative w-full group">
-                            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-orange-500 transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                </svg>
-                            </span>
+                            
                             <input type="text"
                                 class="w-full pr-10 pl-4 py-3 rounded-xl border-2 border-gray-200 focus:border-orange-500 focus:ring-0 focus:outline-none transition-all duration-300 hover:border-orange-200 bg-gray-50/50"
                                 name="phoneNumber" 
@@ -145,39 +153,42 @@
                                 dir="ltr">
                         </div> --}}
                             <div class="relative w-full group">
-                            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-orange-500 transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                </svg>
-                            </span>
+
                             <input type="number"
                                 class="w-full pr-10 pl-4 py-3 rounded-xl border-2 border-gray-200 focus:border-orange-500 focus:ring-0 focus:outline-none transition-all duration-300 hover:border-orange-200 bg-gray-50/50"
                                 name="phoneNumber" 
+                                id="phoneNumber"
                                 placeholder="شماره تلفن">
                         </div>
                         
                         <!-- فیلد کلمه عبور -->
-                        <div class="relative w-full group">
-                            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-orange-500 transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                                </svg>
-                            </span>
-                            <input type="password"
-                                class="w-full pr-10 pl-4 py-3 rounded-xl border-2 border-gray-200 focus:border-orange-500 focus:ring-0 focus:outline-none transition-all duration-300 hover:border-orange-200 bg-gray-50/50"
-                                name="password" 
-                                placeholder="کلمه عبور">
+                        <!--<div class="relative w-full group">-->
+                        <!--    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-orange-500 transition-colors">-->
+                        <!--        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">-->
+                        <!--            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>-->
+                        <!--        </svg>-->
+                        <!--    </span>-->
+                        <!--    <input type="password"-->
+                        <!--        class="w-full pr-10 pl-4 py-3 rounded-xl border-2 border-gray-200 focus:border-orange-500 focus:ring-0 focus:outline-none transition-all duration-300 hover:border-orange-200 bg-gray-50/50"-->
+                        <!--        name="password" -->
+                        <!--        placeholder="کلمه عبور">-->
+                        <!--</div>-->
+                         <div class="w-full" id="login">
+                            <div class="w-full flex flex-row items-center gap-3">
+                                <input type="number"
+                                    class="w-full pr-10 pl-4 py-3 rounded-xl border-2 border-gray-200 focus:border-orange-500 focus:ring-0 focus:outline-none transition-all duration-300 bg-gray-50/50"
+                                    name="code" placeholder="کد" required id="code">
+                                <button type="button"
+                                    class="w-4/12 text-xs lg:text-base h-full p-2 md:p-[9px] rounded-[7px] bg-[#f77219]  text-white cursor-pointer"
+                                    onclick="sendCode()" id="countDown">ارسال کد </button>
+                            </div>
                         </div>
-                        
-                        <!-- گزینه‌های اضافی -->
-                        <div class="w-full flex items-center justify-between mt-2">
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-300">
-                                <span class="text-sm text-gray-600">مرا به خاطر بسپار</span>
-                            </label>
-                            {{-- <a href="#" class="text-sm text-orange-500 hover:text-orange-600 transition-colors font-medium">فراموشی رمز عبور؟</a> --}}
+                        <div class="w-full flex flex-row items-center justify-between" id="loginWay">
+                            <a href="{{ route('forget_password') }}"
+                                class="text-[#f26b18] inline-block max-md:my-1 my-4 max-md:text-sm">فراموشی رمز عبور</a>
+                            <span class="text-[#f26b18] inline-block max-md:my-1 my-4 max-md:text-sm cursor-pointer"
+                                onclick="loginWithPassKey(this)">ورود با رمز عبور</span>
                         </div>
-                        
                         <!-- دکمه ورود -->
                         <button type="submit"
                             class="btn-orange w-full text-center text-white p-3.5 rounded-xl font-medium text-lg mt-4 cursor-pointer shadow-lg shadow-orange-200">
@@ -228,6 +239,187 @@
             <span class="text-gray-700 font-medium">09147794595</span>
         </a>
     </div>
+    <script>
+     let phoneNumber = document.getElementById('phoneNumber')
+
+
+        let message = document.getElementById('message')
+        let code = document.getElementById('code')
+        let element = document.createElement('div')
+        element.classList = "text-sm font-bold flex flex-row items-center justify-center py-3 gap-2 lg:gap-3"
+
+        function sendCode() {
+           
+            let phoneNumber = document.getElementById('phoneNumber')
+            if (phoneNumber.value == "") {
+                showMessage('open')
+                element.innerHTML = `
+                        <span class="text-red-500 z-9999 inset-0">!</span>
+                        <span>لطفا شماره تلفن را وارد کنید</span>
+                    `
+                message.children[0].appendChild(element)
+                setTimeout(() => {
+                    showMessage('close')
+                }, 2000)
+            } else {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    }
+                })
+                $.ajax({
+                    url: "{{ route('loginWithActivationCode') }}",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        'phoneNumber': phoneNumber.value,
+                    },
+                    success: function(data) {
+                        console.log(data)
+                        if (!data) {
+                            showMessage('open')
+                            element.innerHTML = `
+                                <span>✅</span>
+                                <span class="text-shadw-lg">کد ارسال شد</span>
+                            `
+                             counter()
+                            message.children[0].appendChild(element)
+                            setTimeout(() => {
+                                showMessage('close')
+                            }, 2000)
+                        } else {
+                            showMessage('open')
+                            element.innerHTML = `
+                                <span class="text-red-500">ابتدا ثبت نام کنید !</span>
+                            `
+                            message.children[0].appendChild(element)
+                            setTimeout(() => {
+                                showMessage('close')
+                                // location.assign("{{ route('login') }}")
+                            }, 2000)
+                        }
+                    },
+                    error: function() {
+                        showMessage('open')
+                        element.innerHTML = `
+                            <span>❌</span>
+                            <span class="text-shadw-lg">خطا در دریافت اطلاعات!</span>
+                        `
+                        message.children[0].appendChild(element)
+                        setTimeout(() => {
+                            showMessage('close')
+                        }, 2500)
+                    }
+                })
+            }
+        }
+        function showMessage(state) {
+            if (state == 'open') {
+                message.classList.remove('top-0')
+                message.classList.remove('opacity-0')
+                message.classList.remove('invisible')
+                message.classList.add('top-2/10')
+            }
+            if (state == 'close') {
+                message.classList.remove('top-2/10')
+                message.classList.add('top-0')
+                message.classList.add('opacity-0')
+                message.classList.add('invisible')
+            }
+        }
+         function counter() {
+            let phoneNumber = document.getElementById('phoneNumber')
+            countDown.classList.add('cursor-no-drop')
+            countDown.classList.remove('cursor-pointer')
+            countDown.classList.remove('hover:bg-[#f77219]')
+            countDown.classList.add('hover:bg-[#f77219]')
+            countDown.classList.remove('bg-(--primary-color)')
+            countDown.classList.add('bg-(--primary-color)/50')
+            countDown.setAttribute('disabled', true)
+            countDown.setAttribute('dir', 'ltr')
+            let count = 120
+            let result = setInterval(() => {
+                let minute = Math.floor(count / 60)
+                let seconds = count % 60
+                count -= 1
+                if (count < 0) {
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                        }
+                    })
+                    $.ajax({
+                        url: "{{ route('removeActivationCode') }}",
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            'phoneNumber': phoneNumber.value
+                        },
+                        success: function(data) {
+                            console.log(data)
+                            countDown.classList.remove('cursor-no-drop')
+                            countDown.classList.add('bg-(--primary-color)')
+                            countDown.classList.remove('bg-(--primary-color)/50')
+                            countDown.classList.add('cursor-pointer')
+                            countDown.classList.add('hover:bg-(--hover-primary-color)')
+                            countDown.classList.remove('hover:bg-(--hover-primary-color)/50')
+                            countDown.removeAttribute('disabled')
+                            countDown.removeAttribute('dir')
+                            countDown.innerText = "ارسال مجدد"
+                        },
+                        error: function() {
+                            showMessage('open')
+                            element.innerHTML = `
+                                <span>❌</span>
+                                <span class="text-shadw-lg">خطا در دریافت اطلاعات!</span>
+                            `
+                            message.children[0].appendChild(element)
+                            setTimeout(() => {
+                                showMessage('close')
+                            }, 2500)
+                        }
+                    })
+                    clearInterval(result)
+                }
+                countDown.innerText = minute.toString().padStart(2, "0") + " : " + seconds.toString().padStart(2,
+                    "0");
+            }, 1000)
+        }
+     let login = document.getElementById('login')
+        let loginWay = document.getElementById('loginWay')
+         function loginWithPassKey(el) {
+            login.innerHTML = `
+                                    <input type="password"
+                                        class="w-full pr-10 pl-4 py-3 rounded-xl border-2 border-gray-200 focus:border-orange-500 focus:ring-0 focus:outline-none transition-all duration-300 hover:border-orange-200 bg-gray-50/50"
+                                        name="password" placeholder="کلمه عبور" required>
+                                `
+            el.parentElement.children[1].remove()
+            let span = document.createElement('span')
+            span.classList = "text-[#f77219] inline-block max-md:my-1 my-4 max-md:text-sm cursor-pointer"
+            span.setAttribute('onclick', 'loginWithActivationCode(this)')
+            span.innerText = "ورود با کد فعال ساز"
+            loginWay.appendChild(span)
+        }
+          function loginWithActivationCode(el) {
+            login.innerHTML = `
+                                    <div class="w-full flex flex-row items-center gap-3">
+                                        <input type="number"
+                                            class="w-full pr-10 pl-4 py-3 rounded-xl border-2 border-gray-200 focus:border-orange-500 focus:ring-0 focus:outline-none transition-all duration-300 hover:border-orange-200 bg-gray-50/50"
+                                            name="code" placeholder="کد" required id="code">
+                                        <button type="button"
+                                            class="w-4/12 text-xs lg:text-base h-full p-2 md:p-[9px] rounded-[7px] bg-[#f77219] text-white cursor-pointer"
+                                            onclick="sendCode()" id="countDown">ارسال کد </button>
+                                    </div>
+                                `
+            el.parentElement.children[1].remove()
+            let span = document.createElement('span')
+            span.classList = "text-[#f77219] inline-block max-md:my-1 my-4 max-md:text-sm cursor-pointer"
+            span.setAttribute('onclick', 'loginWithPassKey(this)')
+            span.innerText = "ورود با رمز عبور"
+            loginWay.appendChild(span)
+        }
+    </script>
 </body>
 
 </html>

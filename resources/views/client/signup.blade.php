@@ -89,6 +89,16 @@
 </head>
 
 <body>
+    <div class="fixed top-5 right-1/2 translate-x-1/2 w-2/3 lg:w-1/3 bg-white rounded-lg shadow-lg transition-all duration-500 z-50 opacity-0 invisible" id="message">
+    <div class="relative p-4">
+        <svg xmlns="http://www.w3.org/2000/svg"
+            class="size-4 absolute top-1/2 -translate-y-1/2 left-3 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors" 
+            onclick="showMessage('close')"
+            viewBox="0 0 384 512">
+            <path d="M345 137c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-119 119L73 103c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l119 119L39 375c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l119-119L311 409c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-119-119L345 137z"/>
+        </svg>
+        <div id="messageContent" class="pr-6"></div>
+    </di
     <div class="w-full h-dvh flex flex-col justify-start items-center md:flex-row-reverse">
         <a href="{{ route('home') }}" class="absolute top-5 right-5 flex items-center gap-2 bg-orange-100 hover:bg-orange-200 text-orange-600 hover:text-orange-700 px-4 py-2.5 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-md border border-orange-200/50 backdrop-blur-sm font-medium text-sm group">
     <svg class="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -175,6 +185,14 @@
                             <input type="password"
                                 class="w-full pr-10 pl-4 py-3 rounded-xl border-2 border-gray-200 focus:border-orange-500 focus:ring-0 focus:outline-none transition-all duration-300 hover:border-orange-200 bg-gray-50/50"
                                 name="password" placeholder="کلمه عبور" required>
+                        </div>
+                            <div class="w-full flex flex-row items-center gap-3">
+                            <input type="number"
+                                class="w-full pr-10 pl-4 py-3 rounded-xl border-2 border-gray-200 focus:border-orange-500 focus:ring-0 focus:outline-none transition-all duration-300 hover:border-orange-200 bg-gray-50/50"
+                                name="code" placeholder="کد" required id="code">
+                            <button type="button"
+                                class="w-4/12 text-xs lg:text-base h-full p-2 md:p-[9px] rounded-[7px] bg-[#f56f19] text-white cursor-pointer"
+                                onclick="sendCode()" id="countDown">ارسال کد </button>
                         </div>
                         
                         <!-- چک‌باکس قوانین -->
@@ -306,6 +324,149 @@
                     alert('خطا در بارگیری اطلاعات')
                 }
             })
+        }
+        let message = document.getElementById('message')
+        let element = document.createElement('div')
+        element.classList = "text-sm font-bold flex flex-row items-center justify-center py-3 gap-2 lg:gap-3"
+          function sendCode() {
+
+            let phoneNumber = document.getElementById('phoneNumber')
+            if (phoneNumber.value == "") {
+                showMessage('open')
+                element.innerHTML = `
+                        <span class="text-red-500">!</span>
+                        <span>لطفا شماره تلفن را وارد کنید</span>
+                    `
+                message.children[0].appendChild(element)
+                setTimeout(() => {
+                    showMessage('close')
+                }, 2000)
+            } else {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    }
+                })
+                $.ajax({
+                    url: "{{ route('send_code') }}",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        'phoneNumber': phoneNumber.value,
+                    },
+                    success: function(data) {
+                        console.log(data)
+                        if (!data.flag) {
+                            counter()
+                            showMessage('open')
+                            element.innerHTML = `
+                                <span>✅</span>
+                                <span class="text-shadw-lg">کد ارسال شد</span>
+                            `
+                            message.children[0].appendChild(element)
+                            setTimeout(() => {
+                                showMessage('close')
+                            }, 2000)
+                        } else {
+                            showMessage('open')
+                            element.innerHTML = `
+                                <span class="text-red-500">کاربر قبلا با این شماره ثبت نام کرده است!</span>
+                            `
+                            message.children[0].appendChild(element)
+                            setTimeout(() => {
+                                showMessage('close')
+                                // location.assign("{{ route('login') }}")
+                            }, 2000)
+                        }
+                    },
+                    error: function() {
+                        showMessage('open')
+                        element.innerHTML = `
+                            <span>❌</span>
+                            <span class="text-shadw-lg">خطا در دریافت اطلاعات!</span>
+                        `
+                        message.children[0].appendChild(element)
+                        setTimeout(() => {
+                            showMessage('close')
+                        }, 2500)
+                    }
+                })
+            }
+        }
+        function showMessage(state) {
+            if (state == 'open') {
+                message.classList.remove('top-0')
+                message.classList.remove('opacity-0')
+                message.classList.remove('invisible')
+                message.classList.add('top-2/10')
+            }
+            if (state == 'close') {
+                message.classList.remove('top-2/10')
+                message.classList.add('top-0')
+                message.classList.add('opacity-0')
+                message.classList.add('invisible')
+            }
+        }
+        let countDown = document.getElementById('countDown')
+
+        function counter() {
+            let phoneNumber = document.getElementById('phoneNumber')
+            countDown.classList.add('cursor-no-drop')
+            countDown.classList.remove('cursor-pointer')
+            countDown.classList.remove('hover:bg-(--hover-primary-color)')
+            countDown.classList.add('hover:bg-(--hover-primary-color)/50')
+            countDown.classList.remove('bg-(--primary-color)')
+            countDown.classList.add('bg-(--primary-color)/50')
+            countDown.setAttribute('disabled', true)
+            countDown.setAttribute('dir', 'ltr')
+            let count = 120
+            let result = setInterval(() => {
+                let minute = Math.floor(count / 60)
+                let seconds = count % 60
+                count -= 1
+                if (count < 0) {
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                        }
+                    })
+                    $.ajax({
+                        url: "{{ route('removeActivationCode') }}",
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            'phoneNumber': phoneNumber.value
+                        },
+                        success: function(data) {
+                            console.log(data)
+                            countDown.classList.remove('cursor-no-drop')
+                            countDown.classList.add('bg-(--primary-color)')
+                            countDown.classList.remove('bg-(--primary-color)/50')
+                            countDown.classList.add('cursor-pointer')
+                            countDown.classList.add('hover:bg-(--hover-primary-color)')
+                            countDown.classList.remove('hover:bg-(--hover-primary-color)/50')
+                            countDown.removeAttribute('disabled')
+                            countDown.removeAttribute('dir')
+                            countDown.innerText = "ارسال مجدد"
+                        },
+                        error: function() {
+                            showMessage('open')
+                            element.innerHTML = `
+                                <span>❌</span>
+                                <span class="text-shadw-lg">خطا در دریافت اطلاعات!</span>
+                            `
+                            message.children[0].appendChild(element)
+                            setTimeout(() => {
+                                showMessage('close')
+                            }, 2500)
+                        }
+                    })
+                    clearInterval(result)
+                }
+                countDown.innerText = minute.toString().padStart(2, "0") + " : " + seconds.toString().padStart(2,
+                    "0");
+            }, 1000)
         }
     </script>
     <script src="{{ asset('assets/js/rules.js') }}"></script>
