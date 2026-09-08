@@ -7,7 +7,7 @@ use App\Models\product_purchases;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class productCommentsController extends Controller
+class ProductCommentsController extends Controller
 {
     public function store(Request $request, $productId)
     {

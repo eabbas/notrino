@@ -29,7 +29,7 @@
                         <th class="text-center py-3 px-4 text-gray-600 font-medium text-sm">تخفیف</th>
                         <th class="text-center py-3 px-4 text-gray-600 font-medium text-sm">قیمت نهایی</th>
                         <th class="text-center py-3 px-4 text-gray-600 font-medium text-sm">دسته‌بندی</th>
-                        <th class="text-center py-3 px-4 text-gray-600 font-medium text-sm">نمایش</th>
+                        <th class="text-center py-3 px-4 text-gray-600 font-medium text-sm">عدم نمایش</th>
                         <th class="text-center py-3 px-4 text-gray-600 font-medium text-sm">عملیات</th>
                     </tr>
                 </thead>

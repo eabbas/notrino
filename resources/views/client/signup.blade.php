@@ -90,6 +90,7 @@
 
 <body>
     <div class="fixed top-5 right-1/2 translate-x-1/2 w-2/3 lg:w-1/3 bg-white rounded-lg shadow-lg transition-all duration-500 z-50 opacity-0 invisible" id="message">
+
     <div class="relative p-4">
         <svg xmlns="http://www.w3.org/2000/svg"
             class="size-4 absolute top-1/2 -translate-y-1/2 left-3 cursor-pointer text-gray-500 hover:text-gray-700 transition-colors" 
@@ -98,7 +99,8 @@
             <path d="M345 137c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-119 119L73 103c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l119 119L39 375c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l119-119L311 409c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-119-119L345 137z"/>
         </svg>
         <div id="messageContent" class="pr-6"></div>
-    </di
+    </div>
+            </div>
     <div class="w-full h-dvh flex flex-col justify-start items-center md:flex-row-reverse">
         <a href="{{ route('home') }}" class="absolute top-5 right-5 flex items-center gap-2 bg-orange-100 hover:bg-orange-200 text-orange-600 hover:text-orange-700 px-4 py-2.5 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-md border border-orange-200/50 backdrop-blur-sm font-medium text-sm group">
     <svg class="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

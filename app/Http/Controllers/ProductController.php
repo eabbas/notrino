@@ -37,25 +37,44 @@ class ProductController extends Controller
             'not_show_home' => isset($request->not_show_home) ? $request->not_show_home : 0,
             'brand_id'=> isset($request->brand_id) ? $request->brand_id : null,
         ]);
-        if(isset($request->mainImage)){
-            $type = $request->mainImage->getClientOriginalExtension();
-            $name = $request->mainImage->getClientOriginalName();
-            $fullName = Str::uuid() . "_" . $name;
-            $path = $request->file('mainImage')->storeAs('images', $fullName, 'public');
-            $products[] = ['product_id' => $productId, 'type' => $type, 'path' => $path, 'is_main' => 1];
-            media::insert($products);
-        }
-        if(isset($request->gallery)){
-            foreach ($request->gallery as $gallery) {
-                $typeGallery = $gallery->getClientOriginalExtension();
-                $nameGallery = $gallery->getClientOriginalName();
-                $fullNameGallery = Str::uuid() . "_" . $nameGallery;
-                $gallertPath = $gallery->storeAs('images', $fullNameGallery, 'public');
-                $products[] = ['product_id' => $productId, 'type' => $typeGallery, 'path' => $gallertPath, 'is_main' => 0];
-            }
+        $mediaData = []; // آرایه برای تمام تصاویر
 
-            media::insert($products);
+    // تصویر اصلی
+    if (isset($request->mainImage)) {
+        $type = $request->mainImage->getClientOriginalExtension();
+        $name = $request->mainImage->getClientOriginalName();
+        $fullName = Str::uuid() . "_" . $name;
+        $path = $request->file('mainImage')->storeAs('images', $fullName, 'public');
+        
+        $mediaData[] = [
+            'product_id' => $productId,
+            'type' => $type,
+            'path' => $path,
+            'is_main' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
+        ];
+    }
+
+    // تصاویر گالری
+    if (isset($request->gallery)) {
+        foreach ($request->gallery as $gallery) {
+            $typeGallery = $gallery->getClientOriginalExtension();
+            $nameGallery = $gallery->getClientOriginalName();
+            $fullNameGallery = Str::uuid() . "_" . $nameGallery;
+            $galleryPath = $gallery->storeAs('images', $fullNameGallery, 'public');
+            
+            $mediaData[] = [
+                'product_id' => $productId,
+                'type' => $typeGallery,
+                'path' => $galleryPath,
+                'is_main' => 0,
+                'created_at' => now(),
+                'updated_at' => now()
+            ];
         }
+    }
+        media::insert($mediaData);
 
         foreach ($request['attribute_keys'] as $key => $value) {
             attribute::create([
