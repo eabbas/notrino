@@ -645,7 +645,7 @@
           <!-- search -->
          <form action="{{ route('search') }}" class="w-[400px] h-12 bg-(--color-zinc-100) hidden md:flex justify-between p-3 items-center rounded-2xl">
           @csrf
-          <div class="w-full flex flex-row items-center samim">
+          <div class="w-full flex flex-row items-center">
               <div class="w-full bg-white flex flex-row rounded-full items-center gap-2 px-3">
                   <input class="outline-none py-2 w-full" type="text" name="search"
                       placeholder="جست و جو" @if(isset($searchTitle))  value="{{ $searchTitle }}" @endif>
@@ -668,7 +668,7 @@
           <div class="gap-2 flex items-center">
             <!-- login / register -->
             <div class="labal_1 relative">
-            <button class=" relative flex border border-(--color-zinc-200) p-2 px-3 rounded-xl hover:shadow-xl">
+            <button class=" relative flex border-1 border-(--color-zinc-200) p-2 px-3 rounded-xl hover:shadow-xl">
 
               <span class="hidden md:block">حساب کاربری</span>
               <svg width="22px" height="22px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -683,7 +683,7 @@
             <!-- Modal file -->
           <div id="modal-1" class="Mymodal fixed inset-0 z-50 bg-black/40 flex hidden items-center justify-center">
             <div class="modal-content relative w-full max-w-7xl max-h-[90vh] transform scale-95 transition-all duration-300">
-              <div class="bg-white rounded-2xl mx-auto border border-zinc-200 w-11/12 sm:w-7/12 md:w-6/12 lg:w-4/12 h-auto py-5 px-4">
+              <div class="bg-white rounded-2xl mx-auto border-1 border-zinc-200 w-11/12 sm:w-7/12 md:w-6/12 lg:w-4/12 h-auto py-5 px-4">
                 <img class="w-32 mx-auto" src="./img/logo/Screenshot 2025-12-16 063243.png" alt="">
                 <div class="mt-5 text-lg font-semibold text-zinc-800">
                   ورود یا ثبت نام
@@ -692,7 +692,7 @@
                   لطفا شماره موبایل خود را وارد کنید
                 </div>
                 <div class="flex flex-col gap-y-1">
-                  <input type="tel" placeholder="شماره تلفن" name="" class="placeholder:text-right text-sm block w-full rounded-md border border-gray-300 px-3 py-3 font-normal text-gray-700 outline-none transition-all focus:border-primary-500 focus:outline-none">
+                  <input type="tel" placeholder="شماره تلفن" name="" class="placeholder:text-right text-sm block w-full rounded-md border-1 border-gray-300 px-3 py-3 font-normal text-gray-700 outline-none transition-all focus:border-primary-500 focus:outline-none">
                 </div>
                 <a href="" class="flex items-center justify-center gap-x-1 text-sm max-w-md mt-10 py-3 rounded-lg text-white bg-gradient-to-bl from-(--color-primary-500) to-(--color-primary-800) hover:opacity-85 transition">
                   ثبت نام
@@ -781,7 +781,7 @@
             </div>
             </div>
             <!-- cart -->
-            <div class="labal_2 relative p-2 border border-(--color-zinc-200) rounded-xl hover:shadow-xl hover:bg-(--color-primary-500)">
+            <div class="labal_2 relative p-2 border-1 border-(--color-zinc-200) rounded-xl hover:shadow-xl hover:bg-(--color-primary-500)">
             <a class="relative">
               <svg width="22px" height="22px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <g id="Iconly/Light/Bag" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
@@ -796,7 +796,7 @@
             </a>
             <div class="labal_2-2 absolute left-0 shadow-2xl bg-white rounded-xl w-70 md:w-100 p-2 h-95 hidden md:flex flex-col items-center invisible">
               <!-- Head -->
-              <div class="w-full border-b border-(--color-zinc-200)">
+              <div class="w-full border-b-1 border-(--color-zinc-200)">
                 <div class="text-sm w-full h-10 p-3 flex items-center"> 2 کالا</div>
               </div>
               <!-- Items -->
@@ -805,7 +805,7 @@
               [&::-webkit-scrollbar-thumb]:bg-(--color-primary-500)
               [&::-webkit-scrollbar-thumb]:rounded-full">
               <ul class="">
-                <li class=" border-b border-(--color-zinc-100) h-45 flex items-center justify-center">
+                <li class=" border-b-1 border-(--color-zinc-100) h-45 flex items-center justify-center">
                   <div class="flex justify-between items-center p-2 h-30 gap-3">
                     <!-- Product -->
                     <div class="">
@@ -826,7 +826,7 @@
                           <span class="text-sm">تومان</span>
                         </div>
                         <!-- Quantity -->
-                        <div class=" flex h-10 max-w-28 items-center justify-between rounded-lg border border-gray-100 px-2 py-1">
+                        <div class=" flex h-10 max-w-28 items-center justify-between rounded-lg border-1 border-gray-100 px-2 py-1">
                           <button type="button" data-action="increment">
                             <svg class="fill-green-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H134v82a6,6,0,0,1-12,0V134H40a6,6,0,0,1,0-12h82V40a6,6,0,0,1,12,0v82h82A6,6,0,0,1,222,128Z"></path></svg>
                           </button>
@@ -839,7 +839,7 @@
                     </div>
                   </div>
                 </li>
-                <li class=" border-b border-(--color-zinc-100) h-45 flex items-center justify-center">
+                <li class=" border-b-1 border-(--color-zinc-100) h-45 flex items-center justify-center">
                   <div class="flex justify-between items-center p-2 h-30 gap-3">
                     <!-- Product -->
                     <div class="">
@@ -860,7 +860,7 @@
                           <span class="text-sm">تومان</span>
                         </div>
                         <!-- Quantity -->
-                        <div class=" flex h-10 max-w-28 items-center justify-between rounded-lg border border-gray-100 px-2 py-1">
+                        <div class=" flex h-10 max-w-28 items-center justify-between rounded-lg border-1 border-gray-100 px-2 py-1">
                           <button type="button" data-action="increment">
                             <svg class="fill-green-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H134v82a6,6,0,0,1-12,0V134H40a6,6,0,0,1,0-12h82V40a6,6,0,0,1,12,0v82h82A6,6,0,0,1,222,128Z"></path></svg>
                           </button>
@@ -873,7 +873,7 @@
                     </div>
                   </div>
                 </li>
-                <li class=" border-b border-(--color-zinc-100) h-45 flex items-center justify-center">
+                <li class=" border-b-1 border-(--color-zinc-100) h-45 flex items-center justify-center">
                   <div class="flex justify-between items-center p-2 h-30 gap-3">
                     <!-- Product -->
                     <div class="">
@@ -894,7 +894,7 @@
                           <span class="text-sm">تومان</span>
                         </div>
                         <!-- Quantity -->
-                        <div class=" flex h-10 max-w-28 items-center justify-between rounded-lg border border-gray-100 px-2 py-1">
+                        <div class=" flex h-10 max-w-28 items-center justify-between rounded-lg border-1 border-gray-100 px-2 py-1">
                           <button type="button" data-action="increment">
                             <svg class="fill-green-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H134v82a6,6,0,0,1-12,0V134H40a6,6,0,0,1,0-12h82V40a6,6,0,0,1,12,0v82h82A6,6,0,0,1,222,128Z"></path></svg>
                           </button>

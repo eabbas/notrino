@@ -12,9 +12,9 @@ use App\Http\Controllers\FooterController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\sliderController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ContactUsController;
-use App\Http\Controllers\productCommentsController;
+use App\Http\Controllers\ProductCommentsController;
 use App\Http\Controllers\ContactUsCommentsController;
 
 // Route::get('/', function () {
@@ -24,6 +24,13 @@ Route::get("/" , [HomeController::class , "index"])->name('home');
 Route::any('search', [HomeController::class, 'search'])->name('search');
 Route::any('filter', [HomeController::class, 'filter'])->name('filter');
 Route::any('filterBrand', [HomeController::class, 'filterBrand'])->name('filterBrand');
+Route::post('/send_code', [UserController::class, 'send_code'])->name('send_code');
+Route::post('/removeActivationCode', [UserController::class, 'removeActivationCode'])->name('removeActivationCode');
+Route::get('/forget_password', [UserController::class, 'forget_password'])->name('forget_password');
+Route::post('/set_password', [UserController::class, 'set_password'])->name('set_password');
+Route::get('/reset_password/{user}', [UserController::class, 'reset_password'])->name('reset_password');
+Route::post('/loginWithActivationCode', [UserController::class, 'loginWithActivationCode'])->name('loginWithActivationCode');
+
 // Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware([LoginMiddleware::class]);
 Route::get('/signup', [UserController::class, "create"])->name('signup')->middleware([LoginMiddleware::class]);
@@ -141,7 +148,7 @@ Route::group([
 
 Route::group([
     'prefix' => 'sliders',
-    'controller' => sliderController::class,
+    'controller' => SliderController::class,
     'as' => 'slider.',
 ], function () {
     Route::get("/create", "create")->name('sliderCreate');
@@ -176,7 +183,7 @@ Route::group([
 });
 Route::group([
     'prefix' => 'productComments',
-    'controller' => productCommentsController::class,
+    'controller' => ProductCommentsController::class,
     'as' => 'proComment.',
 ], function () {
     Route::post("/store/{product_id}", "store")->name('store');

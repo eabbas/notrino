@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\category;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -49,16 +50,50 @@ class CategoryController extends Controller
         $categories = category::all();
         return view('admin.category.edit', ['category' => $category, 'categories' => $categories]);
     }
+    // public function update(Request $request)
+    // {
+    //     // dd($request->all());
+    //     $category = category::find($request->id);
+    //     $category->title = $request->title;
+    //     $category->description = $request->description;
+    //     $category->parent_id = $request->parent_id;
+    //     $category->save();
+    //     return to_route('category.list');
+    // }
     public function update(Request $request)
-    {
-        // dd($request->all());
-        $category = category::find($request->id);
-        $category->title = $request->title;
-        $category->description = $request->description;
-        $category->parent_id = $request->parent_id;
-        $category->save();
-        return to_route('category.list');
+{
+    $category = Category::find($request->id);
+    
+
+    $category->title = $request->title;
+    $category->description = $request->description;
+    $category->parent_id = $request->parent_id ?? 0;
+
+
+    if ($request->hasFile('image')) {
+ 
+        if ($category->image) {
+            Storage::disk('public')->delete($category->image);
+        }
+
+        $imagePath = $request->file('image')->store('categories', 'public');
+        $category->image = $imagePath;
     }
+
+ 
+    if ($request->has('remove_image')) {
+        if ($category->image) {
+            Storage::disk('public')->delete($category->image);
+            $category->image = null;
+        }
+    }
+
+
+    $category->save();
+
+
+    return to_route('category.list')->with('success', 'دسته‌بندی با موفقیت بروزرسانی شد.');
+}
     public function delete(category $category)
     {
         $category->delete();

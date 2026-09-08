@@ -58,6 +58,7 @@
       @if($categories)
       @foreach ($categories as $category)
       @if($category->parent_id == 0)
+      @if($category->id != 1)
       @if(isset($category->image))
       <a href="" class="category flex flex-col flex justify-center items-center">
         <div class="category_it border-2 border-(--color-zinc-300) rounded-xl hover:border-(--color-primary-500) flex justify-center items-center h-[90px] md:h-[128px] w-[90px] md:w-[128px]">
@@ -65,6 +66,7 @@
         </div>
         <span class="md:p-2 text-xs md:text-base">{{ $category->title }}</span>
       </a>
+      @endif
       @endif
       @endif
       @endforeach
@@ -208,7 +210,9 @@
 
               <div class="w-full h-[45%] flex flex-col items-center justify-center">
                 <div class="w-15 md:w-20 rounded-full bg-white flex items-center justify-center">
+                  @if(count($medias) > 0)
                   <img src="{{ asset('storage/'.$medias[0]->path) }}" alt="logo" class="max-w-15 md:max-w-20">
+                  @endif
                 </div>
                 <span class="text-xl md:text-2xl">لپتاپ</span>
               </div>
