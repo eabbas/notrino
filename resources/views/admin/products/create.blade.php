@@ -168,7 +168,7 @@
 
                              
             <!-- بخش آپلود رسانه -->
-            <div class="p-8 border-b border-gray-100">
+               <div class="p-8 border-b border-gray-100">
                 <h2 class="text-xl font-semibold text-gray-800 mb-6 flex items-center">
                     <i class="fas fa-images ml-2 text-orange-500"></i>
                     رسانه محصول

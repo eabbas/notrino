@@ -14,7 +14,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ContactUsController;
-use App\Http\Controllers\productCommentsController;
+use App\Http\Controllers\ProductCommentsController;
 use App\Http\Controllers\ContactUsCommentsController;
 
 // Route::get('/', function () {
@@ -183,7 +183,7 @@ Route::group([
 });
 Route::group([
     'prefix' => 'productComments',
-    'controller' => productCommentsController::class,
+    'controller' => ProductCommentsController::class,
     'as' => 'proComment.',
 ], function () {
     Route::post("/store/{product_id}", "store")->name('store');

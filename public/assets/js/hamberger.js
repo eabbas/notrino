@@ -26,25 +26,25 @@ function filterclick(name,element){
     }
 }
 
-// let currentSlide = 0;
-// const slides = document.querySelector('.slides');
-// const totalSlides = document.querySelectorAll('.slide').length;
-// function showSlide(index) {
-//     if (index >= totalSlides) currentSlide = 0;
-//     else if (index < 0) currentSlide = totalSlides - 1;
-//     else currentSlide = index;
+let currentSlide = 0;
+const slides = document.querySelector('.slides');
+const totalSlides = document.querySelectorAll('.slide').length;
+function showSlide(index) {
+    if (index >= totalSlides) currentSlide = 0;
+    else if (index < 0) currentSlide = totalSlides - 1;
+    else currentSlide = index;
     
-//     // تغییر جهت حرکت به راست (مثبت) برای RTL
-//     slides.style.transform = `translateX(${currentSlide * 100}%)`;
-// }
-// // معکوس کردن عملکرد دکمه‌ها برای RTL
-// document.querySelector('.next').addEventListener('click', () => showSlide(currentSlide - 1));
-// document.querySelector('.prev').addEventListener('click', () => showSlide(currentSlide + 1));
-// // تغییر جهت حرکت اتوماتیک
-// setInterval(() => showSlide(currentSlide - 1), 5000);
+    // تغییر جهت حرکت به راست (مثبت) برای RTL
+    slides.style.transform = `translateX(${currentSlide * 100}%)`;
+}
+// معکوس کردن عملکرد دکمه‌ها برای RTL
+document.querySelector('.next').addEventListener('click', () => showSlide(currentSlide - 1));
+document.querySelector('.prev').addEventListener('click', () => showSlide(currentSlide + 1));
+// تغییر جهت حرکت اتوماتیک
+setInterval(() => showSlide(currentSlide - 1), 5000);
 
-// // مقداردهی اولیه
-// showSlide(0);
+// مقداردهی اولیه
+showSlide(0);
 
 
 let dashboard = document.querySelectorAll('.dashboard')
@@ -87,7 +87,14 @@ menub.forEach((item)=>{
     })
 })
 
-
+function plasss() {
+    var input = document.getElementById("numberInput");
+    input.value = parseInt(input.value) + 1;
+}
+function maineez() {
+    var input = document.getElementById("numberInput");
+    input.value = parseInt(input.value) - 1;
+}
 
 // const svg= document.getElementById('menubbb');
 // let menu=document.querySelectorAll('.menu')

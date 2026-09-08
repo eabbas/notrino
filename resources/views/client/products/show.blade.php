@@ -1,4 +1,3 @@
-
 @extends('document')
 @section('title', "فروشگاه نوترینو")
 @section('content')
@@ -71,7 +70,7 @@
               [&::-webkit-scrollbar-thumb]:rounded-full">
               @if(isset($gallery))
               @foreach ($gallery as $img)
-                <img src={{ asset('storage/'.$img->path) }} class="w-20 h-20 border-2 border-(--color-zinc-200) rounded-md opacity-70 hover:opacity-100 hover:border-(--color-zinc-300)" alt="img product">
+                <img src="{{ asset('storage/'.$img->path) }}" class="w-20 h-20 border-2 border-(--color-zinc-200) rounded-md opacity-70 hover:opacity-100 hover:border-(--color-zinc-300)" alt="img product">
               @endforeach
               @endif
              
@@ -140,9 +139,12 @@
             @endforeach
             
           </div>
-          <div class="flex gap-x-2 mt-2 pt-2 text-(--color-zinc-500) text-xs md:text-sm border-t border-t-(--color-zinc-200) leading-6">
-            <svg class="fill-(--color-zinc-500)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z"></path></svg>
-            {{ $product->summary }}
+          <div class="flex gap-x-2 mt-2 pt-2 text-(--color-zinc-500) text-xs md:text-sm border-t-1 border-t-(--color-zinc-200) leading-6">
+            <svg class="fill-(--color-zinc-500) size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z"></path></svg>
+
+              درخواست مرجوع کردن کالا در گروه لوازم دیجیتال با دلیل "انصراف از خرید" تنها در صورتی قابل تایید است که کالا در شرایط اولیه باشد (در صورت پلمپ بودن، کالا نباید باز شده باشد).
+
+              {{--            {{ $product->summary }}--}}
           </div>
         </div>
         <!-- buy -->
@@ -165,7 +167,7 @@
                 @endforeach
             </ul>
           </div>
-          <div class="p-3 border border-(--color-zinc-300) rounded-xl mx-auto divide-y divide-(--color-zinc-200)">
+          <div class="p-3 border-1 border-(--color-zinc-300) rounded-xl mx-auto divide-y divide-(--color-zinc-200)">
             <div class="flex text-sm text-(--color-zinc-600) pb-5 pt-3 gap-x-1">
               <svg class="fill-(--color-zinc-600)" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56v58.78c0,89.61,75.82,119.34,91,124.39a15.53,15.53,0,0,0,10,0c15.2-5.05,91-34.78,91-124.39V56A16,16,0,0,0,208,40Zm0,74.79c0,78.42-66.35,104.62-80,109.18-13.53-4.51-80-30.69-80-109.18V56H208ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.68l50.34-50.34a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"></path></svg>
               <span>
@@ -195,15 +197,15 @@
               <div class="text-(--color-red-500) text-xs">
                 تنها 1 عدد باقی مانده
               </div>
-              <div class="quantity-container mt-5 flex h-10 w-full items-center justify-between rounded-lg border border-gray-100 px-2 py-1">
-                <button class="cursor-pointer">
-                  <svg class="fill-(--color-green-500) size-5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H134v82a6,6,0,0,1-12,0V134H40a6,6,0,0,1,0-12h82V40a6,6,0,0,1,12,0v82h82A6,6,0,0,1,222,128Z"></path></svg>
-                </button>
-                <input value="1" disabled type="number" class="flex h-5 w-full grow select-none items-center justify-center bg-transparent text-center text-sm md:text-lg font-yekanBakhExtraBold text-(--color-zinc-600) outline-none">
-                <button class="cursor-pointer">
-                  <svg class="fill-(--color-red-500) size-5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H40a6,6,0,0,1,0-12H216A6,6,0,0,1,222,128Z"></path></svg>
-                </button>
-              </div>
+                <div class="quantity-container mt-5 flex h-10 w-full items-center justify-between rounded-lg border-1 border-gray-100 px-2 py-1">
+                    <button onclick="plasss()" class="cursor-pointer">
+                        <svg class="fill-(--color-green-500) size-5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H134v82a6,6,0,0,1-12,0V134H40a6,6,0,0,1,0-12h82V40a6,6,0,0,1,12,0v82h82A6,6,0,0,1,222,128Z"></path></svg>
+                    </button>
+                    <input id="numberInput" minlength="0" maxlength="10" value="1" disabled type="number" class="flex h-5 w-full grow select-none items-center justify-center bg-transparent text-center text-sm md:text-lg font-yekanBakhExtraBold text-(--color-zinc-600) outline-none">
+                    <button onclick="maineez()" class="cursor-pointer">
+                        <svg class="fill-(--color-red-500) size-5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H40a6,6,0,0,1,0-12H216A6,6,0,0,1,222,128Z"></path></svg>
+                    </button>
+                </div>
             </div>
             <button class="hidden lg:block mx-auto cursor-pointer w-full px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 transition text-(--color-zinc-100) rounded-lg">
               افزودن به سبد خرید
@@ -217,7 +219,7 @@
             هزینه پست برای سبد خرید بالای 400 هزار تومان رایگان میباشد.
           </div>
           <!-- fixed div buy mobile -->
-          <div class="fixed flex bottom-0 right-0 lg:hidden bg-white border-t border-t-zinc-300 w-full px-5 py-3 gap-x-2 z-1000">
+          <div class="fixed flex bottom-0 right-0 lg:hidden bg-white border-t-1 border-t-zinc-300 w-full px-5 py-3 gap-x-2 z-1000">
             <button class="mx-auto 5 w-1/2 px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 transition text-(--color-zinc-100) rounded-lg">
               افزودن به سبد خرید
             </button>
@@ -236,13 +238,13 @@
           </div>
         </div>
       </section>
-      <section class="flex flex-col lg:flex-row mt-22 pb-2 gap-x-8 border-b border-(--color-zinc-200)">
+      <section class="flex flex-col lg:flex-row mt-22 pb-2 gap-x-8 border-b-1 border-(--color-zinc-200)">
         <a href="#details" class="text-(--color-zinc-600) hover:text-(--color-zinc-800) transition">توضیحات</a>
         <a href="#proper" class="text-(--color-zinc-600) hover:text-(--color-zinc-800) transition">مشخصات</a>
         <a href="#comments" class="text-(--color-zinc-600) hover:text-(--color-zinc-800) transition">دیدگاه ها</a>
         <a href="#comments2" class="text-(--color-zinc-600) hover:text-(--color-zinc-800) transition">پرسش ها</a>
       </section>
-      <section class="p-4 border-b border-(--color-zinc-200) scroll-mt-36" id="details">
+      <section class="p-4 border-b-1 border-(--color-zinc-200) scroll-mt-36" id="details">
         <p class="text-zinc-800 md:text-lg mb-1 mt-4">
           توضیحات این محصول
         </p>
@@ -250,7 +252,7 @@
             {{ $product->description }}
         </p>
       </section>
-      <section class="p-4 border-b border-(--color-zinc-200) scroll-mt-36" id="proper">
+      <section class="p-4 border-b-1 border-(--color-zinc-200) scroll-mt-36" id="proper">
         <p class="text-(--color-zinc-800) lg:text-lg mt-4 mb-1">مشخصات محصول</p>
         <div class="text-gray-500 text-sm divide-y divide-zinc-200">
         @foreach ($attributes as $attribute)
@@ -261,7 +263,7 @@
                 </div>
             </div>
         @endforeach
-     
+        @if(isset($product->brand))
           <div class="flex items-center justify-start p-3 pb-6 w-full my-4">
                 <div class="text-sm md:text-basetext-(--color-zinc-700) w-3/12 font-yekanBakhRegular">برند</div>
                 <div class="md:text-lg text-(--color-zinc-600) w-9/12 font-yekanBakhExtraBold">
@@ -271,6 +273,7 @@
 
           
         </div>
+        @endif
       </section>
       <section class="p-4 scroll-mt-36" id="comments">
         <p class="text-(--color-zinc-800) md:text-lg mb-1 mt-4">
@@ -284,7 +287,7 @@
             <ul class="grid my-3 gap-5 grid-cols-2">
               {{-- <li>
                 <input type="radio" id="yes" name="hosting" value="yes" class="hidden peer" required="">
-                <label for="yes" class="inline-flex items-center justify-center w-full px-2 py-3 text-(--color-zinc-600) bg-white border border-(--color-zinc-200) rounded-lg cursor-pointer peer-checked:border-(--color-green-400) peer-checked:text-(--color-green-500) hover:text-(--color-zinc-600) hover:bg-(--color-zinc-100)">                           
+                <label for="yes" class="inline-flex items-center justify-center w-full px-2 py-3 text-(--color-zinc-600) bg-white border-1 border-(--color-zinc-200) rounded-lg cursor-pointer peer-checked:border-(--color-green-400) peer-checked:text-(--color-green-500) hover:text-(--color-zinc-600) hover:bg-(--color-zinc-100)">
                   <div class="flex items-center gap-x-1">
                     <svg class="fill-(--color-green-500)" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="" viewBox="0 0 256 256"><path d="M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z"></path></svg>
                     <div class="text-sm">پیشنهاد میشود</div>
@@ -293,7 +296,7 @@
               </li>
               <li>
                 <input type="radio" id="no" name="hosting" value="no" class="hidden peer" required="">
-                <label for="no" class="inline-flex items-center justify-center w-full px-2 py-3 text-(--color-zinc-600) bg-white border border-(--color-zinc-200) rounded-lg cursor-pointer peer-checked:border-(--color-red-400) peer-checked:text-(--color-red-500) hover:text-(--color-zinc-600) hover:bg-(--color-zinc-100)">                           
+                <label for="no" class="inline-flex items-center justify-center w-full px-2 py-3 text-(--color-zinc-600) bg-white border-1 border-(--color-zinc-200) rounded-lg cursor-pointer peer-checked:border-(--color-red-400) peer-checked:text-(--color-red-500) hover:text-(--color-zinc-600) hover:bg-(--color-zinc-100)">
                   <div class="flex items-center gap-x-1">
                     <svg class="fill-(--color-red-500)" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="" viewBox="0 0 256 256"><path d="M239.82,157l-12-96A24,24,0,0,0,204,40H32A16,16,0,0,0,16,56v88a16,16,0,0,0,16,16H75.06l37.78,75.58A8,8,0,0,0,120,240a40,40,0,0,0,40-40V184h56a24,24,0,0,0,23.82-27ZM72,144H32V56H72Zm150,21.29a7.88,7.88,0,0,1-6,2.71H152a8,8,0,0,0-8,8v24a24,24,0,0,1-19.29,23.54L88,150.11V56H204a8,8,0,0,1,7.94,7l12,96A7.87,7.87,0,0,1,222,165.29Z"></path></svg>
                     <div class="text-sm">پیشنهاد نمیشود</div>
@@ -315,7 +318,7 @@
               <div class="text-lg text-(--color-zinc-700)">
                 خوب بود ارزش خرید داره
               </div>
-              <div class="mt-2 flex gap-x-4 items-center border-b border-(--color-zinc-200) pb-3">
+              <div class="mt-2 flex gap-x-4 items-center border-b-1 border-(--color-zinc-200) pb-3">
                 <div class="text-xs text-(--color-zinc-600)">
                   11 بهمن 1402
                 </div>
@@ -340,13 +343,13 @@
                 <ul class="grid my-3 gap-5 grid-cols-2">
                   <li>
                     <input type="radio" id="selamm" name="what1" value="selamm" class="hidden peer" required="">
-                    <label for="selamm" class="inline-flex p-2 border border-(--color-zinc-200) rounded-lg cursor-pointer peer-checked:border-(--color-green-400) hover:bg-(--color-zinc-100)">                           
+                    <label for="selamm" class="inline-flex p-2 border-1 border-(--color-zinc-200) rounded-lg cursor-pointer peer-checked:border-(--color-green-400) hover:bg-(--color-zinc-100)">
                       <svg class="fill-(--color-green-500)" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="" viewBox="0 0 256 256"><path d="M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z"></path></svg>
                     </label>
                   </li>
                   <li>
                     <input type="radio" id="isbad12" name="what1" value="isbad12" class="hidden peer" required="">
-                    <label for="isbad12" class="inline-flex p-2 border border-(--color-zinc-200) rounded-lg cursor-pointer peer-checked:border-(--color-red-400) hover:bg-(--color-zinc-100)">                           
+                    <label for="isbad12" class="inline-flex p-2 border-1 border-(--color-zinc-200) rounded-lg cursor-pointer peer-checked:border-(--color-red-400) hover:bg-(--color-zinc-100)">
                       <svg class="fill-(--color-red-500)" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="" viewBox="0 0 256 256"><path d="M239.82,157l-12-96A24,24,0,0,0,204,40H32A16,16,0,0,0,16,56v88a16,16,0,0,0,16,16H75.06l37.78,75.58A8,8,0,0,0,120,240a40,40,0,0,0,40-40V184h56a24,24,0,0,0,23.82-27ZM72,144H32V56H72Zm150,21.29a7.88,7.88,0,0,1-6,2.71H152a8,8,0,0,0-8,8v24a24,24,0,0,1-19.29,23.54L88,150.11V56H204a8,8,0,0,1,7.94,7l12,96A7.87,7.87,0,0,1,222,165.29Z"></path></svg>
                     </label>
                   </li>
@@ -357,7 +360,7 @@
               <div class="text-lg text-(--color-zinc-700)">
                 تاچ پدش خراب بود، اجازه ی مرجوعی هم ندادن
               </div>
-              <div class="mt-2 flex gap-x-4 items-center border-b border-(--color-zinc-200) pb-3">
+              <div class="mt-2 flex gap-x-4 items-center border-b-1 border-(--color-zinc-200) pb-3">
                 <div class="text-xs text-(--color-zinc-600)">
                   10 بهمن 1402
                 </div>
@@ -382,13 +385,13 @@
                 <ul class="grid my-3 gap-5 grid-cols-2">
                   <li>
                     <input type="radio" id="selamm2" name="what2" value="selamm2" class="hidden peer" required="">
-                    <label for="selamm2" class="inline-flex p-2 border border-(--color-zinc-200) rounded-lg cursor-pointer peer-checked:border-(--color-green-400) hover:bg-(--color-zinc-100)">                           
+                    <label for="selamm2" class="inline-flex p-2 border-1 border-(--color-zinc-200) rounded-lg cursor-pointer peer-checked:border-(--color-green-400) hover:bg-(--color-zinc-100)">
                       <svg class="fill-(--color-green-500)" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="" viewBox="0 0 256 256"><path d="M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z"></path></svg>
                     </label>
                   </li>
                   <li>
                     <input type="radio" id="isbad2" name="what2" value="isbad2" class="hidden peer" required="">
-                    <label for="isbad2" class="inline-flex p-2 border border-(--color-zinc-200) rounded-lg cursor-pointer peer-checked:border-(--color-red-400) hover:bg-(--color-zinc-100)">                           
+                    <label for="isbad2" class="inline-flex p-2 border-1 border-(--color-zinc-200) rounded-lg cursor-pointer peer-checked:border-(--color-red-400) hover:bg-(--color-zinc-100)">
                       <svg class="fill-(--color-red-500)" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="" viewBox="0 0 256 256"><path d="M239.82,157l-12-96A24,24,0,0,0,204,40H32A16,16,0,0,0,16,56v88a16,16,0,0,0,16,16H75.06l37.78,75.58A8,8,0,0,0,120,240a40,40,0,0,0,40-40V184h56a24,24,0,0,0,23.82-27ZM72,144H32V56H72Zm150,21.29a7.88,7.88,0,0,1-6,2.71H152a8,8,0,0,0-8,8v24a24,24,0,0,1-19.29,23.54L88,150.11V56H204a8,8,0,0,1,7.94,7l12,96A7.87,7.87,0,0,1,222,165.29Z"></path></svg>
                     </label>
                   </li>
@@ -407,7 +410,7 @@
             <div class="mt-4 mb-2 text-sm text-(--color-zinc-700)">
               اگر سوالی دارید بپرسید
             </div>
-            <textarea placeholder="متن سوال" name="mailTicket" cols="30" rows="7" class="rounded-2xl rounded-tr-sm text-sm text-(--color-zinc-600) w-full bg-white border border-(--color-zinc-200) px-5 py-3.5 placeholder:text-(--color-zinc-400) placeholder:text-xs focus:outline-1 focus:outline-zinc-300"></textarea>
+            <textarea placeholder="متن سوال" name="mailTicket" cols="30" rows="7" class="rounded-2xl rounded-tr-sm text-sm text-(--color-zinc-600) w-full bg-white border-1 border-(--color-zinc-200) px-5 py-3.5 placeholder:text-(--color-zinc-400) placeholder:text-xs focus:outline-1 focus:outline-zinc-300"></textarea>
             <button class="hidden lg:block mx-auto cursor-pointer w-full px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 transition text-gray-100 rounded-lg">
               ارسال دیدگاه
             </button>
@@ -417,7 +420,7 @@
               <div class="text-lg text-(--color-zinc-700)">
                 خوب بود ارزش خرید داره
               </div>
-              <div class="mt-2 flex gap-x-4 items-center border-b border-(--color-zinc-200) pb-3">
+              <div class="mt-2 flex gap-x-4 items-center border-b-1 border-(--color-zinc-200) pb-3">
                 <div class="text-xs text-(--color-zinc-600)">
                   11 بهمن 1402
                 </div>
@@ -435,13 +438,13 @@
                 <ul class="grid my-3 gap-5 grid-cols-2">
                   <li>
                     <input type="radio" id="isgood" name="what" value="isgood" class="hidden peer" required="">
-                    <label for="isgood" class="inline-flex p-2 border border-(--color-zinc-200) rounded-lg cursor-pointer peer-checked:border-(--color-green-400) hover:bg-(--color-zinc-100)">                           
+                    <label for="isgood" class="inline-flex p-2 border-1 border-(--color-zinc-200) rounded-lg cursor-pointer peer-checked:border-(--color-green-400) hover:bg-(--color-zinc-100)">
                       <svg class="fill-(--color-green-500)" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="" viewBox="0 0 256 256"><path d="M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z"></path></svg>
                     </label>
                   </li>
                   <li>
                     <input type="radio" id="isbad" name="what" value="isbad" class="hidden peer" required="">
-                    <label for="isbad" class="inline-flex p-2 border border-(--color-zinc-200) rounded-lg cursor-pointer peer-checked:border-(--color-red-400) hover:bg-(--color-zinc-100)">                           
+                    <label for="isbad" class="inline-flex p-2 border-1 border-(--color-zinc-200) rounded-lg cursor-pointer peer-checked:border-(--color-red-400) hover:bg-(--color-zinc-100)">
                       <svg class="fill-(--color-red-500)" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="" viewBox="0 0 256 256"><path d="M239.82,157l-12-96A24,24,0,0,0,204,40H32A16,16,0,0,0,16,56v88a16,16,0,0,0,16,16H75.06l37.78,75.58A8,8,0,0,0,120,240a40,40,0,0,0,40-40V184h56a24,24,0,0,0,23.82-27ZM72,144H32V56H72Zm150,21.29a7.88,7.88,0,0,1-6,2.71H152a8,8,0,0,0-8,8v24a24,24,0,0,1-19.29,23.54L88,150.11V56H204a8,8,0,0,1,7.94,7l12,96A7.87,7.87,0,0,1,222,165.29Z"></path></svg>
                     </label>
                   </li>
@@ -499,7 +502,7 @@
                                 @endphp
                                 
                                 @forelse($colors as $color)
-                                    <div class="w-3 h-3 md:w-4 md:h-4 rounded-full border border-(--color-zinc-300) transition-transform duration-300 group-hover/product:scale-110 group-hover/product:border-(--color-primary-400)" style="background-color: {{ $color->value }}; {{ $color->value === '#ffffff' ? 'border: 1px solid #e5e7eb;' : '' }}" title="{{ $color->value }}"></div>
+                                    <div class="w-3 h-3 md:w-4 md:h-4 rounded-full border-1 border-(--color-zinc-300) transition-transform duration-300 group-hover/product:scale-110 group-hover/product:border-(--color-primary-400)" style="background-color: {{ $color->value }}; {{ $color->value === '#ffffff' ? 'border: 1px solid #e5e7eb;' : '' }}" title="{{ $color->value }}"></div>
                                 @empty
                                     <span class="text-[10px] text-(--color-zinc-400)">بدون رنگ</span>
                                 @endforelse
@@ -516,7 +519,7 @@
                         </div>
                         
                         <!-- قیمت -->
-                        <div class="border-t border-dashed border-(--color-zinc-200) pt-2 flex justify-end items-center group-hover/product:border-(--color-primary-200) transition-colors duration-300">
+                        <div class="border-t-1 border-dashed border-(--color-zinc-200) pt-2 flex justify-end items-center group-hover/product:border-(--color-primary-200) transition-colors duration-300">
                             @php
                                 $finalPrice = (int)$item->price;
                                 if(isset($item->discount) && $item->discount > 0) {

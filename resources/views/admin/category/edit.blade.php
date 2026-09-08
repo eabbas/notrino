@@ -16,7 +16,7 @@
         <!-- نوار بالای کارت -->
         <div class="h-2 bg-gradient-to-l from-orange-500 to-amber-500"></div>
         
-        <form action="{{ route('category.update') }}" method="post" class="p-8">
+        <form action="{{ route('category.update') }}" method="post" enctype="multipart/form-data" class="p-8">
             @csrf
             <input type="hidden" name="id" value="{{ $category->id }}">
 
@@ -69,7 +69,7 @@
                                     class="w-full px-4 pr-10 py-3.5 border-2 border-gray-200 rounded-2xl focus:ring-0 focus:border-orange-500 transition duration-200 bg-gray-50/50 hover:bg-white focus:bg-white appearance-none cursor-pointer">
                                 <option value="0" @if(!$category->parent) selected @endif class="py-2 font-medium">بدون والد (دسته اصلی)</option>
                                 @foreach($categories as $cat)
-                                    @if($cat->id != $category->id) {{-- جلوگیری از انتخاب خودش --}}
+                                    @if($cat->id != $category->id)
                                     <option value="{{ $cat->id }}" @if($cat->id == $category->parent_id) selected @endif class="py-2">
                                         {{ $cat->title }}
                                         @if($cat->parent)
@@ -83,6 +83,60 @@
                         <p class="text-xs text-gray-500 mt-1">در صورت اصلی بودن، گزینه "بدون والد" را انتخاب کنید</p>
                     </div>
                     @endif
+                </div>
+            </div>
+
+            <!-- بخش آپلود تصویر -->
+            <div class="mb-8">
+                <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2 border-r-4 border-orange-500 pr-4">
+                    <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    تصویر دسته‌بندی
+                </h2>
+                
+                <div class="space-y-4">
+                    
+                    
+                    
+
+                    <!-- بخش آپلود -->
+                    <div class="relative">
+                        <label for="image" class="block w-full cursor-pointer">
+                            <div class="w-full py-10 px-4 border-2 border-dashed border-gray-300 rounded-2xl hover:border-orange-500 transition-all duration-200 bg-gray-50/50 hover:bg-orange-50/30 text-center group">
+                                <input type="file" id="image" name="image" accept="image/*" class="hidden">
+                                <div class="flex flex-col items-center gap-2">
+                                    <svg class="w-14 h-14 text-gray-400 group-hover:text-orange-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                    <div>
+                                        <p class="text-gray-600 font-medium group-hover:text-orange-600 transition-colors">
+                                            برای آپلود تصویر جدید کلیک کنید
+                                        </p>
+                                        <p class="text-gray-400 text-sm mt-1">فرمت‌های مجاز: JPG, PNG, GIF, SVG • حداکثر حجم: ۲ مگابایت</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- پیش‌نمایش تصویر جدید -->
+                    <div id="imagePreviewContainer" class="hidden">
+                        <div class="flex items-center gap-4 p-4 bg-green-50 rounded-2xl border-2 border-green-300">
+                            <div class="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
+                                <img id="imagePreview" src="#" alt="پیش‌نمایش" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-green-700 font-medium">تصویر جدید انتخاب شد</p>
+                                <p id="fileName" class="text-green-600 text-sm"></p>
+                            </div>
+                            <button type="button" onclick="removeImage()" class="text-red-500 hover:text-red-700 transition-colors">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -113,15 +167,13 @@
                 </div>
             </div>
 
-         
-
             <!-- دکمه‌های فرم -->
             <div class="flex flex-col sm:flex-row gap-4 justify-between items-center pt-8 border-t-2 border-orange-100">
                 <div class="text-sm text-gray-500">
                     <span class="text-red-500">*</span> فیلدهای الزامی
                 </div>
                 <div class="flex gap-3">
-
+                   
                     <button type="submit" 
                             class="px-10 py-3.5 bg-gradient-to-l from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white rounded-2xl transition duration-200 shadow-lg shadow-orange-500/30 font-medium flex items-center gap-2 transform hover:scale-105">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -177,13 +229,60 @@
 
     // تغییر استایل هنگام انتخاب والد
     const parentSelect = document.getElementById('parent_id');
-    parentSelect.addEventListener('change', function() {
-        if (this.value !== '0') {
-            this.classList.add('border-orange-500', 'bg-orange-50');
-        } else {
-            this.classList.remove('border-orange-500', 'bg-orange-50');
+    if (parentSelect) {
+        parentSelect.addEventListener('change', function() {
+            if (this.value !== '0') {
+                this.classList.add('border-orange-500', 'bg-orange-50');
+            } else {
+                this.classList.remove('border-orange-500', 'bg-orange-50');
+            }
+        });
+
+        // تنظیم اولیه استایل برای والد
+        document.addEventListener('DOMContentLoaded', function() {
+            if (parentSelect.value !== '0') {
+                parentSelect.classList.add('border-orange-500', 'bg-orange-50');
+            }
+        });
+    }
+
+    // پیش‌نمایش تصویر
+    const imageInput = document.getElementById('image');
+    if (imageInput) {
+        imageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                // بررسی حجم فایل
+                if (file.size > 2 * 1024 * 1024) {
+                    alert('حجم فایل نباید بیشتر از ۲ مگابایت باشد!');
+                    this.value = '';
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const preview = document.getElementById('imagePreview');
+                    preview.src = event.target.result;
+                    
+                    const fileName = document.getElementById('fileName');
+                    fileName.textContent = file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)';
+                    
+                    document.getElementById('imagePreviewContainer').classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    // حذف تصویر انتخاب شده
+    function removeImage() {
+        const imageInput = document.getElementById('image');
+        if (imageInput) {
+            imageInput.value = '';
         }
-    });
+        document.getElementById('imagePreviewContainer').classList.add('hidden');
+        document.getElementById('imagePreview').src = '#';
+    }
 
     // اعتبارسنجی ساده سمت کلاینت
     document.querySelector('form').addEventListener('submit', function(e) {
@@ -193,7 +292,7 @@
             title.classList.add('border-red-500');
             title.focus();
             
-            // نمایش پیام خطا (اختیاری)
+            // نمایش پیام خطا
             const errorDiv = document.createElement('div');
             errorDiv.className = 'text-red-500 text-xs mt-1';
             errorDiv.innerText = 'عنوان دسته‌بندی نمی‌تواند خالی باشد';
@@ -212,14 +311,6 @@
         const errorMsg = this.closest('.space-y-2').querySelector('.text-red-500.text-xs');
         if (errorMsg) {
             errorMsg.remove();
-        }
-    });
-
-    // تنظیم اولیه استایل برای والد
-    document.addEventListener('DOMContentLoaded', function() {
-        const parentSelect = document.getElementById('parent_id');
-        if (parentSelect.value !== '0') {
-            parentSelect.classList.add('border-orange-500', 'bg-orange-50');
         }
     });
 </script>
@@ -327,6 +418,41 @@
         0%, 100% { transform: translateX(0); }
         25% { transform: translateX(-5px); }
         75% { transform: translateX(5px); }
+    }
+
+    /* استایل برای بخش آپلود تصویر */
+    .border-dashed {
+        transition: all 0.3s ease;
+    }
+
+    .border-dashed:hover {
+        border-color: #f97316;
+        background-color: rgba(249, 115, 22, 0.05);
+    }
+
+    /* استایل برای پیش‌نمایش */
+    #imagePreviewContainer {
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* استایل برای checkbox حذف تصویر */
+    input[type="checkbox"] {
+        cursor: pointer;
+    }
+
+    input[type="checkbox"]:checked {
+        accent-color: #ef4444;
     }
 </style>
 @endsection
