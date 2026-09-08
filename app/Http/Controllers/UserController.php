@@ -14,6 +14,7 @@ use Illuminate\Testing\Fluent\Concerns\Has;
 
 class UserController extends Controller
 {
+    
     public function create()
     {
         return view('client.signup');
@@ -219,7 +220,8 @@ class UserController extends Controller
         ]);
         return to_route('user.list');
     }
-     public function send_code(Request $request)
+    
+    public function send_code(Request $request)
     {
         $flag = false;
         $user = User::where('phoneNumber', $request->phoneNumber)->first();
@@ -243,6 +245,7 @@ class UserController extends Controller
         }
         return response()->json(["flag" => $flag, "user" => $user]);
     }
+
     public function removeActivationCode(Request $request)
     {
         $row = phone_code::where('phoneNumber', $request->phoneNumber)->first();
@@ -290,4 +293,5 @@ class UserController extends Controller
         }
         return response()->json($flag);
     }
+
 }
