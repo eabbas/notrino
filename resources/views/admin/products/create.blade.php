@@ -292,12 +292,12 @@
     });
 
     // مدیریت حذف ویژگی‌ها
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('remove-attribute') || e.target.closest('.remove-attribute')) {
-            const removeBtn = e.target.classList.contains('remove-attribute') ? e.target : e.target.closest('.remove-attribute');
-            removeBtn.closest('.attribute-group').remove();
-        }
-    });
+    // document.addEventListener('click', function(e) {
+    //     if (e.target.classList.contains('remove-attribute') || e.target.closest('.remove-attribute')) {
+    //         const removeBtn = e.target.classList.contains('remove-attribute') ? e.target : e.target.closest('.remove-attribute');
+    //         removeBtn.closest('.attribute-group').remove();
+    //     }
+    // });
 
     // مدیریت آپلود عکس‌ها
     const imageInput = document.getElementById('images');

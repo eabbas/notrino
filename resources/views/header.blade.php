@@ -627,7 +627,7 @@
           </div>
             <!-- logo -->
           <a href="{{ route('home') }}" class="relative">
-            <img src="{{ asset('storage/img/logo/Screenshot 2025-12-16 063243.png') }}"" alt="logo" class="w-35 md:w-50">
+            <img src="{{ asset('storage/img/logo/Screenshot 2025-12-16 063243.png') }}" alt="logo" class="w-35 md:w-50">
             <!-- icon -->
             <div class="absolute -bottom-5.5">
               <svg class="hidden md:flex" width="158" height="19" viewBox="0 0 158 19" fill="white" xmlns="http://www.w3.org/2000/svg">
