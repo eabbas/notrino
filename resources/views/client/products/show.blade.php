@@ -197,19 +197,25 @@
               <div class="text-(--color-red-500) text-xs">
                 تنها 1 عدد باقی مانده
               </div>
+              
+            </div>
+            {{-- @if ($cart && $cart->order_id == null &&  $cart->product_id == $product->id)
                 <div class="quantity-container mt-5 flex h-10 w-full items-center justify-between rounded-lg border-1 border-gray-100 px-2 py-1">
-                    <button onclick="plasss()" class="cursor-pointer">
+                    <button onclick="setCount(this, '+', {{ $product->id }})" class="cursor-pointer">
                         <svg class="fill-(--color-green-500) size-5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H134v82a6,6,0,0,1-12,0V134H40a6,6,0,0,1,0-12h82V40a6,6,0,0,1,12,0v82h82A6,6,0,0,1,222,128Z"></path></svg>
                     </button>
-                    <input id="numberInput" minlength="0" maxlength="10" value="1" disabled type="number" class="flex h-5 w-full grow select-none items-center justify-center bg-transparent text-center text-sm md:text-lg font-yekanBakhExtraBold text-(--color-zinc-600) outline-none">
-                    <button onclick="maineez()" class="cursor-pointer">
+                    <input id="numberInput" minlength="0" maxlength="10" type="number" min="1" value="{{ $cart->quantity ?? 1 }}" disabled class="flex h-5 w-full grow select-none items-center justify-center bg-transparent text-center text-sm md:text-lg font-yekanBakhExtraBold text-(--color-zinc-600) outline-none">
+                    <button onclick="setCount(this, '-', {{ $product->id }})" class="cursor-pointer">
                         <svg class="fill-(--color-red-500) size-5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H40a6,6,0,0,1,0-12H216A6,6,0,0,1,222,128Z"></path></svg>
                     </button>
                 </div>
-            </div>
-            <button class="hidden lg:block mx-auto cursor-pointer w-full px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 transition text-(--color-zinc-100) rounded-lg">
-              افزودن به سبد خرید
-            </button>
+            @else --}}
+                  <div id="productBuyBox" class="w-full">
+    <button onclick='addToCart(this , "{{ $product->id }}")' class="hidden lg:block mx-auto cursor-pointer w-full px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 transition text-white rounded-lg">
+        افزودن به سبد خرید
+    </button>
+</div>
+            {{-- @endif --}}
             <!-- <button class="hidden lg:block mx-auto w-full px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-500) to-(--color-primary-400) opacity-80 cursor-not-allowed transition text-(--color-zinc-100) rounded-lg">
               محصول موجود نیست!
             </button> -->
@@ -220,9 +226,10 @@
           </div>
           <!-- fixed div buy mobile -->
           <div class="fixed flex bottom-0 right-0 lg:hidden bg-white border-t-1 border-t-zinc-300 w-full px-5 py-3 gap-x-2 z-1000">
-            <button class="mx-auto 5 w-1/2 px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 transition text-(--color-zinc-100) rounded-lg">
+            <button class="mx-auto 5 w-1/2 px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 transition text-white rounded-lg">
               افزودن به سبد خرید
             </button>
+            
             <!-- <button class="mx-auto 5 w-1/2 px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-500) to-(--color-primary-400) opacity-80 cursor-not-allowed transition text-(--color-zinc-100) rounded-lg">
               محصول موجود نیست!
             </button> -->
@@ -551,6 +558,314 @@
 </section>
 @endif
     </div>
+     <div id="authenticationDiv"
+        class="z-999 w-full h-dvh fixed top-0 left-0 flex justify-center items-center invisible opacity-0 max-md:px-5 transition-all duration-300 z-5">
+        <div class="size-full bg-black/50 absolute backdrop-blur-[5px]" onclick="closeLoginForm()"></div>
+        <div class="max-h-120 overflow-auto relative p-4 sm:p-10 w-full md:w-3/4 xl:w-1/2 bg-[#1B1C1E] rounded-2xl"
+            style="scrollbar-width: none">
+            <button
+                class="absolute z-1 top-1 left-1 size-6 flex flex-col justify-center items-center cursor-pointer bg-white rounded-full "
+                onclick="closeLoginForm()">
+                <span class=" w-2/3 h-[2.5px] rounded-full bg-slate-500 rotate-45
+              translate-y-1/2"></span>
+                <span class="w-2/3 h-[2.5px] rounded-full bg-slate-500 -rotate-45 -translate-y-1/2"></span>
+            </button>
+            <h3 class="text-center text-sm font-bold text-gray-400">ابتدا وارد شوید</h3>
+            <form action="{{ route('user.checkUserPopup') }}" class="flex flex-col items-center my-6 gap-3 w-full"
+                method="post" id="loginForm">
+                @csrf
+                <input type="number"
+                    class="placeholder-gray-400 focus:border-1 focus:border-[#d5a743] p-2 md:p-[9px] mb-1 rounded-[7px] border-1 border-[#DBDFE9] focus:outline-none w-full"
+                    name="phoneNumber" id="phoneNumber" placeholder="شماره تلفن" required>
+                <div class="w-full" id="login">
+                    <div class="w-full flex flex-row items-center gap-3">
+                        <input type="number"
+                            class="w-8/12 p-2 placeholder-gray-400 focus:border-[#d5a743] md:p-[9px] rounded-[7px] border-1 border-[#DBDFE9] outline-none"
+                            name="code" placeholder="کد" required id="code">
+                        <button type="button"
+                            class="w-4/12 text-xs lg:text-base h-full p-2 md:p-[9px] rounded-[7px] bg-[#d5a743] text-white cursor-pointer"
+                            onclick="sendCode()" id="countDown">ارسال کد
+                        </button>
+                    </div>
+                </div>
+                <div class="w-full flex flex-row items-center justify-between" id="loginWay">
+                    <a href="{{ route('user.forgetPassword') }}"
+                        class="text-[#d5a743] inline-block max-md:my-1 my-4 max-md:text-sm">فراموشی رمز عبور</a>
+                    <span class="text-[#d5a743] inline-block max-md:my-1 my-4 max-md:text-sm cursor-pointer"
+                        onclick="loginWithPassKey(this)">ورود با رمز عبور</span>
+                </div>
+                <button 
+                    class="focus:bg-[#d5a743] hover:bg-[#d5a743] transition-all duration-400 text-center w-full bg-[#d5a743] p-2 md:p-3 rounded-[10px] text-white cursor-pointer">
+                    ورود
+                </button>
+                <div class="w-full text-center">
+                    <span class="text-[#4B5675] mt-1 md:mt-5 max-md:text-sm">
+                        هنوز عضو نشدی؟
+                        <a href="{{ route('user.signup') }}" class="text-[#d5a743] mr-2">ثبت نام!</a>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+<script>
+    let flag = "{{ Auth::check() }}";
+    let userId = "{{ Auth::id() }}";
+    let product_id = "{{ $product->id ?? '' }}";
+    let link = "{{ url('/') }}/";
+
+
+    function renderCartHeader() {
+        let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+        let cartCountHeader = document.getElementById('cartCountHeader');
+        let cartCountHeaderBox = document.getElementById('cartCountHeaderBox');
+        let cartItemsBox = document.getElementById('cartItemsBox');
+        let cartTotalPrice = document.getElementById('cartTotalPrice');
+        let cartEmpty = document.getElementById('cartEmpty');
+        let cartFooter = document.getElementById('cartFooter');
+
+        if (!cartItemsBox) return;
+
+        let totalCount = 0;
+        let totalPrice = 0;
+        for (let i = 0; i < cart.length; i++) {
+            totalCount += cart[i].quantity;
+            totalPrice += cart[i].price * cart[i].quantity;
+        }
+
+        if (totalCount > 0) {
+            cartCountHeader.classList.remove('hidden');
+            cartCountHeader.classList.add('flex');
+            cartCountHeader.querySelector('span').innerText = totalCount;
+        } else {
+            cartCountHeader.classList.add('hidden');
+            cartCountHeader.classList.remove('flex');
+        }
+
+        cartCountHeaderBox.innerText = totalCount;
+
+        if (cart.length === 0) {
+            cartItemsBox.innerHTML = "";
+            cartEmpty.classList.remove('hidden');
+            cartEmpty.classList.add('flex');
+            cartFooter.classList.add('hidden');
+            return;
+        }
+
+        cartEmpty.classList.add('hidden');
+        cartEmpty.classList.remove('flex');
+        cartFooter.classList.remove('hidden');
+
+        let html = "";
+        for (let i = 0; i < cart.length; i++) {
+            let item = cart[i];
+            let img = item.image ? item.image : "{{ asset('storage/img/logo/Screenshot 2025-12-16 063243.png') }}";
+
+            html += `
+                <li class="border-b border-zinc-100 flex items-center p-2 gap-3">
+                    <a href="${link}products/show/${item.id}" class="shrink-0">
+                        <img src="${img}" alt="${item.title}" class="w-16 h-16 object-cover rounded-lg">
+                    </a>
+                    <div class="flex-1 min-w-0 flex flex-col gap-2">
+                        <a href="${link}products/show/${item.id}" class="text-sm text-zinc-700 truncate">${item.title}</a>
+                        <div class="flex items-center justify-between gap-2">
+                            <div class="text-xs text-zinc-600">${Number(item.price).toLocaleString('fa-IR')} تومان</div>
+                            <div class="flex h-8 items-center rounded-lg border border-gray-200 px-1">
+                                <button type="button" onclick="changeCartCount(${item.id}, '+')" class="p-1 cursor-pointer">
+                                    <svg class="fill-green-500" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H134v82a6,6,0,0,1-12,0V134H40a6,6,0,0,1,0-12h82V40a6,6,0,0,1,12,0v82h82A6,6,0,0,1,222,128Z"></path></svg>
+                                </button>
+                                <span class="text-sm text-zinc-700 w-6 text-center">${item.quantity}</span>
+                                <button type="button" onclick="changeCartCount(${item.id}, '-')" class="p-1 cursor-pointer">
+                                    <svg class="fill-red-500" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H40a6,6,0,0,1,0-12H216A6,6,0,0,1,222,128Z"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            `;
+        }
+        cartItemsBox.innerHTML = html;
+        cartTotalPrice.innerText = Number(totalPrice).toLocaleString('fa-IR');
+    }
+
+    function changeCartCount(proId, state) {
+        let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+        let foundIndex = -1;
+        for (let i = 0; i < cart.length; i++) {
+            if (cart[i].id == proId) { foundIndex = i; break; }
+        }
+        if (foundIndex === -1) return;
+
+        if (state === '+') cart[foundIndex].quantity++;
+        if (state === '-') cart[foundIndex].quantity--;
+
+        if (cart[foundIndex].quantity <= 0) {
+            cart.splice(foundIndex, 1);
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        renderCartHeader();
+
+        if (product_id == proId) {
+            updateProductButton();
+        }
+    }
+
+    function updateProductButton() {
+        let box = document.getElementById('productBuyBox');
+        if (!box) return;
+
+        let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+        let item = null;
+        for (let i = 0; i < cart.length; i++) {
+            if (cart[i].id == product_id) { item = cart[i]; break; }
+        }
+
+        if (!item || item.quantity <= 0) {
+            box.innerHTML = `
+                <button onclick='addToCart(this , "${product_id}")' class="hidden lg:block mx-auto cursor-pointer w-full px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 transition text-white rounded-lg">
+                    افزودن به سبد خرید
+                </button>
+            `;
+            return;
+        }
+
+        box.innerHTML = `
+            <div class="w-full h-12 flex items-center justify-center gap-2 bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) font-bold text-[11px] lg:text-sm rounded-xl">
+                <div onclick="setCount(this, '+', ${product_id})">
+                    <svg class="w-6 h-6 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                </div>
+                <input type="number" disabled value="${item.quantity}" class="w-[50px] md:w-full text-white text-center leading-none bg-transparent border-0 p-0 outline-none opacity-100">
+                <div onclick="setCount(this, '-', ${product_id})">
+                    <svg class="w-6 h-6 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                </div>
+            </div>
+        `;
+    }
+
+ 
+
+    function addToCart(el, proId) {
+        el.removeAttribute('onclick')
+        let cart = JSON.parse(localStorage.getItem("cart") ?? "[]")
+        let existingCart = cart.find(function(item){ return item.id == proId })
+        let inputValue
+
+        if (existingCart) {
+            existingCart.quantity++
+            inputValue = existingCart.quantity
+        } else {
+            cart.push({
+                id: proId,
+                quantity: 1,
+                price: {{ str_replace(',', '', $product->price) }},
+                title: "{{ $product->title }}",
+                image: "{{ isset($mainImage) ? asset('storage/'.$mainImage->path) : asset('img/products/default.jpg') }}"
+            })
+            inputValue = 1
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart))
+
+        el.parentElement.innerHTML = `
+        <div class="w-full h-12 flex items-center justify-center gap-2 bg-brand text-[#04140a] bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) font-bold text-[11px] lg:text-sm rounded-xl hover:bg-[#00e67b] hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer">
+            <div onclick="setCount(this, '+', ${proId})">
+                <svg id="increase" class="w-6 h-6 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"   stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </div>
+
+            <input id="value" type="number" disabled min="1" value="${inputValue}" class="w-[50px] md:w-full text-white text-center leading-none bg-transparent border-0 p-0 outline-none opacity-100">
+
+            <div onclick="setCount(this, '-', ${proId})">
+                <svg id="decreas" class="w-6 h-6 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"   stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </div>
+        </div>`
+
+   
+        renderCartHeader();
+    }
+
+
+    function setCount(el, state, proId) {
+        let button = el.parentElement.parentElement
+        let input = button.querySelector('input')
+
+        el.innerHTML = `
+            <div class="w-5 h-5 border-2 border-white border-t-(--primary-color) rounded-full animate-spin"></div>
+        `
+
+        let cartString = localStorage.getItem("cart") ?? "[]"
+        let cart = JSON.parse(cartString)
+        let item = cart.find(function(item){
+            return item.id == proId
+        })
+        if (!item) return
+
+        if (state == "+") {
+            item.quantity++
+            input.value = item.quantity
+        }
+        if (state == "-") {
+            item.quantity--
+            input.value = item.quantity
+        }
+
+        if (item.quantity == 0) {
+            cart = cart.filter(function(item) {
+                return item.id !== proId
+            })
+            localStorage.setItem("cart", JSON.stringify(cart))
+
+            el.parentElement.parentElement.innerHTML = `
+            <button type="button" onclick="addToCart(this , ${proId})" class=" w-full h-12 flex items-center justify-center gap-2 bg-brand text-white bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 font-bold text-[11px] lg:text-sm rounded-xl hover:bg-[#00e67b] hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer">
+                افزودن به سبد خرید
+            </button>
+            `
+
+            renderCartHeader();
+
+            return
+        }
+        localStorage.setItem("cart", JSON.stringify(cart))
+
+        if (state == "+") {
+            el.innerHTML = `
+                <svg id="increase" class="w-6 h-6 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white"  stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            `
+        } else {
+            el.innerHTML = `
+                <svg id="decreas" class="w-6 h-6 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"   stroke="white"  stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            `
+        }
+
+        renderCartHeader();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        renderCartHeader();
+        updateProductButton();
+    });
+
+</script>
 @endsection
 
 

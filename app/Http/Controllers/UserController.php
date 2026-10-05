@@ -293,5 +293,32 @@ class UserController extends Controller
         }
         return response()->json($flag);
     }
+    public function checkUserPopup(Request $request)
+    {
+        $user = User::where('phoneNumber', $request['phoneNumber'])->first();
+        if (isset($request['password'])) {
+            if ($user) {
+                if (Hash::check($request['password'], $user['password'])) {
+                    Auth::login($user);
+                    return redirect()->back()->with('success', "$user->name $user->family عزیز خوش آمدید.");
+                } else {
+                    return redirect()->back()->with('failure', "رمز عبور وارد شده اشتباه است.");
+                }
+            } else {
+                return redirect()->back()->with('failure', "شماره مورد نظر یافت نشد ، ابتدا ثبت نام کنید.");
+            }
+        }
+        if (isset($request['code'])) {
+            $user = User::where('phoneNumber', $request['phoneNumber'])->first();
+            Auth::login($user);
+            return redirect()->back()->with('success', "$user->name $user->family عزیز خوش آمدید.");
+        }
+    }
+    public function checkUserWithCode(Request $request)
+    {
+        $user = User::where('phoneNumber', $request['phoneNumber'])->first();
+        Auth::login($user);
+        return to_route('home')->with('success', "$user->name $user->family عزیز خوش آمدید.");
+    }
 
 }

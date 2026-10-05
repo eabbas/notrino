@@ -44,6 +44,9 @@ Route::group([
 ], function () {
     Route::post("/store", "store")->name('store')->withoutMiddleware([UserMiddleware::class]);
     Route::post("/check", "check")->name('check')->withoutMiddleware([UserMiddleware::class]);
+    Route::post('/checkUserPopup', 'checkUserPopup')->name('checkUserPopup')->withoutMiddleware([UserMiddleware::class]);
+    Route::get('/forgetPassword', 'forget_password')->name('forgetPassword')->withoutMiddleware([UserMiddleware::class]);
+    Route::get('/signup', 'signup')->name('signup');
     Route::get("/logout", "logout")->name('logout');
     Route::get("/", "index")->name('list');
     Route::get("/panel/{user}", "panel")->name('panel');

@@ -781,147 +781,42 @@
             </div>
             </div>
             <!-- cart -->
-            <div class="labal_2 relative p-2 border-1 border-(--color-zinc-200) rounded-xl hover:shadow-xl hover:bg-(--color-primary-500)">
-            <a class="relative">
-              <svg width="22px" height="22px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <g id="Iconly/Light/Bag" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-                  <g class="stroke-gray-800" id="Bag" transform="translate(2.500000, 1.500000)" stroke="#200E32" stroke-width="1.5">
-                    <path d="M14.01373,20.0000001 L5.66590392,20.0000001 C2.59954235,20.0000001 0.247139589,18.8924486 0.915331812,14.4347827 L1.69336385,8.39359272 C2.10526317,6.16933642 3.52402748,5.31807783 4.76887874,5.31807783 L14.9473685,5.31807783 C16.2105264,5.31807783 17.5469108,6.23340964 18.0228834,8.39359272 L18.8009154,14.4347827 C19.3684211,18.3890161 17.0800916,20.0000001 14.01373,20.0000001 Z" id="Path_33955"></path>
-                    <path d="M14.1510298,5.09839819 C14.1510298,2.71232585 12.216736,0.7779932 9.83066366,0.7779932 L9.83066366,0.7779932 C8.68166274,0.773163349 7.57805185,1.22619323 6.76386233,2.03694736 C5.9496728,2.84770148 5.49199087,3.94938696 5.49199087,5.09839819 L5.49199087,5.09839819" id="Path_33956"></path>
-                    <line x1="12.7963387" y1="9.60183071" x2="12.7505721" y2="9.60183071" id="Line_192"></line>
-                    <line x1="6.96567509" y1="9.60183071" x2="6.9199085" y2="9.60183071" id="Line_193"></line>
-                  </g>
-                </g>
-              </svg>
-            </a>
-            <div class="labal_2-2 absolute left-0 shadow-2xl bg-white rounded-xl w-70 md:w-100 p-2 h-95 hidden md:flex flex-col items-center invisible">
-              <!-- Head -->
-              <div class="w-full border-b-1 border-(--color-zinc-200)">
-                <div class="text-sm w-full h-10 p-3 flex items-center"> 2 کالا</div>
-              </div>
-              <!-- Items -->
-              <div class="w-full bg-white h-60 overflow-y-auto
-              [&::-webkit-scrollbar]:w-1.5
-              [&::-webkit-scrollbar-thumb]:bg-(--color-primary-500)
-              [&::-webkit-scrollbar-thumb]:rounded-full">
-              <ul class="">
-                <li class=" border-b-1 border-(--color-zinc-100) h-45 flex items-center justify-center">
-                  <div class="flex justify-between items-center p-2 h-30 gap-3">
-                    <!-- Product -->
-                    <div class="">
-                      <a href="">
-                        <img class="w-30 rounded-lg" src="img/photo_1_2025-11-24_23-49-49.jpg" alt="Items">
-                      </a>
-                    </div>
-                    <div class="flex flex-col justify-between h-full">
-                      <!-- Title -->
-                      <a href="">
-                        ایرپاد mossco
-                      </a>
-                      <!-- Attribute -->
-                      <div class="flex items-center gap-5">
-                        <!-- Price -->
-                        <div class="">
-                          <span class="text-sm">1.800.000</span>
-                          <span class="text-sm">تومان</span>
-                        </div>
-                        <!-- Quantity -->
-                        <div class=" flex h-10 max-w-28 items-center justify-between rounded-lg border-1 border-gray-100 px-2 py-1">
-                          <button type="button" data-action="increment">
-                            <svg class="fill-green-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H134v82a6,6,0,0,1-12,0V134H40a6,6,0,0,1,0-12h82V40a6,6,0,0,1,12,0v82h82A6,6,0,0,1,222,128Z"></path></svg>
-                          </button>
-                          <input value="1" disabled type="number" class="flex h-5 w-full grow select-none items-center justify-center bg-transparent text-center text-sm text-zinc-700 outline-none">
-                          <button type="button" data-action="decrement">
-                            <svg class="fill-red-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H40a6,6,0,0,1,0-12H216A6,6,0,0,1,222,128Z"></path></svg>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class=" border-b-1 border-(--color-zinc-100) h-45 flex items-center justify-center">
-                  <div class="flex justify-between items-center p-2 h-30 gap-3">
-                    <!-- Product -->
-                    <div class="">
-                      <a href="">
-                        <img class="w-30 rounded-lg" src="img/photo_1_2025-11-24_23-49-49.jpg" alt="Items">
-                      </a>
-                    </div>
-                    <div class="flex flex-col justify-between h-full">
-                      <!-- Title -->
-                      <a href="">
-                        ایرپاد mossco
-                      </a>
-                      <!-- Attribute -->
-                      <div class="flex items-center gap-5">
-                        <!-- Price -->
-                        <div class="">
-                          <span class="text-sm">1.800.000</span>
-                          <span class="text-sm">تومان</span>
-                        </div>
-                        <!-- Quantity -->
-                        <div class=" flex h-10 max-w-28 items-center justify-between rounded-lg border-1 border-gray-100 px-2 py-1">
-                          <button type="button" data-action="increment">
-                            <svg class="fill-green-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H134v82a6,6,0,0,1-12,0V134H40a6,6,0,0,1,0-12h82V40a6,6,0,0,1,12,0v82h82A6,6,0,0,1,222,128Z"></path></svg>
-                          </button>
-                          <input value="1" disabled type="number" class="flex h-5 w-full grow select-none items-center justify-center bg-transparent text-center text-sm text-zinc-700 outline-none">
-                          <button type="button" data-action="decrement">
-                            <svg class="fill-red-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H40a6,6,0,0,1,0-12H216A6,6,0,0,1,222,128Z"></path></svg>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class=" border-b-1 border-(--color-zinc-100) h-45 flex items-center justify-center">
-                  <div class="flex justify-between items-center p-2 h-30 gap-3">
-                    <!-- Product -->
-                    <div class="">
-                      <a href="">
-                        <img class="w-30 rounded-lg" src="img/photo_1_2025-11-24_23-49-49.jpg" alt="Items">
-                      </a>
-                    </div>
-                    <div class="flex flex-col justify-between h-full">
-                      <!-- Title -->
-                      <a href="">
-                        ایرپاد mossco
-                      </a>
-                      <!-- Attribute -->
-                      <div class="flex items-center gap-5">
-                        <!-- Price -->
-                        <div class="">
-                          <span class="text-sm">1.800.000</span>
-                          <span class="text-sm">تومان</span>
-                        </div>
-                        <!-- Quantity -->
-                        <div class=" flex h-10 max-w-28 items-center justify-between rounded-lg border-1 border-gray-100 px-2 py-1">
-                          <button type="button" data-action="increment">
-                            <svg class="fill-green-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H134v82a6,6,0,0,1-12,0V134H40a6,6,0,0,1,0-12h82V40a6,6,0,0,1,12,0v82h82A6,6,0,0,1,222,128Z"></path></svg>
-                          </button>
-                          <input value="1" disabled type="number" class="flex h-5 w-full grow select-none items-center justify-center bg-transparent text-center text-sm text-zinc-700 outline-none">
-                          <button type="button" data-action="decrement">
-                            <svg class="fill-red-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H40a6,6,0,0,1,0-12H216A6,6,0,0,1,222,128Z"></path></svg>
-                          </button>
-                        </div>
-                      </div>
-                       </div>
-                      </div>
-                    </li> 
-                  </ul>
-                </div>
-                <!-- Down Price -->
-                <div class="flex items-center justify-between text-center w-[90%] h-23">
-                  <div class="">
-                    <div class="">مبلغ قابل پرداخت</div>
-                    <div class="">87.000.000تومان</div>
-                  </div>
-                  <a href="###" class="bg-(--color-primary-500) px-4 p-3 rounded-xl">
-                    <button class="text-white">ثبت سفارش</button>
-                  </a>
-                </div>
-              </div>
+      
+           <!-- cart -->
+<div class="labal_2 relative p-2 border-1 border-(--color-zinc-200) rounded-xl hover:shadow-xl hover:bg-(--color-primary-500) group/cart">
+    <a class="relative cursor-pointer">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="stroke-gray-800 group-hover/cart:stroke-white transition-colors duration-300">
+            <path d="M14.01373,20.0000001 L5.66590392,20.0000001 C2.59954235,20.0000001 0.247139589,18.8924486 0.915331812,14.4347827 L1.69336385,8.39359272 C2.10526317,6.16933642 3.52402748,5.31807783 4.76887874,5.31807783 L14.9473685,5.31807783 C16.2105264,5.31807783 17.5469108,6.23340964 18.0228834,8.39359272 L18.8009154,14.4347827 C19.3684211,18.3890161 17.0800916,20.0000001 14.01373,20.0000001 Z"></path>
+            <path d="M14.1510298,5.09839819 C14.1510298,2.71232585 12.216736,0.7779932 9.83066366,0.7779932 C8.68166274,0.773163349 7.57805185,1.22619323 6.76386233,2.03694736 C5.9496728,2.84770148 5.49199087,3.94938696 5.49199087,5.09839819"></path>
+        </svg>
+
+        <span id="cartCountHeader" class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] rounded-full size-5 items-center justify-center hidden">
+            <span>0</span>
+        </span>
+    </a>
+
+    <div class="absolute left-0 mt-2 shadow-2xl bg-white rounded-xl w-80 p-2 hidden md:flex flex-col opacity-0 invisible group-hover/cart:opacity-100 group-hover/cart:visible transition-all duration-300 z-50">
+
+        <div class="w-full border-b border-zinc-200 p-3 text-sm">
+            <span id="cartCountHeaderBox">0</span> کالا
+        </div>
+
+        <ul id="cartItemsBox" class="w-full h-60 overflow-y-auto"></ul>
+
+        <div id="cartFooter" class="flex items-center justify-between p-3 border-t border-zinc-200">
+            <div class="text-sm">
+                مبلغ: <span id="cartTotalPrice">0</span> تومان
             </div>
-          </div>
+            <a href="#" class="bg-(--color-primary-500) text-white text-sm px-4 py-2 rounded-xl">ثبت سفارش</a>
+        </div>
+
+        <div id="cartEmpty" class="hidden items-center justify-center py-8 text-sm text-zinc-400">
+            سبد خرید خالی است
+        </div>
+    </div>
+</div>
+<!-- پایان cart -->
+<!-- پایان cart -->
         </section>
         <!-- dawn -->
         <section class="relative z-45 max-w-[1700px] h-20 px-20 bg-(--color-zinc-100) hidden md:flex justify-between items-center">
@@ -991,5 +886,6 @@
         </section>
     </header>
   </div>
+
 </body>
 </html>

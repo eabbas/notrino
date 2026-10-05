@@ -14,6 +14,8 @@ use App\Models\setting;
 use App\Models\brands;
 use App\Models\product_category;
 use Illuminate\Support\Facades\Storage;
+use App\Models\carts;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -175,7 +177,19 @@ class ProductController extends Controller
             $footer['column_six'] = footer::where('column_id', '6')->get();
             $footer['column_six_title'] = footer::select('column_title')->where('column_id', '6')->first();
         }
-
+        $cartCount = 0;
+        $currentUser = null;
+        $cart = null;
+        if (Auth::check()) {
+            $currentUser = Auth::user();
+            $cart = carts::where('product_id', $product->id)->where('user_id', Auth::id())->first();
+            foreach ($currentUser->carts as $cart) {
+                $cartCount += $cart->quantity;
+                if ($cart->order_id != null) {
+                    $cartCount = 0;
+                }
+            }
+        }
         return view('client.products.show', [
             'product'=>$product,
             'medias'=>$medias,
@@ -190,6 +204,8 @@ class ProductController extends Controller
             'footerDescription' => isset($footerDescription) ?  $footerDescription : null,
             'categories' => isset($categories) ? $categories : null,
             'relatedProducts' => isset($relatedProducts) ? $relatedProducts : null,
+            'cartCount' => $cartCount,
+            'cart' => $cart,
         ]);
     }
 
