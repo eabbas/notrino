@@ -783,8 +783,10 @@
             <!-- cart -->
       
            <!-- cart -->
+<!-- cart -->
 <div class="labal_2 relative p-2 border-1 border-(--color-zinc-200) rounded-xl hover:shadow-xl hover:bg-(--color-primary-500) group/cart">
-    <a class="relative cursor-pointer">
+    <a class="relative cursor-pointer" onclick="toggleCartBox(event)">
+        <!-- آیکون سبد -->
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="stroke-gray-800 group-hover/cart:stroke-white transition-colors duration-300">
             <path d="M14.01373,20.0000001 L5.66590392,20.0000001 C2.59954235,20.0000001 0.247139589,18.8924486 0.915331812,14.4347827 L1.69336385,8.39359272 C2.10526317,6.16933642 3.52402748,5.31807783 4.76887874,5.31807783 L14.9473685,5.31807783 C16.2105264,5.31807783 17.5469108,6.23340964 18.0228834,8.39359272 L18.8009154,14.4347827 C19.3684211,18.3890161 17.0800916,20.0000001 14.01373,20.0000001 Z"></path>
             <path d="M14.1510298,5.09839819 C14.1510298,2.71232585 12.216736,0.7779932 9.83066366,0.7779932 C8.68166274,0.773163349 7.57805185,1.22619323 6.76386233,2.03694736 C5.9496728,2.84770148 5.49199087,3.94938696 5.49199087,5.09839819"></path>
@@ -795,7 +797,8 @@
         </span>
     </a>
 
-    <div class="absolute left-0 mt-2 shadow-2xl bg-white rounded-xl w-80 p-2 hidden md:flex flex-col opacity-0 invisible group-hover/cart:opacity-100 group-hover/cart:visible transition-all duration-300 z-50">
+    <!-- باکس بازشونده -->
+    <div id="cartBox" class="absolute left-0 mt-2 shadow-2xl bg-white rounded-xl w-80 p-2 hidden md:flex flex-col opacity-0 invisible group-hover/cart:opacity-100 group-hover/cart:visible transition-all duration-300 z-50">
 
         <div class="w-full border-b border-zinc-200 p-3 text-sm">
             <span id="cartCountHeaderBox">0</span> کالا
