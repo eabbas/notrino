@@ -688,20 +688,23 @@
         cartTotalPrice.innerText = Number(totalPrice).toLocaleString('fa-IR');
     }
     function toggleCartBox(event) {
+    console.log('toggleCartBox called ✅');
     if (event) event.preventDefault();
 
     let cartBox = document.getElementById('cartBox');
-    if (!cartBox) return;
+    console.log('cartBox:', cartBox);
 
-    // اگه موبایل بود (لمسی)، با کلیک باز/بسته کن
-    if (window.innerWidth < 768) {
-        if (cartBox.classList.contains('opacity-0')) {
-            cartBox.classList.remove('opacity-0', 'invisible');
-            cartBox.classList.add('opacity-100', 'visible');
-        } else {
-            cartBox.classList.add('opacity-0', 'invisible');
-            cartBox.classList.remove('opacity-100', 'visible');
-        }
+    if (!cartBox) {
+        console.log('❌ cartBox پیدا نشد');
+        return;
+    }
+
+    if (cartBox.classList.contains('invisible') || cartBox.classList.contains('opacity-0')) {
+        cartBox.classList.remove('invisible', 'opacity-0');
+        cartBox.classList.add('opacity-100');
+    } else {
+        cartBox.classList.add('invisible', 'opacity-0');
+        cartBox.classList.remove('opacity-100');
     }
 }
     function changeCartCount(proId, state) {
