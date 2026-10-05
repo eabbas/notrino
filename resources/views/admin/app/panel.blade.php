@@ -388,7 +388,7 @@
                 </div>
 
                 <!-- لینک‌های پروفایل دسکتاپ -->
-                @if (!Auth::user()->email)
+                @if (!isset(Auth::user()->email))
                 <div class="flex flex-row items-center gap-2.5 py-3 px-2 hover:bg-gray-800 rounded-lg transition-all duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 512 512" fill="white">
                         <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 289c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L288 321.9V168c0-13.3-10.7-24-24-24s-24 10.7-24 24V321.9l-49-49z"/>
@@ -409,8 +409,8 @@
                 </div>
 
                 {{-- <div class="w-full h-px bg-gray-700 my-3"></div> --}}
-
-                @if (Auth::user()->role[0]->title == 'ادمین')
+                
+                @if (Auth::check() && Auth::user()->role[0]->title == 'ادمین')
                     <!-- کاربران -->
                     <div class="desktop-menu-item mb-2">
                         <div class="flex flex-row justify-between items-center py-2 mb-2 px-2 rounded-lg cursor-pointer transition-all duration-200 {{ Route::is('user.list', 'user.create_user') ? 'bg-gray-700' : 'hover:bg-gray-800' }}" onclick="toggleSubmenuDesktop(this)">
@@ -605,7 +605,7 @@
                 <div class="w-6/12 flex flex-row-reverse items-center">
                     <div class="relative hover_profile">
                         <div class="cursor-pointer">
-                            @if (!Auth::user()->main_image)
+                            @if (!isset(Auth::user()->main_image))
                                 <img src="{{ asset('assets/img/user.png') }}" alt="user__avatar"
                                     class="size-10 rounded-xl">
                             @else
@@ -617,7 +617,7 @@
                             <div class="w-[250px] rounded-xl  py-4 bg-white shadow__all__prof">
                                 <div class="text-center px-2">
                                     <span class="font-bold">
-                                        {{ Auth::user()->name }} {{ Auth::user()?->family }}
+                                        {{ Auth::user()?->name }} {{ Auth::user()?->family }}
                                     </span>
                                 </div>
                                 <div class="w-full h-px bg-gray-300 mt-4 "></div>
@@ -627,7 +627,7 @@
                                         <a href="{{ route('user.profile', [Auth::user()]) }}"
                                             class="block w-full p-2">پروفایل من</a>
                                     </li>
-                                    @if (!Auth::user()->email)
+                                    @if (!isset(Auth::user()->email))
                                         <li
                                             class="hover:text-[#1B84FF] hover:bg-[#F1F1F4]  mt-1 w-11/12 ml-auto mr-auto rounded-lg">
                                             <a href="{{ route('user.compelete_form') }}"
@@ -669,7 +669,7 @@
                     <span class="w-full h-0.5 bg-black transition-all duration-300"></span>
                     <span class="w-full h-0.5 bg-black transition-all duration-300"></span>
                 </div>
-                @if (!Auth::user()->main_image)
+                @if (!isset(Auth::user()->main_image))
                     <img src="{{ asset('assets/img/user.png') }}" alt="user__avatar" class="size-16 rounded-xl">
                 @else
                     <img src="{{ asset('storage/' . Auth::user()->main_image) }}" alt="user__picture"
@@ -682,7 +682,7 @@
                     <!-- پروفایل در منوی موبایل -->
                     <div class="flex flex-col items-center gap-3 pb-4 border-b border-gray-700 mb-4">
                         <div>
-                            @if (!Auth::user()->main_image)
+                            @if (!isset(Auth::user()->main_image))
                                 <img src="{{ asset('assets/img/user.png') }}" alt="user__avatar"
                                     class="size-20 rounded-xl border-2 border-gray-600">
                             @else
@@ -691,10 +691,10 @@
                             @endif
                         </div>
                         <div class="text-center">
-                            <span class="text-lg text-white font-semibold block">{{ Auth::user()->name }} {{ Auth::user()?->family }}</span>
-                            @if(Auth::user()->role[0]->title)
+                            <span class="text-lg text-white font-semibold block">{{ Auth::user()?->name }} {{ Auth::user()?->family }}</span>
+                          @if(Auth::user()?->role[0] ?? null)
                                 <span class="text-sm text-gray-400 mt-1 block">{{ Auth::user()->role[0]->title }}</span>
-                            @endif
+                        @endif
                         </div>
                     </div>
 
@@ -709,7 +709,7 @@
                     </div>
 
                     <!-- لینک‌های پروفایل -->
-                    @if (!Auth::user()->email)
+                    @if (!isset(Auth::user()->email))
                     <div class="flex flex-row items-center gap-2.5 py-3 px-2 hover:bg-gray-800 rounded-lg transition-all duration-300 mb-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 512 512" fill="white">
                             <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 289c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L288 321.9V168c0-13.3-10.7-24-24-24s-24 10.7-24 24V321.9l-49-49z"/>
@@ -731,7 +731,7 @@
 
                     {{-- <div class="w-full h-px bg-gray-700 my-3"></div> --}}
 
-                    @if (Auth::user()->role[0]->title == 'ادمین')
+                    @if (Auth::check() && Auth::user()->role[0]->title == 'ادمین')
                         <!-- کاربران -->
                         <div class="desktop-menu-item mb-2">
                             <div class="flex flex-row justify-between items-center py-3 px-2 hover:bg-gray-800 rounded-lg cursor-pointer" onclick="toggleMobileSubmenu(this)">

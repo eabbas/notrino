@@ -472,7 +472,7 @@
                   @foreach ($brands as $brand)
                     <li>
                       <div class="flex w-full items-center gap-x-2 py-1 px-4">
-                        <input id="{{ 'b'.$brand->id }}" type="checkbox" onchange="brandCheckBox(this)" value="" class="h-4 w-4 accent-(--color-primary-500) cursor-pointer rounded-xl border-gray-300 bg-gray-100">
+                        <input id="{{ 'b'.$brand->id }}" type="checkbox" onchange="brandCheckBox(this)" value="{{ $brand->id }}" class="h-4 w-4 accent-(--color-primary-500) cursor-pointer rounded-xl border-gray-300 bg-gray-100">
                         <label for="{{ 'b'.$brand->id }}" class="w-full cursor-pointer py-2 pl-4 text-(--color-zinc-600) text-xs">
                           <span>
                           {{ $brand->title }}
@@ -762,46 +762,76 @@
         })
     })
 
-  function brandCheckBox(el, brandId){
-    console.log(brandId)
-      if(el.checked){
-        selectedBrands.push(brandId)
-      }
-      else{
-        selectedBrands = selectedBrands.filter(id => id !== brandId)
-      }
-      $.ajaxSetup({
+    function brandCheckBox(el, brandId) {
+
+    // اگه brandId تعریف نشده (موبایل)، از value خودش بگیر
+    if (typeof brandId === 'undefined' || brandId === null || brandId === '') {
+        brandId = el.value;
+    }
+
+    if (el.checked) {
+        selectedBrands.push(brandId);
+    } else {
+        selectedBrands = selectedBrands.filter(id => id !== brandId);
+    }
+
+    // ✅ همیشه از filterBrand استفاده کن، فرقی نمی‌کنه برند خالی باشه یا نه
+    $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': "{{ csrf_token() }}"
         }
-      })
-      $.ajax({
-        url : "{{ route('filterBrand') }}",
-        type : "POST",
-        dataType : "json",
-        data : {
-          'selectedBrands' : selectedBrands,
+    });
+
+    $.ajax({
+        url: "{{ route('filterBrand') }}",
+        type: "POST",
+        dataType: "json",
+        data: {
+            'selectedBrands': selectedBrands,
+            'searchTitle': searchTitle.value,
         },
-        success: function(datas){
-            let brandTitles = '';
-            
-            datas.brands.forEach(function(brand, index){
-                if(index === 0) {
-                    brandTitles = brand.title;
-                } else {
-                    brandTitles = brandTitles + '، ' + brand.title;
-                }
-            })
-            parentSearch.innerHTML = `نتایج مرتبط با ${brandTitles}`;
-            
+        success: function(datas) {
+
+            // آپدیت عنوان
+            if (datas.brands.length > 0) {
+                let brandTitles = '';
+                datas.brands.forEach(function(brand, index) {
+                    if (index === 0) {
+                        brandTitles = brand.title;
+                    } else {
+                        brandTitles = brandTitles + '، ' + brand.title;
+                    }
+                });
+                parentSearch.innerHTML = `نتایج مرتبط با ${brandTitles}`;
+            } else {
+                // اگه هیچ برندی نیست، برگرد به سرچ اولیه
+                parentSearch.innerHTML = `نتایج مرتبط با ${searchTitle.value}`;
+            }
+
+            // پاک کردن محصولات قبلی
             parentDiv.innerHTML = '';
-            
+
+            // اگه محصولی نیست
+            if (datas.products.length === 0) {
+                parentDiv.innerHTML = `
+                    <div class="col-span-full text-center py-20">
+                        <p class="text-gray-500">هیچ محصولی یافت نشد</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // رندر محصولات
             datas.products.forEach(function(product) {
+                let imgSrc = product.medias && product.medias[0] && product.medias[0].path
+                    ? '{{ asset("storage/") }}/' + product.medias[0].path
+                    : '';
+
                 let productHtml = `
                     <a href="/product/${product.id}">
                         <div class="w-[135px] sm:w-[170px] md:w-[245px] h-[300px] md:h-[400px] text-sm border-1 border-(--color-zinc-300) rounded-2xl px-2 hover:shadow-lg transition">
                             <div class="flex items-center justify-center">
-                                <img src="${product.medias[0]?.path ? '{{ asset("storage/") }}/'+product.medias[0].path : ''}" alt="${product.title}" class="rounded-xl mb-3 max-w-[130px] min-w-[130px] max-h-[100px] min-h-[100px] md:max-w-[200px] main-w-[200px] max-h-[200px] min-h-[200px]">
+                                <img src="${imgSrc}" alt="${product.title}" class="rounded-xl mb-3 max-w-[130px] min-w-[130px] max-h-[100px] min-h-[100px] md:max-w-[200px] main-w-[200px] max-h-[200px] min-h-[200px]">
                             </div>
                             <div class="text-[10px] md:text-xs text-(--color-zinc-500) mb-3">${product.title}</div>
                             <p class="w-full mb-3 text-xs md:text-sm truncate">${product.summary}</p>
@@ -817,12 +847,113 @@
                 parentDiv.innerHTML += productHtml;
             });
         },
-        error: function(){
-          alert('خطا  در ارسال داده')
+        error: function(xhr, status, error) {
+            console.log('FilterBrand error:', xhr.responseText);
+            alert('خطا در دریافت اطلاعات');
         }
-      })
+    });
+}
 
-  }
-  
+    let link = "{{ url('/') }}/";
+
+    // ================ سبد هدر ================
+    function renderCartHeader() {
+        let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+        let cartCountHeader = document.getElementById('cartCountHeader');
+        let cartCountHeaderBox = document.getElementById('cartCountHeaderBox');
+        let cartItemsBox = document.getElementById('cartItemsBox');
+        let cartTotalPrice = document.getElementById('cartTotalPrice');
+        let cartEmpty = document.getElementById('cartEmpty');
+        let cartFooter = document.getElementById('cartFooter');
+
+        if (!cartItemsBox) return;
+
+        let totalCount = 0;
+        let totalPrice = 0;
+        for (let i = 0; i < cart.length; i++) {
+            totalCount += cart[i].quantity;
+            totalPrice += cart[i].price * cart[i].quantity;
+        }
+
+        if (totalCount > 0) {
+            cartCountHeader.classList.remove('hidden');
+            cartCountHeader.classList.add('flex');
+            cartCountHeader.querySelector('span').innerText = totalCount;
+        } else {
+            cartCountHeader.classList.add('hidden');
+            cartCountHeader.classList.remove('flex');
+        }
+
+        cartCountHeaderBox.innerText = totalCount;
+
+        if (cart.length === 0) {
+            cartItemsBox.innerHTML = "";
+            cartEmpty.classList.remove('hidden');
+            cartEmpty.classList.add('flex');
+            cartFooter.classList.add('hidden');
+            return;
+        }
+
+        cartEmpty.classList.add('hidden');
+        cartEmpty.classList.remove('flex');
+        cartFooter.classList.remove('hidden');
+
+        let html = "";
+        for (let i = 0; i < cart.length; i++) {
+            let item = cart[i];
+            let img = item.image ? item.image : "{{ asset('storage/img/logo/Screenshot 2025-12-16 063243.png') }}";
+
+            html += `
+                <li class="border-b border-zinc-100 flex items-center p-2 gap-3">
+                    <a href="${link}products/show/${item.id}" class="shrink-0">
+                        <img src="${img}" alt="${item.title}" class="w-16 h-16 object-cover rounded-lg">
+                    </a>
+                    <div class="flex-1 min-w-0 flex flex-col gap-2">
+                        <a href="${link}products/show/${item.id}" class="text-sm text-zinc-700 truncate">${item.title}</a>
+                        <div class="flex items-center justify-between gap-2">
+                            <div class="text-xs text-zinc-600">${Number(item.price).toLocaleString('fa-IR')} تومان</div>
+                            <div class="flex h-8 items-center rounded-lg border border-gray-200 px-1">
+                                <button type="button" onclick="changeCartCount(${item.id}, '+')" class="p-1 cursor-pointer">
+                                    <svg class="fill-green-500" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H134v82a6,6,0,0,1-12,0V134H40a6,6,0,0,1,0-12h82V40a6,6,0,0,1,12,0v82h82A6,6,0,0,1,222,128Z"></path></svg>
+                                </button>
+                                <span class="text-sm text-zinc-700 w-6 text-center">${item.quantity}</span>
+                                <button type="button" onclick="changeCartCount(${item.id}, '-')" class="p-1 cursor-pointer">
+                                    <svg class="fill-red-500" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 256 256"><path d="M222,128a6,6,0,0,1-6,6H40a6,6,0,0,1,0-12H216A6,6,0,0,1,222,128Z"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            `;
+        }
+        cartItemsBox.innerHTML = html;
+        cartTotalPrice.innerText = Number(totalPrice).toLocaleString('fa-IR');
+    }
+
+    function changeCartCount(proId, state) {
+        let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+        let foundIndex = -1;
+        for (let i = 0; i < cart.length; i++) {
+            if (cart[i].id == proId) { foundIndex = i; break; }
+        }
+        if (foundIndex === -1) return;
+
+        if (state === '+') cart[foundIndex].quantity++;
+        if (state === '-') cart[foundIndex].quantity--;
+
+        if (cart[foundIndex].quantity <= 0) {
+            cart.splice(foundIndex, 1);
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCartHeader();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        renderCartHeader();
+    });
 </script>
+
 @endsection

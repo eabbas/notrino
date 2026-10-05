@@ -87,14 +87,14 @@ menub.forEach((item)=>{
     })
 })
 
-function plasss() {
-    var input = document.getElementById("numberInput");
-    input.value = parseInt(input.value) + 1;
-}
-function maineez() {
-    var input = document.getElementById("numberInput");
-    input.value = parseInt(input.value) - 1;
-}
+// function plasss() {
+//     var input = document.getElementById("numberInput");
+//     input.value = parseInt(input.value) + 1;
+// }
+// function maineez() {
+//     var input = document.getElementById("numberInput");
+//     input.value = parseInt(input.value) - 1;
+// }
 
 // const svg= document.getElementById('menubbb');
 // let menu=document.querySelectorAll('.menu')
