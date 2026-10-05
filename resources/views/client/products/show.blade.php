@@ -211,10 +211,10 @@
                 </div>
             @else --}}
                   <div id="productBuyBox" class="w-full">
-    <button onclick='addToCart(this , "{{ $product->id }}")' class="hidden lg:block mx-auto cursor-pointer w-full px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 transition text-white rounded-lg">
-        افزودن به سبد خرید
-    </button>
-</div>
+                      <button onclick='addToCart(this , "{{ $product->id }}")' class="hidden lg:block mx-auto cursor-pointer w-full px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 transition text-white rounded-lg">
+                          افزودن به سبد خرید
+                      </button>
+                  </div>
             {{-- @endif --}}
             <!-- <button class="hidden lg:block mx-auto w-full px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-500) to-(--color-primary-400) opacity-80 cursor-not-allowed transition text-(--color-zinc-100) rounded-lg">
               محصول موجود نیست!
@@ -225,24 +225,22 @@
             هزینه پست برای سبد خرید بالای 400 هزار تومان رایگان میباشد.
           </div>
           <!-- fixed div buy mobile -->
-          <div class="fixed flex bottom-0 right-0 lg:hidden bg-white border-t-1 border-t-zinc-300 w-full px-5 py-3 gap-x-2 z-1000">
-            <button class="mx-auto 5 w-1/2 px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 transition text-white rounded-lg">
-              افزودن به سبد خرید
-            </button>
-            
-            <!-- <button class="mx-auto 5 w-1/2 px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-500) to-(--color-primary-400) opacity-80 cursor-not-allowed transition text-(--color-zinc-100) rounded-lg">
-              محصول موجود نیست!
-            </button> -->
-            <span class="flex flex-col justify-center items-end w-1/2">
-              <div class="text-(--color-zinc-700) text-left">
-                <span class="font-yekanBakhExtraBold text-xl">23,380,000</span>
-                <span class="text-xs">تومان</span>
-              </div>
-              <div class="text-xs text-(--color-red-500)">
-                تنها 1 عدد در انبار باقی مانده
-              </div>
-            </span>
-          </div>
+       <div class="fixed flex bottom-0 right-0 lg:hidden bg-white border-t-1 border-t-zinc-300 w-full px-5 py-3 gap-x-2 z-1000">
+    <div id="productBuyBoxMobile" class="w-1/2">
+        <button onclick='addToCart(this , "{{ $product->id }}")' class="w-full px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 transition text-white rounded-lg">
+            افزودن به سبد خرید
+        </button>
+    </div>
+    <span class="flex flex-col justify-center items-end w-1/2">
+        <div class="text-(--color-zinc-700) text-left">
+            <span class="font-yekanBakhExtraBold text-xl">{{ number_format(str_replace(',', '', $product->price)) }}</span>
+            <span class="text-xs">تومان</span>
+        </div>
+        <div class="text-xs text-(--color-red-500)">
+            تنها 1 عدد در انبار باقی مانده
+        </div>
+    </span>
+</div>
         </div>
       </section>
       <section class="flex flex-col lg:flex-row mt-22 pb-2 gap-x-8 border-b-1 border-(--color-zinc-200)">
@@ -689,7 +687,23 @@
         cartItemsBox.innerHTML = html;
         cartTotalPrice.innerText = Number(totalPrice).toLocaleString('fa-IR');
     }
+    function toggleCartBox(event) {
+    if (event) event.preventDefault();
 
+    let cartBox = document.getElementById('cartBox');
+    if (!cartBox) return;
+
+    // اگه موبایل بود (لمسی)، با کلیک باز/بسته کن
+    if (window.innerWidth < 768) {
+        if (cartBox.classList.contains('opacity-0')) {
+            cartBox.classList.remove('opacity-0', 'invisible');
+            cartBox.classList.add('opacity-100', 'visible');
+        } else {
+            cartBox.classList.add('opacity-0', 'invisible');
+            cartBox.classList.remove('opacity-100', 'visible');
+        }
+    }
+}
     function changeCartCount(proId, state) {
         let cart = JSON.parse(localStorage.getItem("cart") || "[]");
 
@@ -716,42 +730,71 @@
     }
 
     function updateProductButton() {
-        let box = document.getElementById('productBuyBox');
-        if (!box) return;
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
 
-        let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    let item = null;
+    for (let i = 0; i < cart.length; i++) {
+        if (cart[i].id == product_id) { item = cart[i]; break; }
+    }
 
-        let item = null;
-        for (let i = 0; i < cart.length; i++) {
-            if (cart[i].id == product_id) { item = cart[i]; break; }
-        }
-
+    // ============ دسکتاپ ============
+    let box = document.getElementById('productBuyBox');
+    if (box) {
         if (!item || item.quantity <= 0) {
             box.innerHTML = `
                 <button onclick='addToCart(this , "${product_id}")' class="hidden lg:block mx-auto cursor-pointer w-full px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 transition text-white rounded-lg">
                     افزودن به سبد خرید
                 </button>
             `;
-            return;
+        } else {
+            box.innerHTML = `
+                <div class="w-full h-12 flex items-center justify-center gap-2 bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) font-bold text-[11px] lg:text-sm rounded-xl">
+                    <div onclick="setCount(this, '+', ${product_id})">
+                        <svg class="w-6 h-6 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </div>
+                    <input type="number" disabled value="${item.quantity}" class="w-[50px] md:w-full text-white text-center leading-none bg-transparent border-0 p-0 outline-none opacity-100">
+                    <div onclick="setCount(this, '-', ${product_id})">
+                        <svg class="w-6 h-6 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </div>
+                </div>
+            `;
         }
-
-        box.innerHTML = `
-            <div class="w-full h-12 flex items-center justify-center gap-2 bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) font-bold text-[11px] lg:text-sm rounded-xl">
-                <div onclick="setCount(this, '+', ${product_id})">
-                    <svg class="w-6 h-6 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                    </svg>
-                </div>
-                <input type="number" disabled value="${item.quantity}" class="w-[50px] md:w-full text-white text-center leading-none bg-transparent border-0 p-0 outline-none opacity-100">
-                <div onclick="setCount(this, '-', ${product_id})">
-                    <svg class="w-6 h-6 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                    </svg>
-                </div>
-            </div>
-        `;
     }
+
+    // ============ موبایل ============
+    let boxMobile = document.getElementById('productBuyBoxMobile');
+    if (boxMobile) {
+        if (!item || item.quantity <= 0) {
+            boxMobile.innerHTML = `
+                <button onclick='addToCart(this , "${product_id}")' class="w-full px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 transition text-white rounded-lg">
+                    افزودن به سبد خرید
+                </button>
+            `;
+        } else {
+            boxMobile.innerHTML = `
+                <div class="w-full h-12 flex items-center justify-center gap-2 bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) font-bold text-[11px] rounded-xl">
+                    <div onclick="setCount(this, '+', ${product_id})" class="cursor-pointer">
+                        <svg class="w-6 h-6 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </div>
+                    <input type="number" disabled value="${item.quantity}" class="w-[40px] text-white text-center leading-none bg-transparent border-0 p-0 outline-none opacity-100">
+                    <div onclick="setCount(this, '-', ${product_id})" class="cursor-pointer">
+                        <svg class="w-6 h-6 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </div>
+                </div>
+            `;
+        }
+    }
+}
 
  
 
