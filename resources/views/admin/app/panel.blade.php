@@ -557,6 +557,10 @@
                                 <span class="size-1.5 bg-white rounded-sm"></span>
                                 <a href="{{ route('brand.list') }}" class="text-white py-1 text-sm block w-full">لیست برند</a>
                             </li>
+                            <li class="flex flex-row items-center gap-2.5 py-2 pr-6 hover:bg-gray-800 rounded-lg">
+                                <span class="size-1.5 bg-white rounded-sm"></span>
+                                <a href="{{ route('contactUs.create') }}" class="text-white py-1 text-sm">ایجاد تماس با ما</a>
+                            </li>
                         </ul>
                     </div>
 
@@ -877,6 +881,10 @@
                                 <li class="flex flex-row items-center gap-2.5 py-2 pr-6 hover:bg-gray-800 rounded-lg">
                                     <span class="size-1.5 bg-white rounded-sm"></span>
                                     <a href="{{ route('brand.list') }}" class="text-white py-1 text-sm">لیست برند</a>
+                                </li>
+                                <li class="flex flex-row items-center gap-2.5 py-2 pr-6 hover:bg-gray-800 rounded-lg">
+                                    <span class="size-1.5 bg-white rounded-sm"></span>
+                                    <a href="{{ route('contactUs.create') }}" class="text-white py-1 text-sm">ایجاد تماس با ما</a>
                                 </li>
                             </ul>
                         </div>

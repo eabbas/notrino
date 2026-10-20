@@ -43,7 +43,7 @@
       <div class="slides">
         @if($sliders)
         @foreach ($sliders as $slider)
-          <a href="{{ route('slider.list') }}" class="slide object-cover w-full h-35 mx-auto md:h-[320px]">
+          <a href="#" class="slide object-cover w-full h-35 mx-auto md:h-[320px]">
             <img src="{{ asset('storage/'.$slider->slider_img) }}" class="w-full h-full object-cover" alt="">
           </a>
         @endforeach
@@ -82,7 +82,7 @@
       <span class="w-48 min-w-fit text-xs md:text-sm md:font-yekanBakhBold text-(--color-zinc-600)">دسته بندی های ویژه</span>
       <span class="h-[1px] w-full bg-gradient-to-r from-white via-(--color-zinc-500) to-white "></span>
       <div class="w-32 min-w-fit text-left">
-        <a href="" class="text-sm hover:text-(--color-primary-500) text-(--color-zinc-600) flex fle items-center gap-x-1 group">
+        <a href="{{ route('search') }}" class="text-sm hover:text-(--color-primary-500) text-(--color-zinc-600) flex fle items-center gap-x-1 group">
           مشاهده همه
           <svg class="fill-(--color-zinc-600) hover:fill-(--color-primary-500) group-hover:-translate-x-1 transition group-hover:fill-(--color-primary-500) size-2.5 md:size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
             <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
@@ -96,7 +96,7 @@
         [&::-webkit-scrollbar-thumb]:rounded-full">
         <div class="flex flex-row items-start gap-5">
             @for ($i = 1; $i <= $categoryCount; $i++)
-                <div class="flex flex-row items-start gap-5 {{ $i > 1 ? 'mr-5' : '' }}">
+                <a href="{{ route('search') }}" class="flex flex-row items-start gap-5 {{ $i > 1 ? 'mr-5' : '' }}">
                     @for ($j = ($i - 1) * 8; $j < $i * 8 && $j < count($categories); $j++)
                         
                         @if ($x == 1)
@@ -312,12 +312,12 @@
                 @endif
                 
                 <li>
-                    <button class="text-right px-4 py-2 rounded-lg cursor-pointer text-sm hover:text-(--color-primary-700) text-(--color-primary-500) flex items-center gap-x-1 group">
+                    <a href="{{ route('search') }}" class="text-right px-4 py-2 rounded-lg cursor-pointer text-sm hover:text-(--color-primary-700) text-(--color-primary-500) flex items-center gap-x-1 group">
                         همه محصولات
                         <svg class="fill-(--color-primary-500) hover:fill-(--color-primary-700) group-hover:-translate-x-1 transition group-hover:fill-primary-500 size-2.5 md:size-3" xmlns="http://www.w3.org/2000/svg"viewBox="0 0 256 256">
                             <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
                         </svg>
-                    </button>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -445,7 +445,7 @@
       <span class="w-48 min-w-fit text-xs md:text-sm md:font-yekanBakhBold text-(--color-zinc-600)">محصولات پرفروش</span>
       <span class="h-[1px] w-full bg-gradient-to-r from-white via-(--color-zinc-500) to-white "></span>
       <div class="w-32 min-w-fit text-left">
-        <a href="" class="text-sm hover:text-(--color-primary-500) text-(--color-zinc-600) flex fle items-center gap-x-1 group">
+        <a href="{{ route('search') }}" class="text-sm hover:text-(--color-primary-500) text-(--color-zinc-600) flex fle items-center gap-x-1 group">
           مشاهده همه
           <svg class="fill-(--color-zinc-600) hover:fill-(--color-primary-500) group-hover:-translate-x-1 transition group-hover:fill-(--color-primary-500) size-2.5 md:size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
             <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
@@ -534,7 +534,7 @@
         <span class="w-48 min-w-fit text-xs md:text-sm md:font-yekanBakhBold text-(--color-zinc-600)">جدید ترین محصولات</span>
         <span class="h-[1px] w-full bg-gradient-to-r from-white via-(--color-zinc-500) to-white "></span>
         <div class="w-32 min-w-fit text-left">
-          <a href="" class="text-sm hover:text-(--color-primary-500) text-(--color-zinc-600) flex fle items-center gap-x-1 group">
+          <a href="{{ route('search') }}" class="text-sm hover:text-(--color-primary-500) text-(--color-zinc-600) flex fle items-center gap-x-1 group">
             مشاهده همه
             <svg class="fill-(--color-zinc-600) hover:fill-(--color-primary-500) group-hover:-translate-x-1 transition group-hover:fill-(--color-primary-500) size-2.5 md:size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
               <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
@@ -606,7 +606,7 @@
       <span class="w-48 min-w-fit text-zinc-700 text-xl md:text-sm md:font-yekanBakhBold"> برند ها</span>
       <span class="h-[1px] w-full bg-gradient-to-r from-white via-(--color-zinc-500) to-white"></span>
       <div class="w-32 min-w-fit text-left">
-        <a href="" class="text-sm hover:text-(--color-primary-500) text-(--color-zinc-600) flex fle items-center gap-x-1 group">
+        <a href="{{ route('search') }}" class="text-sm hover:text-(--color-primary-500) text-(--color-zinc-600) flex fle items-center gap-x-1 group">
           مشاهده همه
           <svg class="fill-(--color-zinc-600) hover:fill-(--color-primary-500) group-hover:-translate-x-1 transition group-hover:fill-(--color-primary-500) size-2.5 md:size-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
             <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
