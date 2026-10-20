@@ -59,19 +59,39 @@
               </div>
               @endif
           <div class="flex flex-col items-center">
-            <div class="">
+            {{-- عکس اصلی (بزرگ) --}}
+            <div class="w-full flex justify-center">
             @if(isset($mainImage))
-                <img src="{{ asset('storage/'.$mainImage->path) }}" alt="" class="w-full max-w-96 object-cover rounded-lg">
+                <img id="mainProductImage" src="{{ asset('storage/'.$mainImage->path) }}" alt="{{ $product->title }}" class="w-full max-w-96 object-cover rounded-lg">
+            @else
+                <img id="mainProductImage" src="{{ asset('img/products/default.jpg') }}" alt="{{ $product->title }}" class="w-full max-w-96 object-cover rounded-lg">
             @endif
             </div>
+
+            {{-- گالری عکس‌ها (شامل خود عکس اصلی) --}}
             <div class="flex justify-start gap-x-2 mt-4 pb-4 overflow-x-auto
               [&::-webkit-scrollbar]:w-[2px]
               [&::-webkit-scrollbar-thumb]:bg-(--color-primary-500)
               [&::-webkit-scrollbar-thumb]:rounded-full">
-              @if(isset($gallery))
-              @foreach ($gallery as $img)
-                <img src="{{ asset('storage/'.$img->path) }}" class="w-20 h-20 border-2 border-(--color-zinc-200) rounded-md opacity-70 hover:opacity-100 hover:border-(--color-zinc-300)" alt="img product">
-              @endforeach
+              
+              {{-- اول عکس اصلی --}}
+              @if(isset($mainImage))
+                <img src="{{ asset('storage/'.$mainImage->path) }}" 
+                     onclick="changeMainImage(this)"
+                     class="gallery-thumb w-20 h-20 border-2 border-(--color-primary-400) rounded-md opacity-100 cursor-pointer transition-all" 
+                     alt="main product image">
+              @endif
+
+              {{-- بعد بقیه عکس‌های گالری --}}
+              @if(isset($gallery) && count($gallery) > 0)
+                @foreach ($gallery as $img)
+                  @if(!isset($mainImage) || $img->path !== $mainImage->path)
+                    <img src="{{ asset('storage/'.$img->path) }}" 
+                         onclick="changeMainImage(this)"
+                         class="gallery-thumb w-20 h-20 border-2 border-(--color-zinc-200) rounded-md opacity-70 hover:opacity-100 hover:border-(--color-zinc-300) cursor-pointer transition-all" 
+                         alt="img product">
+                  @endif
+                @endforeach
               @endif
              
             </div>
@@ -79,17 +99,20 @@
         </div>
         <!-- info -->
         <div class="lg:w-5/12 mt-5 lg:mt-1">
+    
           <div class="mb-7 text-xs flex flex-wrap space-y-2 md:space-y-0 items-center gap-x-2 opacity-90">
-            <a href="" class="text-(--color-zinc-500) hover:text-(--color-primary-500) transition">
-              کالای دیجیتال
+            @if(isset($product->categories[0]->parent))
+              <a href="{{ route('search') }}" class="text-(--color-zinc-500) hover:text-(--color-primary-500) transition">
+                {{ $product->categories[0]->parent->title }}
+                <svg class="size-3 fill-(--color-zinc-500)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3d3d3d" viewBox="0 0 256 256"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path></svg>
+              </a>
+            @endif
+            <a href="{{ route('search') }}" class="text-(--color-zinc-500) hover:text-(--color-primary-500) transition">
+             {{ $product->categories[0]->title }}
             </a>
             <svg class="size-3 fill-(--color-zinc-500)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3d3d3d" viewBox="0 0 256 256"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path></svg>
-            <a href="" class="text-(--color-zinc-500) hover:text-(--color-primary-500) transition">
-             موبایل
-            </a>
-            <svg class="size-3 fill-(--color-zinc-500)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3d3d3d" viewBox="0 0 256 256"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path></svg>
-            <a class="text-(--color-primary-500)" href="">
-             موبایل آیفون 12pro max
+            <a href="{{ route('search') }}" class="text-(--color-primary-500)" href="">
+              {{ $product->title }}
             </a>
           </div>
           <div class="text-(--color-zinc-800) md:text-2xl font-semibold leading-7">
@@ -614,47 +637,66 @@
     let link = "{{ url('/') }}/";
 
 
-    function renderCartHeader() {
-        let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    function changeMainImage(thumb) {
+        let mainImg = document.getElementById('mainProductImage');
+        if (!mainImg) return;
 
-        let cartCountHeader = document.getElementById('cartCountHeader');
-        let cartCountHeaderBox = document.getElementById('cartCountHeaderBox');
-        let cartItemsBox = document.getElementById('cartItemsBox');
-        let cartTotalPrice = document.getElementById('cartTotalPrice');
-        let cartEmpty = document.getElementById('cartEmpty');
-        let cartFooter = document.getElementById('cartFooter');
+        // تغییر عکس اصلی
+        mainImg.src = thumb.src;
 
-        if (!cartItemsBox) return;
+        // حذف حالت فعال از همه عکس‌های گالری
+        let thumbs = document.querySelectorAll('.gallery-thumb');
+        thumbs.forEach(function(t) {
+            t.classList.remove('border-(--color-primary-400)', 'opacity-100');
+            t.classList.add('border-(--color-zinc-200)', 'opacity-70');
+        });
 
-        let totalCount = 0;
-        let totalPrice = 0;
+        // اضافه کردن حالت فعال به عکس کلیک شده
+        thumb.classList.remove('border-(--color-zinc-200)', 'opacity-70');
+        thumb.classList.add('border-(--color-primary-400)', 'opacity-100');
+    }
+
+
+    function cartHeader() {
+        let cart = JSON.parse(localStorage.getItem("cart") || "[]")
+
+        let cartCountHeader = document.getElementById('cartCountHeader')
+        let cartCountHeaderBox = document.getElementById('cartCountHeaderBox')
+        let cartItemsBox = document.getElementById('cartItemsBox')
+        let cartTotalPrice = document.getElementById('cartTotalPrice')
+        let cartEmpty = document.getElementById('cartEmpty')
+        let cartFooter = document.getElementById('cartFooter')
+        if (!cartItemsBox) return
+
+        let totalCount = 0
+        let totalPrice = 0
         for (let i = 0; i < cart.length; i++) {
-            totalCount += cart[i].quantity;
-            totalPrice += cart[i].price * cart[i].quantity;
+            totalCount += cart[i].quantity
+            totalPrice += cart[i].price * cart[i].quantity
         }
 
         if (totalCount > 0) {
-            cartCountHeader.classList.remove('hidden');
-            cartCountHeader.classList.add('flex');
-            cartCountHeader.querySelector('span').innerText = totalCount;
+            cartCountHeader.classList.remove('hidden')
+            cartCountHeader.classList.add('flex')
+            cartCountHeader.querySelector('span').innerText = totalCount
         } else {
-            cartCountHeader.classList.add('hidden');
-            cartCountHeader.classList.remove('flex');
+            cartCountHeader.classList.add('hidden')
+            cartCountHeader.classList.remove('flex')
         }
 
-        cartCountHeaderBox.innerText = totalCount;
+        cartCountHeaderBox.innerText = totalCount
 
         if (cart.length === 0) {
-            cartItemsBox.innerHTML = "";
-            cartEmpty.classList.remove('hidden');
-            cartEmpty.classList.add('flex');
-            cartFooter.classList.add('hidden');
-            return;
+            cartItemsBox.innerHTML = ""
+            cartEmpty.classList.remove('hidden')
+            cartEmpty.classList.add('flex')
+            cartFooter.classList.add('hidden')
+            return
         }
 
-        cartEmpty.classList.add('hidden');
-        cartEmpty.classList.remove('flex');
-        cartFooter.classList.remove('hidden');
+        cartEmpty.classList.add('hidden')
+        cartEmpty.classList.remove('flex')
+        cartFooter.classList.remove('hidden')
 
         let html = "";
         for (let i = 0; i < cart.length; i++) {
@@ -682,50 +724,49 @@
                         </div>
                     </div>
                 </li>
-            `;
+            `
         }
         cartItemsBox.innerHTML = html;
         cartTotalPrice.innerText = Number(totalPrice).toLocaleString('fa-IR');
     }
     function toggleCartBox(event) {
-    console.log('toggleCartBox called ✅');
     if (event) event.preventDefault();
 
-    let cartBox = document.getElementById('cartBox');
+    let cartBox = document.getElementById('cartBox')
     console.log('cartBox:', cartBox);
 
     if (!cartBox) {
-        console.log('❌ cartBox پیدا نشد');
+        console.log('❌ cartBox پیدا نشد')
         return;
     }
 
     if (cartBox.classList.contains('invisible') || cartBox.classList.contains('opacity-0')) {
-        cartBox.classList.remove('invisible', 'opacity-0');
-        cartBox.classList.add('opacity-100');
+        cartBox.classList.remove('invisible', 'opacity-0')
+        cartBox.classList.add('opacity-100')
     } else {
-        cartBox.classList.add('invisible', 'opacity-0');
-        cartBox.classList.remove('opacity-100');
+        cartBox.classList.add('invisible', 'opacity-0')
+        cartBox.classList.remove('opacity-100')
     }
 }
     function changeCartCount(proId, state) {
-        let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        let cart = JSON.parse(localStorage.getItem("cart") || "[]")
 
-        let foundIndex = -1;
+        let foundIndex = -1
         for (let i = 0; i < cart.length; i++) {
             if (cart[i].id == proId) { foundIndex = i; break; }
         }
-        if (foundIndex === -1) return;
+        if (foundIndex === -1) return
 
-        if (state === '+') cart[foundIndex].quantity++;
-        if (state === '-') cart[foundIndex].quantity--;
+        if (state === '+') cart[foundIndex].quantity++
+        if (state === '-') cart[foundIndex].quantity--
 
         if (cart[foundIndex].quantity <= 0) {
-            cart.splice(foundIndex, 1);
+            cart.splice(foundIndex, 1)
         }
 
-        localStorage.setItem("cart", JSON.stringify(cart));
+        localStorage.setItem("cart", JSON.stringify(cart))
 
-        renderCartHeader();
+        cartHeader()
 
         if (product_id == proId) {
             updateProductButton();
@@ -733,15 +774,15 @@
     }
 
     function updateProductButton() {
-    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]")
 
-    let item = null;
+    let item = null
     for (let i = 0; i < cart.length; i++) {
         if (cart[i].id == product_id) { item = cart[i]; break; }
     }
 
-    // ============ دسکتاپ ============
-    let box = document.getElementById('productBuyBox');
+
+    let box = document.getElementById('productBuyBox')
     if (box) {
         if (!item || item.quantity <= 0) {
             box.innerHTML = `
@@ -765,19 +806,19 @@
                         </svg>
                     </div>
                 </div>
-            `;
+            `
         }
     }
 
-    // ============ موبایل ============
-    let boxMobile = document.getElementById('productBuyBoxMobile');
+
+    let boxMobile = document.getElementById('productBuyBoxMobile')
     if (boxMobile) {
         if (!item || item.quantity <= 0) {
             boxMobile.innerHTML = `
                 <button onclick='addToCart(this , "${product_id}")' class="w-full px-2 py-3 text-sm bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) hover:opacity-80 transition text-white rounded-lg">
                     افزودن به سبد خرید
                 </button>
-            `;
+            `
         } else {
             boxMobile.innerHTML = `
                 <div class="w-full h-12 flex items-center justify-center gap-2 bg-gradient-to-bl from-(--color-primary-400) to-(--color-primary-600) font-bold text-[11px] rounded-xl">
@@ -794,7 +835,7 @@
                         </svg>
                     </div>
                 </div>
-            `;
+            `
         }
     }
 }
@@ -842,7 +883,7 @@
         </div>`
 
    
-        renderCartHeader();
+        cartHeader()
     }
 
 
@@ -882,7 +923,7 @@
             </button>
             `
 
-            renderCartHeader();
+            cartHeader();
 
             return
         }
@@ -903,16 +944,13 @@
             `
         }
 
-        renderCartHeader();
+        cartHeader();
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        renderCartHeader();
+        cartHeader();
         updateProductButton();
     });
 
 </script>
 @endsection
-
-
-

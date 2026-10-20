@@ -26,17 +26,6 @@ class HomeController extends Controller
       $products = product::all();
       $medias = media::all();
       $sliders = slider::all();
-      $cartCount = 0;
-      $userCart = null;
-      if (isset(Auth::user()->carts)) {
-         foreach (Auth::user()->carts as $cart) {
-            $userCart = carts::where('product_id', $cart->product_id)->where('user_id', Auth::id())->where('order_id', null)->first();
-         }
-         if ($userCart) {
-            $cartCount += $userCart->quantity;
-         }
-      }
-      // dd(Auth::user()->carts);
     $categories = Category::with(['products' => function ($query) {
         $query->with(['medias', 'attributes']);
     }])->where('id', '!=', 1)->get();
@@ -75,8 +64,8 @@ class HomeController extends Controller
          'products'=>isset($products) ? $products : null,
          'attributes'=>isset($attributes) ? $attributes : null,
          'medias'=>isset($medias) ? $medias : null,
-         'cartCount' => $cartCount,
-         'userCart' => $userCart
+         // 'cartCount' => $cartCount,
+         // 'userCart' => $userCart
       ]);
    }
    //   public function search(Request $request)
